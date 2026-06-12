@@ -28,13 +28,17 @@ void kernel_main(uint64_t multiboot_addr) {
   sleep(1000);
   clear();
 
-  const char* logo = "Kernel of KhazarOS";
-  int32_t offset = get_offset(28, 11);
+  const char* logo = "KhazarOS";
+  int32_t offset = get_offset(35, 11);
   for (int i =0; logo[i] != '\0'; i++) {
       sleep(100);
       set_char_w_color(logo[i], COLOR_LIGHT_GREEN, offset);
       offset +=2;
   }
+// :D emoji
+  int32_t offsheet = get_offset(39,12);
+  set_char_w_color((uint8_t)0x01, COLOR_LIGHT_GREEN, offsheet);
+
 
 // qardas bu memorydir PMM ucun lazm olcaq
   multiboot_info_t *mb = (multiboot_info_t *)multiboot_addr;
