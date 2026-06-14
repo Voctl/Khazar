@@ -53,3 +53,5 @@ int32_t scrolln(int32_t offset); // bu ise ekrani scroll edib yuxari kocurur
 void putdec(uint64_t n); // ekrana reqem yazmaga komek edir
 // ekrani clear edir
 void clear();
+
+

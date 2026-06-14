@@ -1,4 +1,5 @@
 global loader
+global p4_table
 extern kernel_main
 
 MAGIC_NUMBER      equ 0x1BADB002

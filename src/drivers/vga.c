@@ -170,3 +170,4 @@ void set_char_w_color(uint8_t character, uint8_t color, int32_t offset) {
   vidmem[offset] = character;
   vidmem[offset + 1] = color;
 }
+

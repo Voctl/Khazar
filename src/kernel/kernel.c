@@ -5,6 +5,7 @@
 #include "../include/pit/pit.h"
 #include "../include/typint.h"
 #include "../include/vga.h"
+#include "panic.h"
 
 void kernel_main(uint64_t multiboot_addr) {
   clear();
@@ -27,26 +28,26 @@ void kernel_main(uint64_t multiboot_addr) {
   putstr(" IRQ1 [keyboard] Initialized\n");
   sleep(1000);
   clear();
-
-  const char* logo = "KhazarOS";
+  
+  const char *logo = "KhazarOS";
   int32_t offset = get_offset(35, 11);
-  for (int i =0; logo[i] != '\0'; i++) {
-      sleep(100);
-      set_char_w_color(logo[i], COLOR_LIGHT_GREEN, offset);
-      offset +=2;
+  for (int i = 0; logo[i] != '\0'; i++) {
+    sleep(100);
+    set_char_w_color(logo[i], COLOR_LIGHT_GREEN, offset);
+    offset += 2;
   }
-// :D emoji
-  int32_t offsheet = get_offset(39,12);
+  // :D emoji
+  int32_t offsheet = get_offset(39, 12);
   set_char_w_color((uint8_t)0x01, COLOR_LIGHT_GREEN, offsheet);
 
-// qardas bu memorydir PMM ucun lazm olcaq
+  // qardas bu memorydir PMM ucun lazm olcaq
   multiboot_info_t *mb = (multiboot_info_t *)multiboot_addr;
   if (mb->flags & MULTIBOOT_FLAG_MAP) {
     putstr("\n[ MEMORY ]\n");
     sleep(300);
     multiboot_entry_t *entry = (multiboot_entry_t *)((uint64_t)mb->mmap_addr);
     uint64_t end = (uint64_t)mb->mmap_addr + mb->mmap_length;
-   // print
+    // print
     while ((uint64_t)entry < end) {
       if (entry->type == 1) {
         putstr("[ USABLE ]   addr: ");
