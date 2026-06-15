@@ -6,6 +6,7 @@
 #include "../include/typint.h"
 #include "../include/vga.h"
 #include "panic.h"
+#include "../include/shell.h"
 
 void kernel_main(uint64_t multiboot_addr) {
   clear();
@@ -66,7 +67,8 @@ void kernel_main(uint64_t multiboot_addr) {
       entry = (multiboot_entry_t *)((uint64_t)entry + entry->size + 4);
     }
   }
-
+  sleep(1000);
+  shell();
   while (1)
-    ;
+    asm volatile("hlt");
 }
