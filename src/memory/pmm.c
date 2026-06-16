@@ -3,10 +3,10 @@
 #include "../include/vga.h"
 #include "../kernel/panic.h"
 #include "../include/memory/pml.h"
+#include "../include/memory/multiboot.h"
+#include "../include/string.h"
 
-
-
-static volatile uint32_t *frames;
+static uint8_t *frames;
 static size_t nframes;
 static size_t total_memory = 0;
 static size_t unavailable_mem = 0;
@@ -61,6 +61,11 @@ int pmm_test_addr(uintptr_t addr){
 /* Bitmap-i tarayaraq tapilan ilk bos sehifenin indeksini qaytarir */
 uintptr_t pmm_first_free(void) {
     uintptr_t i, j;
+  if (!frames)
+      kernel_panic("frames NULL");
+
+  if (!nframes)
+      kernel_panic("nframes zero");
     for (i = INDEX_FROM_BIT(lowest_available); i < INDEX_FROM_BIT(nframes); ++i) {
         if (frames[i] != (uint32_t)-1) {
             for (j = 0; j < (sizeof(uint32_t) * 8); ++j) {
@@ -133,4 +138,57 @@ void mmu_free(union PML * from) {
     }
     /* En basdaki PML4 strukturunun ozunu de yaddasda bosa cixaririq */
     pmm_clear((uintptr_t)from);
+}
+
+static uint8_t frame_bitmap[4096];
+
+void pmm_init(multiboot_info_t *mb)
+{
+    frames = frame_bitmap;
+    nframes = 1024 * 256;
+
+    memset(frames, 0xFF, sizeof(frame_bitmap));
+
+    uint64_t ptr = mb->mmap_addr;
+    uint64_t end = mb->mmap_addr + mb->mmap_length;
+
+    while (ptr < end)
+    {
+        multiboot_entry_t *e = (multiboot_entry_t *)ptr;
+
+        if (e->type == 1)
+        {
+            total_memory += e->len;
+            nframes = total_memory / 0x1000;
+            for (uint64_t addr = e->addr;
+                 addr < e->addr + e->len;
+                 addr += 0x1000)
+            {
+                pmm_clear(addr);
+            }
+        }
+
+        ptr += e->size + 4;
+    }
+}
+
+
+void pmm_stats(void)
+{
+    int free = 0;
+    int used = 0;
+
+    for (uint64_t i = 0; i < nframes * 0x1000; i += 0x1000)
+    {
+        if (pmm_test_addr(i))
+            used++;
+        else
+            free++;
+    }
+
+    putstr(" [ FREE PAGES ] : ");
+    putdec(free);
+    putstr("\n [ USED PAGES ] : ");
+    putdec(used);
+    putstr("\n");
 }
