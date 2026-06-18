@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
-/* Copyright (C) 2026 Vahid Khalafov               */
+/* Copyright (C) 2026 Vahid Khalafov and Denis Gulmammadov               */
 /* Denis Gulmammadov - KhazarOS uyğunlaşdırması    */
 
 #include "../include/shell.h"
