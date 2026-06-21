@@ -175,30 +175,40 @@ void pmm_init(multiboot_info_t *mb) {
 }
 
 void pmm_stats(void) {
-    uint64_t real_frames = total_memory / PSIZE;
-    if (real_frames > nframes){
-        real_frames = nframes;
+  uint64_t real_frames = total_memory / PSIZE;
+  if (real_frames > nframes) {
+    real_frames = nframes;
+  }
+
+  uint64_t usedc = 0;
+  uint64_t freec = 0;
+
+  for (uint64_t i = 0; i < real_frames; i++) {
+    if (pmm_test_addr(i << PSHIFT)) {
+      usedc++;
+    } else {
+      freec++;
     }
+  }
 
-    uint64_t usedc = 0;
-    uint64_t freec = 0;
+  uint64_t free_mb = (freec * PSIZE) / (1024 * 1024);
+  uint64_t used_mb = (usedc * PSIZE) / (1024 * 1024);
+  uint64_t total_mb = total_memory / (1024 * 1024);
 
-    for (uint64_t i = 0; i < real_frames ; i++){
-        if (pmm_test_addr(i << PSHIFT)){
-            usedc++;
-        }
-        else{
-            freec++;
-        }
-    }
-
-    uint64_t free_mb = (freec * PSIZE) / (1024 * 1024);
-    uint64_t used_mb = (usedc * PSIZE) / (1024 * 1024);
-    uint64_t total_mb = total_memory / (1024 * 1024);
-
-
-    putstr("\n---PMM Memory Stats---\n");
-    putstr("Total: "); putdec(total_mb); putstr(" MB ("); putdec(real_frames); putstr("frames )\n");
-    putstr("Used: "); putdec(used_mb); putstr(" MB ("); putdec(real_frames); putstr("frames )\n");
-    putstr("Free: "); putdec(free_mb); putstr(" MB ("); putdec(real_frames); putstr("frames )\n");
+  putstr("\n---PMM Memory Stats---\n");
+  putstr("Total: ");
+  putdec(total_mb);
+  putstr(" MB (");
+  putdec(real_frames);
+  putstr("frames )\n");
+  putstr("Used: ");
+  putdec(used_mb);
+  putstr(" MB (");
+  putdec(real_frames);
+  putstr("frames )\n");
+  putstr("Free: ");
+  putdec(free_mb);
+  putstr(" MB (");
+  putdec(real_frames);
+  putstr("frames )\n");
 }

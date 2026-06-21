@@ -147,20 +147,21 @@ void puthex(uint64_t n) {
 }
 
 void putdec(uint64_t n) {
-  int8_t buffer[11];
-  buffer[10] = 0;
+  int8_t buffer[21];
+  buffer[20] = 0;
 
   if (n == 0) {
     putstr("0");
     return;
   }
-  int i = 9;
+  int i = 19;
 
   while (n > 0) {
     buffer[i] = '0' + (n % 10);
     n = n / 10;
     i--;
   }
+  putstr((string_const)(buffer + i + 1));
 }
 // putdec komandasi ededi ekrana yazzdirmaga komek edir
 
@@ -170,4 +171,3 @@ void set_char_w_color(uint8_t character, uint8_t color, int32_t offset) {
   vidmem[offset] = character;
   vidmem[offset + 1] = color;
 }
-

@@ -3,7 +3,7 @@ global p4_table
 extern kernel_main
 
 MAGIC_NUMBER      equ 0x1BADB002
-FLAGS             equ (1 << 0) | (1 << 1) ; Yaddaş məlumatlarını da istəyirik
+FLAGS             equ (1 << 1) ; mem_lower/mem_upper istə (0x02) — mmap GRUB özü verir
 CHECKSUM          equ -(MAGIC_NUMBER + FLAGS)
 KERNEL_STACK_SIZE equ 4096
 
