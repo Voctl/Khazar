@@ -2,6 +2,7 @@ ENTRY(loader)
 
 SECTIONS {
     . = 0x00100000;
+    _kernel_start = .;
 
     .text ALIGN(4096) : {
         *(.text)
@@ -18,6 +19,6 @@ SECTIONS {
     .bss ALIGN(4096) : {
         *(COMMON)
         *(.bss)
-	_kernel_end = .;
     }
+    _kernel_end = .;
 }

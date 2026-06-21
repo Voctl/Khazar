@@ -6,6 +6,8 @@
 #include "../include/typint.h"
 #include "../include/vga.h"
 #include "panic.h"
+#include "../include/memory/pmm.h"
+#include "../include/string.h"
 
 void kernel_main(uint64_t multiboot_addr) {
   clear();
@@ -17,18 +19,23 @@ void kernel_main(uint64_t multiboot_addr) {
   asm volatile("sti"); // interruptin ise dusmesi ucun
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" GDT Initialized\n");
-  sleep(300);
+  sleep(150);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" IDT Initialized\n");
-  sleep(300);
+  sleep(150);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" ISRs Initialized\n");
-  sleep(300);
+  sleep(150);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" IRQ1 [keyboard] Initialized\n");
-  sleep(1000);
+  sleep(150);
+  multiboot_info_t *mb =
+    (multiboot_info_t*)multiboot_addr;
+  pmm_init(mb);
+  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr(" PMM initialized\n");
+  sleep(700);
   clear();
-  
   const char *logo = "KhazarOS";
   int32_t offset = get_offset(35, 11);
   for (int i = 0; logo[i] != '\0'; i++) {
@@ -41,7 +48,6 @@ void kernel_main(uint64_t multiboot_addr) {
   set_char_w_color((uint8_t)0x01, COLOR_LIGHT_GREEN, offsheet);
 
   // qardas bu memorydir PMM ucun lazm olcaq
-  multiboot_info_t *mb = (multiboot_info_t *)multiboot_addr;
   if (mb->flags & MULTIBOOT_FLAG_MAP) {
     putstr("\n[ MEMORY ]\n");
     sleep(300);
@@ -66,7 +72,9 @@ void kernel_main(uint64_t multiboot_addr) {
       entry = (multiboot_entry_t *)((uint64_t)entry + entry->size + 4);
     }
   }
-
+  sleep(600);
+  clear();
+  pmm_stats();
   while (1)
     ;
 }
