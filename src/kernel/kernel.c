@@ -31,11 +31,11 @@ void kernel_main(uint64_t multiboot_addr) {
   sleep(150);
   multiboot_info_t *mb =
     (multiboot_info_t*)multiboot_addr;
+  pmm_init(mb);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" PMM initialized\n");
   sleep(700);
   clear();
-  
   const char *logo = "KhazarOS";
   int32_t offset = get_offset(35, 11);
   for (int i = 0; logo[i] != '\0'; i++) {

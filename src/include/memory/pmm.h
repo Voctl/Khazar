@@ -14,6 +14,6 @@ uintptr_t pmm_first_free(void);
 void pmm_init(multiboot_info_t *mb);
 
 uintptr_t pmm_alloc(void);
-void mmu_free(union PML * from);
+void mmu_free(union PML *from);
 
 void pmm_stats(void);

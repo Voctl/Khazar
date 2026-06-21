@@ -138,7 +138,7 @@ long_mode_start:
     mov rsp, kernel_stack + KERNEL_STACK_SIZE
     
     ; İndi ebp-də qoruduğumuz Multiboot ünvanını kernel_main-ə (edi) veririk
-    mov edi, ebp
+    mov rdi, rbp
     call kernel_main
     hlt
 
