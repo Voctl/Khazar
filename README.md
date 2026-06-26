@@ -38,4 +38,4 @@
 - `make clean` deletes generated build artifacts and ISO file.
 
 ## License
-Khazar is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+Khazar is licensed under the GPL License. See [LICENSE](LICENSE) for details.
