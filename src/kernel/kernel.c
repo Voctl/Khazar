@@ -1,3 +1,5 @@
+#include "../include/io.h"
+#include "../include/sound.h"
 #include "../include/gdt.h"
 #include "../include/idt.h"
 #include "../include/keybrd/keybrd.h"
@@ -34,6 +36,12 @@ void kernel_main(uint64_t multiboot_addr) {
   pmm_init(mb);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" PMM initialized\n");
+//beep
+  uint32_t hz = 100;
+  beep();
+  plays(hz);
+  sleep(150);
+  nsound();
   sleep(700);
   clear();
   const char *logo = "KhazarOS";
@@ -75,6 +83,7 @@ void kernel_main(uint64_t multiboot_addr) {
   sleep(600);
   clear();
   pmm_stats();
+  beep();
   while (1)
     ;
 }

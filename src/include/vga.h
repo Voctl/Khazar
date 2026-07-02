@@ -25,10 +25,6 @@ void putstr_color(string_const string, uint8_t color);
 // ekrana rengli yazi yazdirmaq da
 void set_char_w_color(uint8_t character, uint8_t color, int32_t offset);
 
-// hardware terefden input output
-uint8_t byte_i(uint16_t port);
-void byte_o(uint16_t port, uint8_t data);
-
 // kursorun hereketi
 void cursor_set(int offset);
 int cursor_get();
