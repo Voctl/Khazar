@@ -46,7 +46,7 @@ iso: $(KERNEL_BIN)
 	grub-mkrescue -o khazar.iso $(ISO_DIR)
 
 run: iso
-	qemu-system-x86_64 -cdrom khazar.iso -display sdl
+	qemu-system-x86_64 -cdrom khazar.iso -display gtk
 
 clean:
 	rm -rf $(BUILD)

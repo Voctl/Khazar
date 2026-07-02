@@ -17,7 +17,7 @@ static size_t unavailable_mem = 0;
 #define PLOW_MASK 0x0000000000000FFFUL
 
 #define INDEX_FROM_BIT(b) ((b) >> 5)
-#define OFFSET_FROM_BIT(b) ((b) & 0x1F)
+#define OFFSET_FROM_BIT(b) ((b)&0x1F)
 
 static uintptr_t lowest_available = 0;
 
@@ -100,7 +100,9 @@ void pmm_free(uintptr_t addr) { pmm_clear(addr); }
 extern uint8_t p4_table[];
 
 /* Kernelin ilkin sehife kataloqunun base unvanini qaytarir */
-union PML *mmu_get_kernel_directory(void) { return (union PML *)&p4_table[0]; }
+union PML *mmu_get_kernel_directory(void) {
+  return (union PML *)&p4_table[0];
+}
 
 /* Verilen PML4 kataloqu altindaki butun sehife strukturlarini temizleyir */
 void mmu_free(union PML *from) {
@@ -200,15 +202,15 @@ void pmm_stats(void) {
   putdec(total_mb);
   putstr(" MB (");
   putdec(real_frames);
-  putstr("frames )\n");
+  putstr(" frames)\n");
   putstr("Used: ");
   putdec(used_mb);
   putstr(" MB (");
-  putdec(real_frames);
-  putstr("frames )\n");
+  putdec(usedc);
+  putstr(" frames)\n");
   putstr("Free: ");
   putdec(free_mb);
   putstr(" MB (");
-  putdec(real_frames);
-  putstr("frames )\n");
+  putdec(freec);
+  putstr(" frames)\n");
 }
