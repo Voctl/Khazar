@@ -10,6 +10,7 @@
 #include "panic.h"
 #include "../include/memory/pmm.h"
 #include "../include/string.h"
+#include "hava.h"
 
 void kernel_main(uint64_t multiboot_addr) {
   clear();
@@ -54,7 +55,7 @@ void kernel_main(uint64_t multiboot_addr) {
   // :D emoji
   int32_t offsheet = get_offset(39, 12);
   set_char_w_color((uint8_t)0x01, COLOR_LIGHT_GREEN, offsheet);
-
+  play_hava_nagila();
   // qardas bu memorydir PMM ucun lazm olcaq
   if (mb->flags & MULTIBOOT_FLAG_MAP) {
     putstr("\n[ MEMORY ]\n");
