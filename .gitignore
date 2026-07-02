@@ -5,3 +5,4 @@ src/boot/kernel.elf
 src/os.iso
 DOCUMENTATION.md
 *.iso
+docs/isleme_terzi.md
