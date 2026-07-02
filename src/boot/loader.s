@@ -3,7 +3,7 @@ global p4_table
 extern kernel_main
 
 MAGIC_NUMBER      equ 0x1BADB002
-FLAGS             equ (1 << 1) ; mem_lower/mem_upper istə (0x02) — mmap GRUB özü verir
+FLAGS             equ (1 << 1) ; grub gives mmap here i guess
 CHECKSUM          equ -(MAGIC_NUMBER + FLAGS)
 KERNEL_STACK_SIZE equ 4096
 
@@ -16,9 +16,9 @@ kernel_stack: resb KERNEL_STACK_SIZE
 
 section .rodata
 gdt64:
-    dq 0 ; null descriptor
+    dq 0 ; null
 .code: equ $ - gdt64
-    dq (1<<43) | (1<<44) | (1<<47) | (1<<53) ; code descriptor
+    dq (1<<43) | (1<<44) | (1<<47) | (1<<53) ; code desc
 .pointer:
     dw $ - gdt64 - 1
     dq gdt64
@@ -33,8 +33,7 @@ align 4
 loader:
     mov esp, kernel_stack + KERNEL_STACK_SIZE
     
-    ; VACİB: ebx registrində gələn Multiboot ünvanını ebp-yə köçürürük.
-    ; Çünki aşağıdakı funksiyaların daxilindəki 'cpuid' ebx-i sıfırlayacaq.
+    ; save multiboot pointer!! cpuid will overwrite ebx later
     mov ebp, ebx
 
     call check_cpuid
@@ -79,41 +78,41 @@ check_long_mode:
 
 setup_page_tables:
     mov eax, p3_table
-    or eax, 0b11 ; present + writable
+    or eax, 0b11 ; present/writable
     mov [p4_table], eax
 
     mov eax, p2_table
-    or eax, 0b11 ; present + writable
+    or eax, 0b11 ; present/writable
     mov [p3_table], eax
 
     mov ecx, 0
 .loop:
-    mov eax, 0x200000 ; 2MiB
+    mov eax, 0x200000 ; 2mib
     mul ecx
-    or eax, 0b10000011 ; present + writable + huge page
+    or eax, 0b10000011 ; present/writable/huge
     mov [p2_table + ecx*8], eax
     inc ecx
-    cmp ecx, 512 ; 1GiB mapping
+    cmp ecx, 512 ; 1gib total
     jne .loop
     ret
 
 enable_paging:
-    ; P4 cədvəlini CR3-ə yüklə
+    ; p4 to cr3
     mov eax, p4_table
     mov cr3, eax
 
-    ; PAE-ni aktivləşdir (CR4.PAE = 1)
+    ; pae bit
     mov eax, cr4
     or eax, 1 << 5
     mov cr4, eax
 
-    ; Long Mode-u aktivləşdir (EFER MSR)
+    ; efer msr long mode bit
     mov ecx, 0xC0000080
     rdmsr
     or eax, 1 << 8
     wrmsr
 
-    ; Paging-i aktivləşdir (CR0.PG = 1)
+    ; turn on paging bit
     mov eax, cr0
     or eax, 1 << 31
     mov cr0, eax
@@ -127,7 +126,7 @@ error:
 
 bits 64
 long_mode_start:
-    ; Data seqmentlərini sıfırla
+    ; clear segments
     mov ax, 0
     mov ss, ax
     mov ds, ax
@@ -137,7 +136,7 @@ long_mode_start:
 
     mov rsp, kernel_stack + KERNEL_STACK_SIZE
     
-    ; İndi ebp-də qoruduğumuz Multiboot ünvanını kernel_main-ə (edi) veririk
+    ; pass pointer to kernel_main (edi)
     mov rdi, rbp
     call kernel_main
     hlt
