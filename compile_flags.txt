@@ -1,0 +1,12 @@
+-xc
+--target=x86_64-elf
+-m64
+-ffreestanding
+-mcmodel=kernel
+-mno-red-zone
+-fno-pic
+-fno-PIC
+-fno-pie
+-fno-stack-protector
+-mgeneral-regs-only
+-Isrc/include
