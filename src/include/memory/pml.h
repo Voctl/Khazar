@@ -2,7 +2,7 @@
 
 #include "../typint.h"
 
-union PML {
+union PML {  // PML schedula (512 entries)
   struct {
     uint64_t present : 1;
     uint64_t writable : 1;
