@@ -1,7 +1,8 @@
 # Khazar
 
-<!-- SPDX-License-Identifier: MIT -->
+<!-- SPDX-License-Identifier: GPL3 -->
 
+![logo](docs/logo.png)
 ![Boot Screen](docs/boot.png)
 
 ## Khazar is a minimal, educational 64-bit operating system kernel.
