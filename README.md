@@ -6,7 +6,7 @@
 
 Khazar is a hobby operating system for x86_64 computers.
 
-I started this project at the age of 16 because I became curious about what actually happens inside a computer. Modern software often feels like a tower built on top of another tower built on top of another tower. At some point I stopped asking "which framework should I learn next?" and started asking "how does this machine even boot?"
+I started this project at the age of 15 because I became curious about what actually happens inside a computer. Modern software often feels like a tower built on top of another tower built on top of another tower. At some point I stopped asking "which framework should I learn next?" and started asking "how does this machine even boot?"
 
 Khazar is the result.
 
