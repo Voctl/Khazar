@@ -1,42 +1,51 @@
 # Khazar
 
-<!-- SPDX-License-Identifier: GPL3 -->
+<p align="center"> <img src="docs/logo.png" width="128" alt="Khazar logo"> </p>
 
-![logo](docs/logo.png)
-![Boot Screen](docs/boot.png)
+Khazar is a small operating system for x86_64 computers.
 
-## Khazar is a minimal, educational 64-bit operating system kernel.
+The project exists for learning, experimentation and curiosity. It is developed with simplicity in mind and follows the idea that software should be understandable by the people who use and modify it.
 
-## Features
-- **64-bit Long Mode** — Transition from 32-bit protected mode with CPUID compatibility checks.
-- **Paging** — 1 GiB identity mapping configured using 2 MiB huge pages.
-- **Interrupts & GDT** — Global Descriptor Table initialization and IDT setup with remapped PIC interrupts (exceptions + IRQs).
-- **VGA Text Mode** — Text console driver supporting colors, automated hardware-based scrolling, and cursor control.
-- **Drivers** — Simple keyboard callback (IRQ1) and PIT sleep timer support.
-- **Memory Map** — Multiboot-compliant system memory map parsing (usable vs reserved RAM).
+Khazar is not trying to be everything. There are already enough operating systems attempting to solve every problem ever invented. Khazar focuses on doing a few things well and keeping the codebase approachable.
 
-## Layout
-- `src/boot` — Multiboot entry point, assembly-level paging initialization, and long mode entry.
-- `src/kernel` — Kernel main entry loop and logic.
-- `src/cpu` — CPU architecture setup including GDT, IDT, and Interrupt Service Routines (ISRs).
-- `src/drivers` — Device controllers including keyboard, PIT timer, VGA text console, and low-level IO.
-- `src/memory` — Memory management subsystems (PMM).
-- `src/include` — Shared public headers mirrored to the source layout.
-- `src/iso` — GRUB configuration templates and image build environment.
+The system is written from scratch and serves as a playground for operating systems, computer architecture and low-level programming.
 
-## Build
+## Building
 
-### Requirements
-- `nasm` assembler
-- `gcc` (or `x86_64-elf-gcc` cross-compiler)
-- `ld` linker
-- `grub-mkrescue`
-- `qemu-system-x86_64` (for emulation)
+Requirements:
 
-### Commands
-- `make` builds `kernel.bin` and packages it into `khazar.iso`.
-- `make run` compiles the kernel and runs the ISO in QEMU.
-- `make clean` deletes generated build artifacts and ISO file.
+* nasm
+* gcc
+* ld
+* grub-mkrescue
+* qemu-system-x86_64
+
+Build:
+
+```
+make
+```
+
+Run:
+
+```
+make run
+```
+
+Clean:
+
+```
+make clean
+```
+
+## Philosophy
+
+* Simplicity over complexity.
+* Readable code over clever code.
+* Understanding over abstraction.
+* Small systems over large frameworks.
+* Freedom to modify and experiment.
 
 ## License
-Khazar is licensed under the GPL License. See [LICENSE](LICENSE) for details.
+
+GPL-3.0
