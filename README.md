@@ -1,7 +1,7 @@
 # Khazar
 
 <p align="center">
-    <img src="docs/logo.png" width="96">
+    <img src="docs/logo.png" width="500">
 </p>
 
 Khazar is a hobby operating system for x86_64 computers.
