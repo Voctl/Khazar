@@ -1,6 +1,6 @@
 # Khazar
 
-<p align="center"> <img src="docs/logo.png" width="128" alt="Khazar logo"> </p>
+<p align="center"> <img src="docs/logo.png" width="500" alt="Khazar logo"> </p>
 
 Khazar is a small operating system for x86_64 computers.
 
