@@ -1,50 +1,20 @@
 # Khazar
 
-<p align="center"> <img src="docs/logo.png" width="500" alt="Khazar logo"> </p>
+<p align="center">
+    <img src="docs/logo.png" width="96">
+</p>
 
-Khazar is a small operating system for x86_64 computers.
+Khazar is a hobby operating system for x86_64 computers.
 
-The project exists for learning, experimentation and curiosity. It is developed with simplicity in mind and follows the idea that software should be understandable by the people who use and modify it.
+I started this project because I wanted to understand how computers actually work beneath modern software. Operating systems have always fascinated me, yet most modern systems have grown into massive codebases that are difficult to fully understand. Khazar is my attempt to explore these concepts from the ground up.
 
-Khazar is not trying to be everything. There are already enough operating systems attempting to solve every problem ever invented. Khazar focuses on doing a few things well and keeping the codebase approachable.
+The project is heavily inspired by the spirit of UNIX, free software and the idea that software should be understandable by the people who use it. I believe that reading source code should not feel like reading ancient scripture guarded by a committee of architects.
 
-The system is written from scratch and serves as a playground for operating systems, computer architecture and low-level programming.
+Khazar is not being built to compete with Linux, BSD or any other operating system. It exists for learning, experimentation and curiosity. Every component is an opportunity to better understand computer architecture, memory management, interrupts, drivers and kernel design.
 
-## Building
+The name "Khazar" comes from the Caspian Sea. As the sea has connected different peoples, cultures and ideas throughout history, this project serves as a place where different areas of computer science meet: operating systems, mathematics, low-level programming and computer architecture.
 
-Requirements:
-
-* nasm
-* gcc
-* ld
-* grub-mkrescue
-* qemu-system-x86_64
-
-Build:
-
-```
-make
-```
-
-Run:
-
-```
-make run
-```
-
-Clean:
-
-```
-make clean
-```
-
-## Philosophy
-
-* Simplicity over complexity.
-* Readable code over clever code.
-* Understanding over abstraction.
-* Small systems over large frameworks.
-* Freedom to modify and experiment.
+The long-term goal is to keep Khazar simple, hackable and fun to work on.
 
 ## License
 
