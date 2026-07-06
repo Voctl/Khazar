@@ -6,15 +6,23 @@
 
 Khazar is a hobby operating system for x86_64 computers.
 
-I started this project because I wanted to understand how computers actually work beneath modern software. Operating systems have always fascinated me, yet most modern systems have grown into massive codebases that are difficult to fully understand. Khazar is my attempt to explore these concepts from the ground up.
+I started this project at the age of 16 because I became curious about what actually happens inside a computer. Modern software often feels like a tower built on top of another tower built on top of another tower. At some point I stopped asking "which framework should I learn next?" and started asking "how does this machine even boot?"
 
-The project is heavily inspired by the spirit of UNIX, free software and the idea that software should be understandable by the people who use it. I believe that reading source code should not feel like reading ancient scripture guarded by a committee of architects.
+Khazar is the result.
 
-Khazar is not being built to compete with Linux, BSD or any other operating system. It exists for learning, experimentation and curiosity. Every component is an opportunity to better understand computer architecture, memory management, interrupts, drivers and kernel design.
+I spend a lot of my time reading source code, experimenting with operating systems and exploring ideas that most people would probably consider unusual hobbies. While others are busy scrolling through social media, I am usually busy debugging page tables, reading old UNIX documentation or breaking things that were working five minutes earlier.
 
-The name "Khazar" comes from the Caspian Sea. As the sea has connected different peoples, cultures and ideas throughout history, this project serves as a place where different areas of computer science meet: operating systems, mathematics, low-level programming and computer architecture.
+The project is inspired by UNIX, free software and the belief that software should remain understandable. Computers are already complicated enough. We do not need seventeen layers of abstraction to print "Hello, World".
 
-The long-term goal is to keep Khazar simple, hackable and fun to work on.
+Khazar is not trying to replace Linux. Linux is doing just fine without my assistance. It is not trying to compete with BSD either. The BSD developers have been doing this since before I was born. The purpose of this project is much simpler: to learn, to experiment and to understand.
+
+The name comes from the Caspian Sea, known as the Khazar Sea in many languages. Just as the sea connects different places, this project brings together many of the subjects that first made me interested in computers: operating systems, mathematics, programming and computer architecture.
+
+I also hope that Khazar encourages others to discover UNIX, free software and open source development. Many people use computers every day without ever realizing how much knowledge and craftsmanship exists beneath the surface.
+
+In a world increasingly filled with closed platforms, unnecessary complexity and software that requires a web browser to open a calculator, I prefer smaller systems, readable code and the freedom to understand how things work.
+
+Khazar exists because curiosity exists.
 
 ## License
 
