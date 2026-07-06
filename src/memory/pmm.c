@@ -60,7 +60,6 @@ int pmm_test_addr(uintptr_t addr) {
   return !!(frames[index] & ((uint32_t)1 << offset));
 }
 
-
 /* Bitmap-i tarayaraq tapilan ilk bos sehifenin indeksini qaytarir */
 uintptr_t pmm_first_free(void) {
   uintptr_t i, j;
