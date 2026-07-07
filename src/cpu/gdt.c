@@ -6,19 +6,16 @@ extern void gdt_flush(uint64_t); // this will define ins assm **
 
 static void gdt_set_gate(uint32_t, uint32_t, uint32_t, uint8_t, uint8_t);
 
-gdtent_t gdt_entries[5];
+gdtent_t gdt_entries[3];
 gdtptr_t gdt_ptr;
 
 void init_gdt() {
   gdt_ptr.limit = sizeof(gdt_entries) - 1;
   gdt_ptr.base = (uint64_t)&gdt_entries;
-  gdt_set_gate(0, 0, 0, 0, 0); // Null segment
-  gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A,
-               0xAF); // Kernel Code Segment (64-bit: L=1, D=0)
-  gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // Kernel Data Segment
-  gdt_set_gate(3, 0, 0xFFFFFFFF, 0xFA,
-               0xAF); // User Code Segment (64-bit: L=1, D=0)
-  gdt_set_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // User Data Segment
+
+  gdt_set_gate(0, 0, 0, 0, 0);                  // Null segment
+  gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xAF);   // Kernel Code (ring0, 64-bit)
+  gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);   // Kernel Data (ring0)
 
   gdt_flush((uint64_t)&gdt_ptr);
 }
