@@ -20,6 +20,7 @@ void init_gdt() {
   gdt_flush((uint64_t)&gdt_ptr);
 }
 
+// a function to set a gate in the GDT
 static void gdt_set_gate(uint32_t num, uint32_t base, uint32_t limit,
                          uint8_t access, uint8_t gran) {
   gdt_entries[num].base_low = (base & 0xFFFF);
