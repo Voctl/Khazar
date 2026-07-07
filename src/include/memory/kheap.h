@@ -20,9 +20,12 @@ typedef struct {
 
 typedef struct {
   U64 index[HEAP_INDEX_SIZE];
+  U64 index_size;
   U64 start;
   U64 end;
   U64 max;
   U8 supervisor;
   U8 readonly;
 } heap_t;
+
+extern heap_t *kheap;
