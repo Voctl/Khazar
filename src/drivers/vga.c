@@ -1,5 +1,6 @@
 
 #include "../include/vga.h"
+#include "../include/io.h"
 #include "../include/typint.h"
 
 #define VGA_CTRL_REGISTER 0x3d4 // vganin control registri
@@ -63,8 +64,7 @@ memory from *source to *dest.*/
 
 I32 scrolln(I32 offset) {
   memorycpy((U8 *)(ADRESS + get_offset(0, 1)),
-            (U8 *)(get_offset(0, 0) + ADRESS),
-            MAX_COL * (MAX_ROW - 1) * 2);
+            (U8 *)(get_offset(0, 0) + ADRESS), MAX_COL * (MAX_ROW - 1) * 2);
 
   for (I32 col = 0; col < MAX_COL; col++) {
     set_char_in_memory(
@@ -90,8 +90,7 @@ I32 scrolln(I32 offset) {
 // alternative of printf in vga text
 
 void putstr(STR8_C string) {
-  I32 offset =
-      cursor_get(); // cursorun oldugu yeri gotururuk offsete veririy
+  I32 offset = cursor_get(); // cursorun oldugu yeri gotururuk offsete veririy
   I32 i = 0;
   while (string[i] != 0) {
     if (string[i] == '\n') {

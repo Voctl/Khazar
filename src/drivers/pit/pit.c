@@ -2,6 +2,7 @@
 #include "../../include/isr.h"
 #include "../../include/typint.h"
 #include "../../include/vga.h"
+#include "../../include/io.h"
 
 U32 volatile tick = 0;
 U32 timer_frequency = 0;

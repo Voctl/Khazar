@@ -3,6 +3,7 @@
 #include "../../include/isr.h"
 #include "../../include/typint.h"
 #include "../../include/vga.h"
+#include "../../include/io.h"
 
 #define IRQ1 33
 
