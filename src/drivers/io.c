@@ -2,8 +2,8 @@
 #include "../include/vga.h"
 // prot byte input output
 
-uint8_t byte_i(uint16_t port) {
-  uint8_t result;
+U8 byte_i(U16 port) {
+  U8 result;
   __asm__ volatile(
       "in %%dx, %%al"
       : "=a"(result)
@@ -13,7 +13,7 @@ uint8_t byte_i(uint16_t port) {
   return result;
 }
 
-void byte_o(uint16_t port, uint8_t data) {
+void byte_o(U16 port, U8 data) {
   __asm__ volatile(
       "out %%al, %%dx"
       :

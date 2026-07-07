@@ -11,9 +11,9 @@ void cursor_set(int offset) // cursorun memory adressini setleyirik
 {
   offset /= 2;
   byte_o(VGA_CTRL_REGISTER, VGA_OFFSET_HIGH);
-  byte_o(VGA_DATA_REGISTER, (uint8_t)(offset >> 8));
+  byte_o(VGA_DATA_REGISTER, (U8)(offset >> 8));
   byte_o(VGA_CTRL_REGISTER, VGA_OFFSET_LOW);
-  byte_o(VGA_DATA_REGISTER, (uint8_t)(offset & 0xff));
+  byte_o(VGA_DATA_REGISTER, (U8)(offset & 0xff));
 }
 int cursor_get() // cursorun memory adressini tapiriq
 {
@@ -30,8 +30,8 @@ int cursor_get() // cursorun memory adressini tapiriq
 #define MAX_COL 80
 #define WHITE_BLACK 0x0f
 
-void set_char_in_memory(uint8_t character, int32_t offset) {
-  uint8_t *vidmem = (uint8_t *)ADRESS;
+void set_char_in_memory(U8 character, I32 offset) {
+  U8 *vidmem = (U8 *)ADRESS;
   vidmem[offset] = character;
   vidmem[offset + 1] = WHITE_BLACK;
 } // bunla da sen goturub ekranin hansisa memory adressine erisim edib bit
@@ -39,20 +39,20 @@ void set_char_in_memory(uint8_t character, int32_t offset) {
 
 // Komekci Funksiyalar
 
-int32_t get_row(int32_t offset) {
+I32 get_row(I32 offset) {
   return offset / (2 * MAX_COL);
 } // memory offsetini alir ve corresponding cellin row nomresini verir
 
-int32_t get_offset(int32_t col, int32_t row) {
+I32 get_offset(I32 col, I32 row) {
   return 2 * (row * MAX_COL + col);
 } // bize verilen cellin memory numberini qaytarir
 
-int32_t move_newl(int32_t offset) { return get_offset(0, get_row(offset) + 1); }
+I32 move_newl(I32 offset) { return get_offset(0, get_row(offset) + 1); }
 
 // Scrolling and memory copy functions
 
-void memorycpy(uint8_t *source, uint8_t *dest, int32_t nbyte) {
-  int32_t i;
+void memorycpy(U8 *source, U8 *dest, I32 nbyte) {
+  I32 i;
   for (i = 0; i < nbyte; i++) {
     *(dest + i) =
         *(source + i); // yeni eslinde 0x1000den 0x2000e bit kocurur tm?
@@ -61,12 +61,12 @@ void memorycpy(uint8_t *source, uint8_t *dest, int32_t nbyte) {
 First, we will write a function that copies a given number of bytes nbytes in
 memory from *source to *dest.*/
 
-int32_t scrolln(int32_t offset) {
-  memorycpy((uint8_t *)(ADRESS + get_offset(0, 1)),
-            (uint8_t *)(get_offset(0, 0) + ADRESS),
+I32 scrolln(I32 offset) {
+  memorycpy((U8 *)(ADRESS + get_offset(0, 1)),
+            (U8 *)(get_offset(0, 0) + ADRESS),
             MAX_COL * (MAX_ROW - 1) * 2);
 
-  for (int32_t col = 0; col < MAX_COL; col++) {
+  for (I32 col = 0; col < MAX_COL; col++) {
     set_char_in_memory(
         ' ',
         get_offset(col,
@@ -89,10 +89,10 @@ int32_t scrolln(int32_t offset) {
 
 // alternative of printf in vga text
 
-void putstr(string_const string) {
-  int32_t offset =
+void putstr(STR8_C string) {
+  I32 offset =
       cursor_get(); // cursorun oldugu yeri gotururuk offsete veririy
-  int32_t i = 0;
+  I32 i = 0;
   while (string[i] != 0) {
     if (string[i] == '\n') {
       offset = move_newl(offset);
@@ -108,9 +108,9 @@ void putstr(string_const string) {
   cursor_set(offset); // sonda da cursorun yerini set edirik
 }
 
-void putstr_color(string_const string, uint8_t color) {
-  int32_t offset = cursor_get();
-  int32_t i = 0;
+void putstr_color(STR8_C string, U8 color) {
+  I32 offset = cursor_get();
+  I32 i = 0;
   while (string[i] != 0) {
     if (string[i] == '\n') {
       offset = move_newl(offset);
@@ -127,27 +127,27 @@ void putstr_color(string_const string, uint8_t color) {
 }
 
 void clear() {
-  int32_t i;
+  I32 i;
   for (i = 0; i < MAX_COL * MAX_ROW; i++) {
     set_char_in_memory(' ', i * 2);
   }
   cursor_set(get_offset(0, 0));
 }
 
-void puthex(uint64_t n) {
-  string_const hex_chars = "0123456789ABCDEF";
-  int8_t buffer[19];
+void puthex(U64 n) {
+  STR8_C hex_chars = "0123456789ABCDEF";
+  I8 buffer[19];
   buffer[0] = '0';
   buffer[1] = 'x';
   for (int i = 0; i < 16; i++) {
     buffer[17 - i] = hex_chars[(n >> (i * 4)) & 0xF];
   }
   buffer[18] = 0;
-  putstr((string_const)buffer);
+  putstr((STR8_C)buffer);
 }
 
-void putdec(uint64_t n) {
-  int8_t buffer[21];
+void putdec(U64 n) {
+  I8 buffer[21];
   buffer[20] = 0;
 
   if (n == 0) {
@@ -161,13 +161,13 @@ void putdec(uint64_t n) {
     n = n / 10;
     i--;
   }
-  putstr((string_const)(buffer + i + 1));
+  putstr((STR8_C)(buffer + i + 1));
 }
 // putdec komandasi ededi ekrana yazzdirmaga komek edir
 
 // ekrana rengli yazi yazdirmaq
-void set_char_w_color(uint8_t character, uint8_t color, int32_t offset) {
-  uint8_t *vidmem = (uint8_t *)ADRESS;
+void set_char_w_color(U8 character, U8 color, I32 offset) {
+  U8 *vidmem = (U8 *)ADRESS;
   vidmem[offset] = character;
   vidmem[offset + 1] = color;
 }

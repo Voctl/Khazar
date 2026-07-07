@@ -6,12 +6,12 @@ idtent_t idt[IDT_ENTRIES]; // 256liq bir massiv
 
 idtptr_t idtr; // idt deyisenini ve registrini saxliyir
 
-void idt_set_gate(uint8_t num, uint64_t base, uint16_t sel, uint8_t flags) {
-  idt[num].low_offset = (uint16_t)(base & 0xFFFF); // adressin 0-15 bitleri
+void idt_set_gate(U8 num, U64 base, U16 sel, U8 flags) {
+  idt[num].low_offset = (U16)(base & 0xFFFF); // adressin 0-15 bitleri
   idt[num].mid_offset =
-      (uint16_t)((base >> 16) & 0xFFFF); // adressin 16-31 bitleri
+      (U16)((base >> 16) & 0xFFFF); // adressin 16-31 bitleri
   idt[num].high_offset =
-      (uint32_t)((base >> 32) & 0xFFFFFFFF); // adressin 32-63 bitleri
+      (U32)((base >> 32) & 0xFFFFFFFF); // adressin 32-63 bitleri
 
   idt[num].sel = sel;
   idt[num].ist = 0;
@@ -43,13 +43,13 @@ static void pic_remap() {
 
 void idt_init() {
   idtr.limit = (sizeof(idtent_t) * IDT_ENTRIES) - 1;
-  idtr.base = (uint64_t)&idt;
+  idtr.base = (U64)&idt;
   // İlk 32 istisnanı və 16 IRQ-nu avtomatik qeydiyyata alırıq
   for (int i = 0; i < 48; i++) {
-    idt_set_gate(i, (uint64_t)isr_stub_table[i], 0x08, 0x8E);
+    idt_set_gate(i, (U64)isr_stub_table[i], 0x08, 0x8E);
   }
   pic_remap();
-  load_idt((uint64_t)&idtr);
+  load_idt((U64)&idtr);
 }
 
-extern void load_idt(uint64_t idtr_ptr);
+extern void load_idt(U64 idtr_ptr);

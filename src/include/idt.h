@@ -6,34 +6,34 @@
 #define KERNEL_CS 0x08 // Kernel seqment terefi
 
 typedef struct {
-  uint16_t low_offset;              // handler[0:15]
-  uint16_t sel;                     // KERNEL_CS = 0x08
-  uint8_t ist;                      // Interrupt Stack Table (0 ol)
-  uint8_t flags;                    //
-  uint16_t mid_offset;              // handler[16:31]
-  uint32_t high_offset;             // handler[32:63]
-  uint32_t reserved;                // mütleq 0 olmalıdi
+  U16 low_offset;              // handler[0:15]
+  U16 sel;                     // KERNEL_CS = 0x08
+  U8 ist;                      // Interrupt Stack Table (0 ol)
+  U8 flags;                    //
+  U16 mid_offset;              // handler[16:31]
+  U32 high_offset;             // handler[32:63]
+  U32 reserved;                // mütleq 0 olmalıdi
 } __attribute__((packed)) idtent_t; // = 16 bayt
 
 // bu (yuxardaki kod) artiq low levelda isitafde olunan bi kod strukturudur
 // hansi ki gelen kesmeni yeni zengin ne is goreceyini basa dusmek ucun
 
 typedef struct {
-  uint16_t limit;
-  uint64_t base;
+  U16 limit;
+  U64 base;
 } __attribute__((packed)) idtptr_t;
 
 // kesinti aninda prosessorun veziyyetini tanimasi ucun interrupt frame
 struct interrupt_frame {
-  uint64_t ip;
-  uint64_t cs;
-  uint64_t flags;
-  uint64_t sp;
-  uint64_t ss;
+  U64 ip;
+  U64 cs;
+  U64 flags;
+  U64 sp;
+  U64 ss;
 };
 
 #define IDT_ENTRIES 256 // 256 giris oldugu ucun IDT girislerini 256 edirik
 
 // c kodunun bunu extern olaraq tanimasi ucundur
-extern void load_idt(uint64_t idtr_ptr);
+extern void load_idt(U64 idtr_ptr);
 void idt_init();

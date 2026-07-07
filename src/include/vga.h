@@ -20,33 +20,33 @@
 #include "typint.h"
 
 //rengli putstr
-void putstr_color(string_const string, uint8_t color);
+void putstr_color(STR8_C string, U8 color);
 
 // ekrana rengli yazi yazdirmaq da
-void set_char_w_color(uint8_t character, uint8_t color, int32_t offset);
+void set_char_w_color(U8 character, U8 color, I32 offset);
 
 // kursorun hereketi
 void cursor_set(int offset);
 int cursor_get();
 
 // memorye bit yazdirmaq
-void set_char_in_memory(uint8_t character, int32_t offset);
+void set_char_in_memory(U8 character, I32 offset);
 
 // printf funksiyasi
-void putstr(string_const string);
-void puthex(uint64_t n);
+void putstr(STR8_C string);
+void puthex(U64 n);
 
 // komekci functionlar
-int32_t get_row(int32_t offset);
-int32_t get_offset(int32_t col, int32_t row);
-int32_t move_newl(int32_t offset);
+I32 get_row(I32 offset);
+I32 get_offset(I32 col, I32 row);
+I32 move_newl(I32 offset);
 
-void memorycpy(uint8_t *source, uint8_t *dest,
-               int32_t nbyte); // newline ucun memorye copy edir bu function
+void memorycpy(U8 *source, U8 *dest,
+               I32 nbyte); // newline ucun memorye copy edir bu function
 
-int32_t scrolln(int32_t offset); // bu ise ekrani scroll edib yuxari kocurur
+I32 scrolln(I32 offset); // bu ise ekrani scroll edib yuxari kocurur
 
-void putdec(uint64_t n); // ekrana reqem yazmaga komek edir
+void putdec(U64 n); // ekrana reqem yazmaga komek edir
 // ekrani clear edir
 void clear();
 

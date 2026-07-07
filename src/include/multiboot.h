@@ -4,23 +4,23 @@
 #include "../include/vga.h"
 
 typedef struct {
-  uint32_t size;
-  uint64_t addr;
-  uint64_t len;
-  uint32_t type;
+  U32 size;
+  U64 addr;
+  U64 len;
+  U32 type;
 } __attribute__((packed)) multiboot_entry_t;
 
 typedef struct {
-  uint32_t flags;     // hansı sahelerin dolu olduğunu göstərir
-  uint32_t mem_lower; // 640KB-dan aşağı RAM (KB ilə)
-  uint32_t mem_upper; // 1MB-dan yuxarı RAM (KB ilə)
-  uint32_t boot_device;
-  uint32_t cmdline;
-  uint32_t mods_count;
-  uint32_t mods_addr;
-  uint32_t syms[4];
-  uint32_t mmap_length; // memory map-in ümumi ölçüsü (byte)
-  uint32_t mmap_addr;
+  U32 flags;     // hansı sahelerin dolu olduğunu göstərir
+  U32 mem_lower; // 640KB-dan aşağı RAM (KB ilə)
+  U32 mem_upper; // 1MB-dan yuxarı RAM (KB ilə)
+  U32 boot_device;
+  U32 cmdline;
+  U32 mods_count;
+  U32 mods_addr;
+  U32 syms[4];
+  U32 mmap_length; // memory map-in ümumi ölçüsü (byte)
+  U32 mmap_addr;
 }
 
 __attribute__((packed)) multiboot_info_t;

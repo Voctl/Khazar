@@ -3,5 +3,5 @@
 #include "memory/pmm.h"
 
 
-extern uint64_t end;
-uint64_t place = (uint64_t)&end;
+extern U64 end;
+U64 place = (U64)&end;

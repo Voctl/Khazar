@@ -1,32 +1,44 @@
 #ifndef TYPINT_H
 #define TYPINT_H
 
-typedef signed char        int8_t;
-typedef unsigned char      uint8_t;
-typedef short              int16_t;
-typedef unsigned short     uint16_t;
-typedef int                int32_t;
-typedef unsigned int       uint32_t;
-typedef long               int64_t;
-typedef unsigned long      uint64_t;
+/* KhazarOS types */
 
-/* (Fast types) */
-typedef char               intfast8_t;
-typedef unsigned char      uintfast8_t;
-typedef int                int_fast16_t;
-typedef unsigned int       uint_fast16_t;
-typedef int                int_fast32_t;
-typedef unsigned int       uint_fast32_t;
-typedef long               int_fast64_t;
-typedef unsigned long      uint_fast64_t;
+#define I8 signed char
+#define U8 unsigned char
+#define I16 signed short
+#define U16 unsigned short
+#define I32 signed int
+#define U32 unsigned int
+#define I64 signed long
+#define U64 unsigned long
 
-/* (x86_64 GCC standart) */
-typedef unsigned long      uintptr_t;
-typedef unsigned long      size_t;
-typedef long               ssize_t;
+/* 64-bit system */
+#define PTR_U64 unsigned long
+#define PTR_I64 signed long
 
-/* string types */
-typedef char* string;
-typedef const char* string_const;
+/* Memory and Size */
+#define size_t unsigned long
+#define ssize_t signed long
+#define uintptr_t unsigned long
+
+/* String */
+#define STR8 U8 *
+#define STR8_C const U8 *
+
+/* fast */
+
+#define I_FAST8 I8
+#define U_FAST8 U8
+#define I_FAST16 I32
+#define U_FAST16 U32
+#define I_FAST32 I32
+#define U_FAST32 U32
+#define I_FAST64 I64
+#define U_FAST64 U64
+
+/* Booleans */
+#define BOOL I64
+#define TRUE 1
+#define FALSE 0
 
 #endif

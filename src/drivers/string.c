@@ -5,10 +5,10 @@
 
 void *memset(void *ptr, int value, size_t num)
 {
-    unsigned char *p = ptr;
+    U8 *p = ptr;
 
     while (num--)
-        *p++ = (unsigned char)value;
+        *p++ = (U8)value;
 
     return ptr;
 }

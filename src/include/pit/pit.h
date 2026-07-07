@@ -3,7 +3,7 @@
 
 #include "../typint.h"
 
-void init_timer(uint32_t frequency);
-void sleep(uint32_t ms);
+void init_timer(U32 frequency);
+void sleep(U32 ms);
 
 #endif

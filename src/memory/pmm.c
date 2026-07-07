@@ -6,7 +6,7 @@
 #include "../include/vga.h"
 #include "../kernel/panic.h"
 
-static uint32_t *frames;
+static U32 *frames;
 static size_t nframes;
 static size_t total_memory = 0;
 static size_t unavailable_mem = 0;
@@ -24,11 +24,11 @@ static uintptr_t lowest_available = 0;
 /* Bitmap-de verilen fiziki unvanin bitini 1 edir (dolu olaraq isaretleyir) */
 void pmm_set_addr(uintptr_t addr) {
   if (addr < nframes * PSIZE) {
-    uint64_t frame = addr >> PSHIFT;
-    uint64_t index = INDEX_FROM_BIT(frame);
-    uint32_t offset = OFFSET_FROM_BIT(frame);
+    U64 frame = addr >> PSHIFT;
+    U64 index = INDEX_FROM_BIT(frame);
+    U32 offset = OFFSET_FROM_BIT(frame);
 
-    frames[index] |= ((uint32_t)1 << offset);
+    frames[index] |= ((U32)1 << offset);
     asm("" ::: "memory");
   }
 }
@@ -36,11 +36,11 @@ void pmm_set_addr(uintptr_t addr) {
 /* Bitmap-de verilen fiziki unvanin bitini 0 edir (bos olaraq isaretleyir) */
 void pmm_clear(uintptr_t addr) {
   if (addr < nframes * PSIZE) {
-    uint64_t frame = addr >> PSHIFT;
-    uint64_t index = INDEX_FROM_BIT(frame);
-    uint32_t offset = OFFSET_FROM_BIT(frame);
+    U64 frame = addr >> PSHIFT;
+    U64 index = INDEX_FROM_BIT(frame);
+    U32 offset = OFFSET_FROM_BIT(frame);
 
-    frames[index] &= ~((uint32_t)1 << offset);
+    frames[index] &= ~((U32)1 << offset);
     asm("" ::: "memory");
 
     if (frame < lowest_available)
@@ -52,12 +52,12 @@ void pmm_clear(uintptr_t addr) {
 int pmm_test_addr(uintptr_t addr) {
   if (!(addr < nframes * PSIZE))
     return 1;
-  uint64_t frame = addr >> PSHIFT;
-  uint64_t index = INDEX_FROM_BIT(frame);
-  uint32_t offset = OFFSET_FROM_BIT(frame);
+  U64 frame = addr >> PSHIFT;
+  U64 index = INDEX_FROM_BIT(frame);
+  U32 offset = OFFSET_FROM_BIT(frame);
 
   asm("" ::: "memory");
-  return !!(frames[index] & ((uint32_t)1 << offset));
+  return !!(frames[index] & ((U32)1 << offset));
 }
 
 /* Bitmap-i tarayaraq tapilan ilk bos sehifenin indeksini qaytarir */
@@ -69,9 +69,9 @@ uintptr_t pmm_first_free(void) {
   if (!nframes)
     kernel_panic("nframes zero");
   for (i = INDEX_FROM_BIT(lowest_available); i < INDEX_FROM_BIT(nframes); ++i) {
-    if (frames[i] != (uint32_t)-1) {
-      for (j = 0; j < (sizeof(uint32_t) * 8); ++j) {
-        uint32_t testFrame = (uint32_t)1 << j;
+    if (frames[i] != (U32)-1) {
+      for (j = 0; j < (sizeof(U32) * 8); ++j) {
+        U32 testFrame = (U32)1 << j;
         if (!(frames[i] & testFrame)) {
           uintptr_t out = (i << 5) + j;
           lowest_available = out + 1;
@@ -97,7 +97,7 @@ uintptr_t pmm_alloc(void) {
 /* Fiziki sehifeni geri verir (azad edir) */
 void pmm_free(uintptr_t addr) { pmm_clear(addr); }
 
-extern uint8_t p4_table[];
+extern U8 p4_table[];
 
 /* Kernelin ilkin sehife kataloqunun base unvanini qaytarir */
 union PML *mmu_get_kernel_directory(void) {
@@ -148,7 +148,7 @@ void mmu_free(union PML *from) {
   pmm_clear((uintptr_t)from);
 }
 
-static uint32_t frame_bitmap[1024 * 1024 / 8];
+static U32 frame_bitmap[1024 * 1024 / 8];
 
 void pmm_init(multiboot_info_t *mb) {
   frames = frame_bitmap;
@@ -156,15 +156,15 @@ void pmm_init(multiboot_info_t *mb) {
 
   memset(frames, 0xFF, sizeof(frame_bitmap));
 
-  uint64_t ptr = mb->mmap_addr;
-  uint64_t end = mb->mmap_addr + mb->mmap_length;
+  U64 ptr = mb->mmap_addr;
+  U64 end = mb->mmap_addr + mb->mmap_length;
 
   while (ptr < end) {
     multiboot_entry_t *e = (multiboot_entry_t *)ptr;
 
     if (e->type == 1) {
       total_memory += e->len;
-      for (uint64_t addr = e->addr; addr < e->addr + e->len; addr += 0x1000)
+      for (U64 addr = e->addr; addr < e->addr + e->len; addr += 0x1000)
         pmm_clear(addr);
     }
 
@@ -172,20 +172,20 @@ void pmm_init(multiboot_info_t *mb) {
   }
 
   /* Low 1MB-i her zaman reserved saxla (BIOS, VGA, kernel) */
-  for (uint64_t addr = 0; addr < 0x100000; addr += 0x1000)
+  for (U64 addr = 0; addr < 0x100000; addr += 0x1000)
     pmm_set_addr(addr);
 }
 
 void pmm_stats(void) {
-  uint64_t real_frames = total_memory / PSIZE;
+  U64 real_frames = total_memory / PSIZE;
   if (real_frames > nframes) {
     real_frames = nframes;
   }
 
-  uint64_t usedc = 0;
-  uint64_t freec = 0;
+  U64 usedc = 0;
+  U64 freec = 0;
 
-  for (uint64_t i = 0; i < real_frames; i++) {
+  for (U64 i = 0; i < real_frames; i++) {
     if (pmm_test_addr(i << PSHIFT)) {
       usedc++;
     } else {
@@ -193,9 +193,9 @@ void pmm_stats(void) {
     }
   }
 
-  uint64_t free_mb = (freec * PSIZE) / (1024 * 1024);
-  uint64_t used_mb = (usedc * PSIZE) / (1024 * 1024);
-  uint64_t total_mb = total_memory / (1024 * 1024);
+  U64 free_mb = (freec * PSIZE) / (1024 * 1024);
+  U64 used_mb = (usedc * PSIZE) / (1024 * 1024);
+  U64 total_mb = total_memory / (1024 * 1024);
 
   putstr("\n---PMM Memory Stats---\n");
   putstr("Total: ");

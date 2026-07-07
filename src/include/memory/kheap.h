@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdint.h>
+#include "../typint.h"
 #define KHEAP_START 0xC0000000
 #define KHEAP_INTIAL_SIZE 0x100000
 #define HEAP_INDEX_SIZE 0x20000
@@ -8,21 +8,21 @@
 #define HEAP_MIN_SIZE 0x70000
 
 typedef struct {
-    uint64_t magic;
-    uint8_t is_hole;
-    uint64_t size;
+  U64 magic;
+  U8 is_hole;
+  U64 size;
 } header_t;
 
-typedef struct{
-    uint64_t magic;
-    header_t *header;
+typedef struct {
+  U64 magic;
+  header_t *header;
 } footer_t;
 
 typedef struct {
-    uint64_t index[HEAP_INDEX_SIZE];
-    uint64_t start;
-    uint64_t end;
-    uint64_t max;
-    uint8_t supervisor;
-    uint8_t readonly;
+  U64 index[HEAP_INDEX_SIZE];
+  U64 start;
+  U64 end;
+  U64 max;
+  U8 supervisor;
+  U8 readonly;
 } heap_t;

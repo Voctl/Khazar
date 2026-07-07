@@ -7,7 +7,7 @@
 #define IRQ1 33
 
 static void keyboard_callback(registers_t *regs) {
-  uint8_t scancode = byte_i(0x60);
+  U8 scancode = byte_i(0x60);
   putstr("\n");
   byte_o(0x20, 0x20);
 }
