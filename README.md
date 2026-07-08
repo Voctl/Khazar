@@ -25,5 +25,5 @@ In a world increasingly filled with closed platforms, unnecessary complexity and
 Khazar exists because curiosity exists.
 
 ## License
-
 GPL-3.0
+
