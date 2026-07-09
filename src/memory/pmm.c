@@ -158,10 +158,11 @@ void pmm_init(multiboot_info_t *mb) {
 
   U64 ptr = mb->mmap_addr;
   U64 end = mb->mmap_addr + mb->mmap_length;
+  U32 entry_count = 0; // for debug
 
   while (ptr < end) {
     multiboot_entry_t *e = (multiboot_entry_t *)ptr;
-
+    entry_count++;
     if (e->type == 1) {
       total_memory += e->len;
       for (U64 addr = e->addr; addr < e->addr + e->len; addr += 0x1000)
@@ -170,6 +171,10 @@ void pmm_init(multiboot_info_t *mb) {
 
     ptr += e->size + 4;
   }
+
+  putstr("mmap entry count: ");
+  putdec(entry_count);
+  putstr("\n");
 
   /* Low 1MB-i her zaman reserved saxla (BIOS, VGA, kernel) */
   for (U64 addr = 0; addr < 0x100000; addr += 0x1000)
