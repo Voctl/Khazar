@@ -3,7 +3,7 @@
 #include "../typint.h"
 #define KHEAP_START 0xC0000000
 #define KHEAP_INTIAL_SIZE 0x100000
-#define HEAP_INDEX_SIZE 0x20000
+#define HEAP_INDEX_SIZE 0x1000
 #define HEAP_MAGIC 0x12312345
 #define HEAP_MIN_SIZE 0x70000
 
@@ -29,3 +29,5 @@ typedef struct {
 } heap_t;
 
 extern heap_t *kheap;
+
+void init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly);

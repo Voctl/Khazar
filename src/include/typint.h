@@ -41,4 +41,12 @@
 #define TRUE 1
 #define FALSE 0
 
+/* NULL pointer */
+#ifndef NULL
+#define NULL ((void*)0)
+#endif
+
+/* HolyC-style void */
+#define U0 void
+
 #endif
