@@ -99,7 +99,6 @@ void kernel_main(U64 multiboot_addr) {
     }
   }
   sleep(600);
-  clear();
   pmm_stats();
   beep();
   while (1)
