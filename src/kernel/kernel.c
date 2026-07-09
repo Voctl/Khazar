@@ -10,6 +10,7 @@
 #include "panic.h"
 #include "../include/memory/pmm.h"
 #include "../include/string.h"
+#include "../include/memory/kheap.h"
 
 void kernel_main(U64 multiboot_addr) {
   clear();

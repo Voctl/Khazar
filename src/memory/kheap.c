@@ -35,7 +35,7 @@ void init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly) {
     holefoot->magic = HEAP_MAGIC;
     holefoot->header = holehead;
 
-    // we adding this hole to the index massive (btw its cool metod for that heap shi broo)
+    // we adding this hole to the index massive (btw its cool metod for that heap shit broo)
     the_kernel_heap.index[0] = (U64)holehead;
     the_kernel_heap.index_size = 1;
 
@@ -117,6 +117,6 @@ U0 kfree(U0* ptr) {
  */
 
 /*
- * But its not a problem for now. In future BIG BRAIN AND DIVINE INTELLECT denis ll develop
+ * But its not a problem for now. In future BIG BRAIN AND DIVINE INTELLECT denis will develop
  * that kheap functions
  */

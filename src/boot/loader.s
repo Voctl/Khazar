@@ -32,7 +32,7 @@ align 4
 
 loader:
     mov esp, kernel_stack + KERNEL_STACK_SIZE
-    
+
     ; save multiboot pointer!! cpuid will overwrite ebx later
     mov ebp, ebx
 
@@ -92,7 +92,7 @@ setup_page_tables:
     or eax, 0b10000011 ; present/writable/huge
     mov [p2_table + ecx*8], eax
     inc ecx
-    cmp ecx, 512 ; 1gib total
+    cmp ecx, 2048 ; 4gib total
     jne .loop
     ret
 
@@ -135,7 +135,7 @@ long_mode_start:
     mov gs, ax
 
     mov rsp, kernel_stack + KERNEL_STACK_SIZE
-    
+
     ; pass pointer to kernel_main (edi)
     mov rdi, rbp
     call kernel_main
