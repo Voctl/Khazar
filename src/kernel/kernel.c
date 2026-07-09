@@ -12,6 +12,8 @@
 #include "../include/string.h"
 #include "../include/memory/kheap.h"
 
+extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end = ."
+
 void kernel_main(U64 multiboot_addr) {
   clear();
   init_gdt();
@@ -37,6 +39,21 @@ void kernel_main(U64 multiboot_addr) {
   pmm_init(mb);
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" PMM initialized\n");
+  sleep(150);
+
+  // we reserve the end of the kernel as the heap start, rounded down to 4KiB
+  U64 heap_start = ((U64)&end + 0xFFF) & ~0xFFFUL;
+  U64 heap_initial_size = 0x400000;      // 4 MiB - basliyic olcu
+  U64 heap_max_size     = 0x2000000;     // 32 MiB - boyuye bilecek maksimum
+
+  // we mark all frames in this range as "used" in PMM, so they are not available to the allocator
+  for (U64 addr = heap_start; addr < heap_start + heap_max_size; addr += 0x1000) {
+      pmm_set_addr(addr);
+  }
+  // initializing heap
+  init_heap(heap_start, heap_start + heap_initial_size, heap_max_size, 1, 0);
+  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr(" Heap Initialized\n");
 //beep
   U32 hz = 100;
   beep();
