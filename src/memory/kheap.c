@@ -1,9 +1,19 @@
 #include "../include/memory/kheap.h"
 #include "../include/typint.h"
 #include "memory/pmm.h"
+#include "../kernel/panic.h"
 
 heap_t *heap = NULL;
 static heap_t the_kernel_heap;
+
+/* helper funcs */
+static U0 remove_from_index(U32 index_to_remove) {
+    for (U32 i = index_to_remove; i < the_kernel_heap.index_size - 1; i++) {
+        the_kernel_heap.index[i] = the_kernel_heap.index[i + 1];
+    }
+    the_kernel_heap.index_size--;
+}
+/* helper funcs */
 
 // we initialize the kernel heap (boundarie tag method)
 void init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly) {
@@ -68,11 +78,45 @@ U0* kalloc(U64 size) {
                 footer_t *header_footer = (footer_t*)((U64)header + total_size - sizeof(footer_t));
                 header_footer->magic = HEAP_MAGIC;
                 header_footer->header = header;
-                // we adding the new hole to the index
-                the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)new_header;
+
+                the_kernel_heap.index[i] = (U64)new_header;
+            } else {
+                remove_from_index(i);
             }
             return (U0*)((U64)header + sizeof(header_t));
         }
     }
     return NULL;
 }
+
+/* kernel free memory */
+/* yanani gorur Allah */
+/* bro btw i be a contributer of nimble (package manager of nim) yeyy */
+U0 kfree(U0* ptr) {
+    if (ptr == NULL) kernel_panic("yo king it cant ur ptr is null");
+    header_t *header = (header_t*)((U64)ptr - sizeof(header_t));
+    if (header->magic != HEAP_MAGIC) kernel_panic("yo king it cant ur magic is wrong");
+    if (header->is_hole) kernel_panic("yo king it cant ur block is already a hole");
+
+    header->is_hole = 1; // know the block is free now
+
+    footer_t *footer = (footer_t*)((U64)header + header->size - sizeof(footer_t));
+    footer->magic = HEAP_MAGIC;
+    footer->header = header;
+
+    // we add the block to the index
+    the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)header;
+}
+
+/* NOTE NOTE NOTE
+ * If you allocate memory twice and then free both,
+ * they will remain adjacent as two separate holes in the heap.
+ * Therefore, if you request a larger block next time,
+ * kalloc will not be able to allocate it, as the holes are not contiguous.
+ * However, for small allocations, this does not matter.
+ */
+
+/*
+ * But its not a problem for now. In future BIG BRAIN AND DIVINE INTELLECT denis ll develop
+ * that kheap functions
+ */

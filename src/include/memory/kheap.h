@@ -30,4 +30,5 @@ typedef struct {
 
 extern heap_t *kheap;
 
-void init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly);
+U0 init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly); // kernel initializes the heap
+U0* kalloc(U64 size); // kernel allocates memory
