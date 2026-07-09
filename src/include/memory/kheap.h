@@ -32,3 +32,4 @@ extern heap_t *kheap;
 
 U0 init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly); // kernel initializes the heap
 U0* kalloc(U64 size); // kernel allocates memory
+U0 kfree(U0* ptr); // kernel frees memory
