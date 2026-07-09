@@ -40,6 +40,9 @@ void pmm_clear(uintptr_t addr) {
     U64 index = INDEX_FROM_BIT(frame);
     U32 offset = OFFSET_FROM_BIT(frame);
 
+    if (frames[index] & ((U32)1 << offset )) {
+        total_memory += PSIZE;
+    }
     frames[index] &= ~((U32)1 << offset);
     asm("" ::: "memory");
 
