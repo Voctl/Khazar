@@ -4,6 +4,7 @@
 #include "../isr.h"
 #include "../typint.h"
 
-void keyboard_handler();
+void keyboard_handler(registers_t *regs) ;
+void keyboard_init(void);
 
 #endif

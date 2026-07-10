@@ -170,3 +170,23 @@ void set_char_w_color(U8 character, U8 color, I32 offset) {
   vidmem[offset] = character;
   vidmem[offset + 1] = color;
 }
+
+// it helps to print characters to the screen
+U0 kbd_putchar(char c) {
+	int offset = cursor_get();
+
+	if (c == '\n') {
+		offset = move_newl(offset);
+	} else if (c == '\b') {
+		if (offset > 0) {
+			offset -= 2; // char + color is 2 bytes
+			set_char_in_memory(' ', offset);
+		}
+	} else {
+		set_char_in_memory((U8)c, offset);
+		offset += 2;
+	}
+
+	offset = scrolln(offset);
+	cursor_set(offset);
+}

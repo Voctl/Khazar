@@ -8,6 +8,7 @@
 #define KEYBOARD_DATA_PORT 0x60
 #define KEYBOARD_INT 33 // IRQ1 + 32 (IDT offset)
 
+
 static const char base_map[128] = {
 	[0x02] = '1', [0x03] = '2', [0x04] = '3', [0x05] = '4',
 	[0x06] = '5', [0x07] = '6', [0x08] = '7', [0x09] = '8',
@@ -43,3 +44,27 @@ static const char shift_map[128] = {
 	[0x30] = 'B', [0x31] = 'N', [0x32] = 'M', [0x33] = '<',
 	[0x34] = '>', [0x35] = '?', [0x39] = ' ', [0x01] = '\x1b',
 };
+
+static U8 shift_on = 0;
+
+void keyboard_handler(registers_t *regs) {
+	(void)regs;
+	putstr("KBD IRQ!\n");
+	U8 sc = byte_i(KEYBOARD_DATA_PORT);
+	if (sc == 0x2A || sc == 0x36) {
+		shift_on = 1;
+	} else if (sc == 0xAA || sc == 0xB6) {
+		shift_on = 0;
+	} else if (!(sc & 0x80)) {
+		char c = shift_on ? shift_map[sc] : base_map[sc];
+		if (c) kbd_putchar(c);
+	}
+}
+
+void keyboard_init(void) {
+	register_interrupt_handler(KEYBOARD_INT, keyboard_handler);
+
+	U8 mask = byte_i(0x21);   // Master PIC data/mask port
+	mask &= ~(1 << 1);       // remove IRQ1 mask
+	byte_o(0x21, mask);
+}

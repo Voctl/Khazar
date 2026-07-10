@@ -50,4 +50,4 @@ void putdec(U64 n); // ekrana reqem yazmaga komek edir
 // ekrani clear edir
 void clear();
 
-
+U0 kbd_putchar(char c);
