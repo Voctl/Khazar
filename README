@@ -1,0 +1,46 @@
+# Khazar
+
+<p align="center">
+    <img src="docs/logo.png" height="350">
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif" height="350">
+</p>
+
+Khazar is a hobby operating system for x86_64 computers.
+
+I started this project at the age of 15 because I became curious
+about what actually happens inside a computer.
+
+Modern software often feels like a tower built on top of another tower
+built on top of another tower.
+
+At some point I stopped asking:
+
+> "Which framework should I learn next?"
+
+and started asking:
+
+> "How does this machine even boot?"
+
+Khazar is the result.
+
+---
+
+I spend a lot of my time reading source code, experimenting with
+operating systems and exploring ideas that most people would probably
+consider unusual hobbies.
+
+While others are busy scrolling through social media, I am usually busy
+debugging page tables, reading old UNIX documentation or breaking
+things that were working five minutes earlier.
+
+---
+
+The project is inspired by UNIX, free software and the belief that
+software should remain understandable.
+
+Computers are already complicated enough.
+
+We do not need seventeen layers of abstraction to print:
+
+```c
+printf("Hello, World\n");
