@@ -5,12 +5,26 @@
 #include "../../include/vga.h"
 #include "../../include/io.h"
 
-#define IRQ1 33
+#define KEYBOARD_DATA_PORT 0x60
+#define KEYBOARD_INT 33 // IRQ1 + 32 (IDT offset)
 
-static void keyboard_callback(registers_t *regs) {
-  U8 scancode = byte_i(0x60);
-  putstr("\n");
-  byte_o(0x20, 0x20);
+static const char kbd_map[] = {
+    0, 27, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '\b',
+    '\t', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
+    0, 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '`', 0, '\\',
+    'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 0, 0, 0, ' '
+};
+
+void keyboard_handler() {
+    U8 scancode = byte_i(KEYBOARD_DATA_PORT);
+
+    if (!(scancode & 0x80)) {
+        if (scancode < sizeof(kbd_map)) {
+            char key = kbd_map[scancode];
+            if (key != 0) {
+            }
+        }
+    }
+
+    byte_o(0x20, 0x20);
 }
-
-void init_keyboard() { register_interrupt_handler(IRQ1, keyboard_callback); }
