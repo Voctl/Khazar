@@ -14,17 +14,3 @@ static const char kbd_map[] = {
     0, 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '\'', '`', 0, '\\',
     'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', 0, 0, 0, ' '
 };
-
-void keyboard_handler() {
-    U8 scancode = byte_i(KEYBOARD_DATA_PORT);
-
-    if (!(scancode & 0x80)) {
-        if (scancode < sizeof(kbd_map)) {
-            char key = kbd_map[scancode];
-            if (key != 0) {
-            }
-        }
-    }
-
-    byte_o(0x20, 0x20);
-}

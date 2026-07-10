@@ -4,6 +4,6 @@
 #include "../isr.h"
 #include "../typint.h"
 
-void init_keyboard(); // initializing kyboard
+void keyboard_handler();
 
 #endif

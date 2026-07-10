@@ -18,9 +18,10 @@ void kernel_main(U64 multiboot_addr) {
   clear();
   init_gdt();
   idt_init();
-  init_keyboard();
+  keyboard_handler();
   init_timer(100);
 
+  idt_set_gate(33, (U64)keyboard_handler, 0x08, 0x8E);
   asm volatile("sti"); // interruptin ise dusmesi ucun
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
   putstr(" GDT Initialized\n");
