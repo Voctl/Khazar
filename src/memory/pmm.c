@@ -6,11 +6,6 @@
 #include "../include/vga.h"
 #include "../kernel/panic.h"
 
-static U32 *frames;
-static size_t nframes;
-static size_t total_memory = 0;
-static size_t unavailable_mem = 0;
-
 #define PSHIFT 12
 #define PSIZE 0x1000UL
 #define PSIZE_MASK 0xFFFFffffFFFFf000UL
@@ -19,9 +14,21 @@ static size_t unavailable_mem = 0;
 #define INDEX_FROM_BIT(b) ((b) >> 5)
 #define OFFSET_FROM_BIT(b) ((b)&0x1F)
 
+static U32 frame_bitmap[1024 * 1024 / 8];
+static U32 *frames;
+static size_t nframes;
+static size_t total_memory = 0;      // Usable RAM
+static size_t reserved_memory = 0;   // BIOS/MMIO/ACPI
+static size_t allocated_memory = 0;  // Allocated pages
+
 static uintptr_t lowest_available = 0;
 
-/* Bitmap-de verilen fiziki unvanin bitini 1 edir (dolu olaraq isaretleyir) */
+// Linker symbols
+extern U8 _kernel_start;
+extern U8 _kernel_end;
+extern U8 p4_table[];
+
+// Mark physical address as used (1)
 void pmm_set_addr(uintptr_t addr) {
   if (addr < nframes * PSIZE) {
     U64 frame = addr >> PSHIFT;
@@ -33,28 +40,27 @@ void pmm_set_addr(uintptr_t addr) {
   }
 }
 
-/* Bitmap-de verilen fiziki unvanin bitini 0 edir (bos olaraq isaretleyir) */
+// Mark physical address as free (0)
 void pmm_clear(uintptr_t addr) {
-  if (addr < nframes * PSIZE) {
-    U64 frame = addr >> PSHIFT;
-    U64 index = INDEX_FROM_BIT(frame);
-    U32 offset = OFFSET_FROM_BIT(frame);
+    if (addr < nframes * PSIZE) {
+        U64 frame = addr >> PSHIFT;
+        U64 index = INDEX_FROM_BIT(frame);
+        U32 offset = OFFSET_FROM_BIT(frame);
 
-    if (frames[index] & ((U32)1 << offset )) {
-        total_memory += PSIZE;
+        frames[index] &= ~((U32)1 << offset);
+
+        asm("" ::: "memory");
+
+        if (frame < lowest_available)
+            lowest_available = frame;
     }
-    frames[index] &= ~((U32)1 << offset);
-    asm("" ::: "memory");
-
-    if (frame < lowest_available)
-      lowest_available = frame;
-  }
 }
 
-/* Sehifenin dolu ve ya bos oldugunu yoxlayir (1 = dolu, 0 = bos) */
+// Check if page is used (1) or free (0)
 int pmm_test_addr(uintptr_t addr) {
   if (!(addr < nframes * PSIZE))
     return 1;
+
   U64 frame = addr >> PSHIFT;
   U64 index = INDEX_FROM_BIT(frame);
   U32 offset = OFFSET_FROM_BIT(frame);
@@ -63,14 +69,12 @@ int pmm_test_addr(uintptr_t addr) {
   return !!(frames[index] & ((U32)1 << offset));
 }
 
-/* Bitmap-i tarayaraq tapilan ilk bos sehifenin indeksini qaytarir */
+// Find index of first free page
 uintptr_t pmm_first_free(void) {
   uintptr_t i, j;
-  if (!frames)
-    kernel_panic("frames NULL");
+  if (!frames) kernel_panic("frames NULL");
+  if (!nframes) kernel_panic("nframes zero");
 
-  if (!nframes)
-    kernel_panic("nframes zero");
   for (i = INDEX_FROM_BIT(lowest_available); i < INDEX_FROM_BIT(nframes); ++i) {
     if (frames[i] != (U32)-1) {
       for (j = 0; j < (sizeof(U32) * 8); ++j) {
@@ -87,138 +91,154 @@ uintptr_t pmm_first_free(void) {
   return (uintptr_t)-1;
 }
 
-/* Bos bir fiziki sehife ayirir ve onun fiziki unvanini qaytarir */
+// Allocate a free physical page
 uintptr_t pmm_alloc(void) {
-  uintptr_t index = pmm_first_free();
-  if (index != (uintptr_t)-1) {
-    pmm_set_addr(index << PSHIFT);
-    return index << PSHIFT;
-  }
-  return 0;
+    uintptr_t index = pmm_first_free();
+
+    if (index != (uintptr_t)-1) {
+        pmm_set_addr(index << PSHIFT);
+        allocated_memory += PSIZE;
+        return index << PSHIFT;
+    }
+
+    return 0;
 }
 
-/* Fiziki sehifeni geri verir (azad edir) */
-void pmm_free(uintptr_t addr) { pmm_clear(addr); }
+// Free a physical page
+void pmm_free(uintptr_t addr) {
+    pmm_clear(addr);
 
-extern U8 p4_table[];
+    if (allocated_memory >= PSIZE)
+        allocated_memory -= PSIZE;
+}
 
-/* Kernelin ilkin sehife kataloqunun base unvanini qaytarir */
+// Get kernel's base page directory
 union PML *mmu_get_kernel_directory(void) {
   return (union PML *)&p4_table[0];
 }
 
-/* Verilen PML4 kataloqu altindaki butun sehife strukturlarini temizleyir */
+// Free all page structures under PML4
 void mmu_free(union PML *from) {
-  if (!from)
-    return;
+  if (!from) return;
 
-  /* PML4 (Page Map Level 4) seviyyesini gezirik */
   for (size_t i = 0; i < 512; ++i) {
     if (from[i].bits.present) {
       union PML *pdp_in = (union PML *)((uintptr_t)from[i].bits.page << PSHIFT);
 
-      /* PDPT (Page Directory Pointer Table) seviyyesini gezirik */
       for (size_t j = 0; j < 512; ++j) {
         if (pdp_in[j].bits.present) {
           union PML *pd_in =
               (union PML *)((uintptr_t)pdp_in[j].bits.page << PSHIFT);
 
-          /* PD (Page Directory) seviyyesini gezirik */
           for (size_t k = 0; k < 512; ++k) {
             if (pd_in[k].bits.present) {
               union PML *pt_in =
                   (union PML *)((uintptr_t)pd_in[k].bits.page << PSHIFT);
 
-              /* PT (Page Table) seviyyesini gezirik - esil fiziki sehifeler */
               for (size_t l = 0; l < 512; ++l) {
                 if (pt_in[l].bits.present) {
                   pmm_clear((uintptr_t)pt_in[l].bits.page << PSHIFT);
                 }
               }
-              /* PT sehife cedvelinin oz frame-ini temizleyirik */
               pmm_clear((uintptr_t)pd_in[k].bits.page << PSHIFT);
             }
           }
-          /* PD kataloqunun oz frame-ini temizleyirik */
           pmm_clear((uintptr_t)pdp_in[j].bits.page << PSHIFT);
         }
       }
-      /* PDPT strukturunun oz frame-ini temizleyirik */
       pmm_clear((uintptr_t)from[i].bits.page << PSHIFT);
     }
   }
-  /* En basdaki PML4 strukturunun ozunu de yaddasda bosa cixaririq */
   pmm_clear((uintptr_t)from);
 }
 
-static U32 frame_bitmap[1024 * 1024 / 8];
-
 void pmm_init(multiboot_info_t *mb) {
-  frames = frame_bitmap;
-  nframes = sizeof(frame_bitmap) * 8; /* 256K frame = 1GB */
+    frames = frame_bitmap;
+    nframes = sizeof(frame_bitmap) * 8; // Set max size initially
+    size_t highest_addr = 0;
 
-  memset(frames, 0xFF, sizeof(frame_bitmap));
+    // Mark all memory as used initially
+    memset(frames, 0xFF, sizeof(frame_bitmap));
 
-  U64 ptr = mb->mmap_addr;
-  U64 end = mb->mmap_addr + mb->mmap_length;
-  U32 entry_count = 0; // for debug
+    U64 ptr = mb->mmap_addr;
+    U64 end_mmap = mb->mmap_addr + mb->mmap_length;
 
-  while (ptr < end) {
-    multiboot_entry_t *e = (multiboot_entry_t *)ptr;
-    entry_count++;
-    if (e->type == 1) {
-      total_memory += e->len;
-      for (U64 addr = e->addr; addr < e->addr + e->len; addr += 0x1000)
-        pmm_clear(addr);
+    total_memory = 0;
+
+    // Pass 1: Find highest memory address (Just for usable memory)
+    while (ptr < end_mmap) {
+            multiboot_entry_t *e = (multiboot_entry_t *)ptr;
+            U64 region_end = e->addr + e->len;
+
+            // Just e->type == 1 (USABLE)
+            if (e->type == 1) {
+                if (region_end > highest_addr) {
+                    highest_addr = region_end;
+                }
+                total_memory += e->len;
+            }
+            ptr += e->size + 4;
+        }
+
+    // Calculate real max frames
+    nframes = highest_addr >> PSHIFT;
+    if (nframes > (sizeof(frame_bitmap) * 8)) {
+        nframes = sizeof(frame_bitmap) * 8;
     }
 
-    ptr += e->size + 4;
-  }
+    // Pass 2: Mark usable memory as free
+    ptr = mb->mmap_addr;
+    while (ptr < end_mmap) {
+        multiboot_entry_t *e = (multiboot_entry_t *)ptr;
+        U64 region_end = e->addr + e->len;
 
-  putstr("mmap entry count: ");
-  putdec(entry_count);
-  putstr("\n");
+        if (e->type == 1) {
+            for (U64 addr = e->addr; addr < region_end; addr += PSIZE) {
+                pmm_clear(addr);
+            }
+        }
+        ptr += e->size + 4;
+    }
 
-  /* Low 1MB-i her zaman reserved saxla (BIOS, VGA, kernel) */
-  for (U64 addr = 0; addr < 0x100000; addr += 0x1000)
-    pmm_set_addr(addr);
+    reserved_memory = highest_addr - total_memory;
+
+    // Protect low 1MB
+    for (U64 addr = 0; addr < 0x100000; addr += PSIZE) {
+        pmm_set_addr(addr);
+    }
+
+    // Protect kernel code/data
+    U64 k_start = (U64)&_kernel_start & PSIZE_MASK;
+    U64 k_end   = ((U64)&_kernel_end + 0xFFF) & PSIZE_MASK;
+
+    for (U64 addr = k_start; addr < k_end; addr += PSIZE) {
+        pmm_set_addr(addr);
+    }
 }
 
 void pmm_stats(void) {
-  U64 real_frames = total_memory / PSIZE;
-  if (real_frames > nframes) {
-    real_frames = nframes;
-  }
+    size_t used_frames = 0;
 
-  U64 usedc = 0;
-  U64 freec = 0;
-
-  for (U64 i = 0; i < real_frames; i++) {
-    if (pmm_test_addr(i << PSHIFT)) {
-      usedc++;
-    } else {
-      freec++;
+    // Count used frames within available memory
+    for (size_t i = 0; i < nframes; i++) {
+        if (pmm_test_addr((uintptr_t)i << PSHIFT)) {
+            used_frames++;
+        }
     }
-  }
+    allocated_memory = used_frames * PSIZE;
 
-  U64 free_mb = (freec * PSIZE) / (1024 * 1024);
-  U64 used_mb = (usedc * PSIZE) / (1024 * 1024);
-  U64 total_mb = total_memory / (1024 * 1024);
+    U64 total_mb     = total_memory / 1024 / 1024;
+    U64 reserved_mb  = reserved_memory / 1024 / 1024;
+    U64 allocated_mb = allocated_memory / 1024 / 1024;
 
-  putstr("\n---PMM Memory Stats---\n");
-  putstr("Total: ");
-  putdec(total_mb);
-  putstr(" MB (");
-  putdec(real_frames);
-  putstr(" frames)\n");
-  putstr("Used: ");
-  putdec(used_mb);
-  putstr(" MB (");
-  putdec(usedc);
-  putstr(" frames)\n");
-  putstr("Free: ");
-  putdec(free_mb);
-  putstr(" MB (");
-  putdec(freec);
-  putstr(" frames)\n");
+    U64 free_mb = 0;
+    if (total_memory > allocated_memory) {
+        free_mb = (total_memory - allocated_memory) / 1024 / 1024;
+    }
+
+    putstr("\nPhysical Memory:\n");
+    putstr("  Total:      "); putdec(total_mb);     putstr(" MB\n");
+    putstr("  Reserved:   "); putdec(reserved_mb);  putstr(" MB\n");
+    putstr("  Allocated:  "); putdec(allocated_mb); putstr(" MB\n");
+    putstr("  Free:       "); putdec(free_mb);      putstr(" MB\n");
 }
