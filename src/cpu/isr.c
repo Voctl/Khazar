@@ -29,15 +29,15 @@ void isr_handler(registers_t *regs) {
 }
 
 void irq_handler(registers_t *regs) {
-  // EOI signali
-  if (regs->int_no >= 40) {
+//  putstr("IRQ: ");
+//  puthex(regs->int_no);
+//  putstr("\n");
 
+  if (regs->int_no >= 40) {
     byte_o(0xA0, 0x20);
   }
-  // full master
   byte_o(0x20, 0x20);
 
-  // kesme ucun isleyici varsa call edir
   if (interrupt_handlers[regs->int_no] != 0) {
     isr_t handler = interrupt_handlers[regs->int_no];
     handler(regs);

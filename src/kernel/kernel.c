@@ -16,9 +16,11 @@ extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end
 
 void kernel_main(U64 multiboot_addr) {
   clear();
+  putstr("BUILD_CHECK_V2\n");
   init_gdt();
   idt_init();
   init_timer(100);
+  keyboard_init();
 
   asm volatile("sti"); // interruptin ise dusmesi ucun
   putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
