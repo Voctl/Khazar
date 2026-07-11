@@ -50,6 +50,7 @@ static U8 shift_on = 0;
 void keyboard_handler(registers_t *regs) {
 	(void)regs;
 	U8 sc = byte_i(KEYBOARD_DATA_PORT);
+
 	if (sc == 0x2A || sc == 0x36) {
 		shift_on = 1;
 	} else if (sc == 0xAA || sc == 0xB6) {

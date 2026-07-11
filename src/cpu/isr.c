@@ -33,13 +33,13 @@ void irq_handler(registers_t *regs) {
 //  puthex(regs->int_no);
 //  putstr("\n");
 
-  if (regs->int_no >= 40) {
-    byte_o(0xA0, 0x20);
-  }
-  byte_o(0x20, 0x20);
-
   if (interrupt_handlers[regs->int_no] != 0) {
     isr_t handler = interrupt_handlers[regs->int_no];
     handler(regs);
+
+    if (regs->int_no >= 40) {
+      byte_o(0xA0, 0x20);
+    }
+    byte_o(0x20, 0x20);
   }
 }

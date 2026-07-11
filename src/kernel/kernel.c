@@ -16,7 +16,6 @@ extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end
 
 void kernel_main(U64 multiboot_addr) {
   clear();
-  putstr("BUILD_CHECK_V2\n");
   init_gdt();
   idt_init();
   init_timer(100);
@@ -99,9 +98,10 @@ void kernel_main(U64 multiboot_addr) {
       entry = (multiboot_entry_t *)((U64)entry + entry->size + 4);
     }
   }
-  sleep(600);
   pmm_stats();
   beep();
+  sleep(200);
+  clear();
   while (1)
     ;
 }
