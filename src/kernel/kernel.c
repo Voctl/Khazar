@@ -100,7 +100,7 @@ void kernel_main(U64 multiboot_addr) {
   }
   pmm_stats();
   beep();
-  sleep(200);
+  sleep(1000);
   clear();
   while (1)
     ;
