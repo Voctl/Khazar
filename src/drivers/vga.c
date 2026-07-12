@@ -187,6 +187,8 @@ U0 kbd_putchar(char c) {
 		offset += 2;
 	}
 
-	offset = scrolln(offset);
+	if (offset >= MAX_ROW * MAX_COL * 2) {
+		offset = scrolln(offset);
+	}
 	cursor_set(offset);
 }
