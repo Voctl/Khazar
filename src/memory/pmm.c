@@ -6,6 +6,7 @@
 #include "../include/vga.h"
 #include "../kernel/panic.h"
 
+
 #define PSHIFT 12
 #define PSIZE 0x1000UL
 #define PSIZE_MASK 0xFFFFffffFFFFf000UL
