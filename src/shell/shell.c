@@ -11,11 +11,11 @@
 
 static U0 helpc(char *args){
     (U0)args;
-    putstr("\nhelp\n");
-    putstr("version\n");
-    putstr("halt\n");
-    putstr("clear\n");
-    putstr("beep\n");
+    putstr((STR8_C)"\nhelp\n");
+    putstr((STR8_C)"version\n");
+    putstr((STR8_C)"halt\n");
+    putstr((STR8_C)"clear\n");
+    putstr((STR8_C)"beep\n");
 }
 
 static U0 clearc(char *args){
@@ -26,7 +26,7 @@ static U0 clearc(char *args){
 
 static U0 versionc(char *args){
     (U0)args;
-    putstr("KhazarOS - alpha");
+    putstr((STR8_C)"KhazarOS - alpha");
 }
 
 static U0 haltc(char *args){
@@ -82,6 +82,8 @@ static void execute_command(char *input)
         }
     }
 
-    putstr("Unknown cmd");
+    putstr((STR8_C)"Unknown cmd");
 
 }
+
+
