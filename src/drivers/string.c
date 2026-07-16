@@ -21,3 +21,12 @@ void *memcpy(void *dest, const void *src, size_t num) {
 
   return dest;
 }
+
+char *strcpy(char *dest, const char *src) {
+    char *ptr = dest;
+    while (*src != '\0') {
+        *dest++ = *src++;
+    }
+    *dest = '\0'; // NULL terminator
+    return ptr;
+}
