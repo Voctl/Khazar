@@ -4,6 +4,7 @@
 #include "../include/sound.h"
 #include "../include/pit/pit.h"
 #include "../include/string.h"
+#include "../include/keybrd/keybrd.h"
 
 #define SHELL_INM 50
 #define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
@@ -87,3 +88,84 @@ static void execute_command(char *input)
 }
 
 
+U0 shell(U0){
+    char inputbuff[SHELL_INM + 1];
+    I32 lenofcm = 0;
+    I32 offshit = 0;
+    char key;
+    I32 i;
+
+    keyboard_init();
+    clear();
+    putstr((STR8_C)"Welcome to KhazarOS\n");
+    putstr((STR8_C)"Do u want to see commands, type 'help'\n");
+    putstr_color((STR8_C)"~# ", COLOR_GREEN);
+
+    while (1) {
+        if (keyboard_poll_char(&key)) {
+            if (key == '\n') {
+                if (offshit < lenofcm) {
+                    cursor_set(cursor_get() + (lenofcm - offshit) * 2);
+                }
+                kbd_putchar('\n');
+                inputbuff[lenofcm] = '\0';
+
+                execute_command(inputbuff);
+
+                lenofcm = 0;
+                offshit = 0;
+                putstr((STR8_C)"\n");
+                putstr_color((STR8_C)"~# ", COLOR_GREEN);
+                continue;
+            } else if (key == '\b') {
+                if (offshit > 0) {
+                    offshit--;
+                    lenofcm--;
+
+                    for (i = offshit; i < lenofcm; i++) {
+                        inputbuff[i] = inputbuff[i + 1];
+                    }
+                    inputbuff[lenofcm] = '\0';
+
+                    cursor_set(cursor_get() - 2);
+                    for (i = offshit; i < lenofcm; i++) {
+                        kbd_putchar(inputbuff[i]);
+                    }
+                    kbd_putchar(' ');
+                    cursor_set(cursor_get() - (lenofcm - offshit + 1) * 2);
+                }
+            } else if (key == ARROW_KEY_LEFT) {
+                if (offshit > 0) {
+                    offshit--;
+                    cursor_set(cursor_get() - 2);
+                }
+            } else if (key == ARROW_KEY_RIGHT) {
+                if (offshit < lenofcm) {
+                    offshit++;
+                    cursor_set(cursor_get() + 2);
+                }
+            } else if (key == ARROW_KEY_UP || key == ARROW_KEY_DOWN) {
+                continue;
+            } else {
+                if (lenofcm < SHELL_INM) {
+                    for (i = lenofcm; i > offshit; i--) {
+                        inputbuff[i] = inputbuff[i - 1];
+                    }
+                    inputbuff[offshit] = key;
+                    lenofcm++;
+                    inputbuff[lenofcm] = '\0';
+
+                    for (i = offshit; i < lenofcm; i++) {
+                        kbd_putchar(inputbuff[i]);
+                    }
+
+                    offshit++;
+                    if (offshit < lenofcm) {
+                        cursor_set(cursor_get() - (lenofcm - offshit) * 2);
+                    }
+                }
+            }
+        }
+        asm volatile("pause");
+    }
+}
