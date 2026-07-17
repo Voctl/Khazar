@@ -1,5 +1,5 @@
 #include "panic.h"
-#include "../include/vga.h"
+#include "vga.h"
 
 void kernel_panic(const char* msg) {
     asm volatile("cli");

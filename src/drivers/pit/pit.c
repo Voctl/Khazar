@@ -1,7 +1,7 @@
-#include "../../include/pit/pit.h"
+#include "pit.h"
 #include "../../arch/x86_64/cpu/isr.h"
 #include "types.h"
-#include "../../include/vga.h"
+#include "vga.h"
 #include "../../arch/x86_64/port_io.h"
 
 U32 volatile tick = 0;

@@ -1,4 +1,4 @@
-#include "../vga.h"
+#include "vga.h"
 #include "types.h"
 #include "../memory/pmm.h"
 #include "fetch.h"

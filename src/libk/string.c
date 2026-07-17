@@ -1,7 +1,7 @@
 #include "string.h"
 #include "../include/memory/pmm.h"
 #include "types.h"
-#include "../include/vga.h"
+#include "vga.h"
 
 void *memset(void *ptr, int value, size_t num) {
   U8 *p = ptr;

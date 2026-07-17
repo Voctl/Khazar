@@ -1,5 +1,5 @@
 
-#include "../include/vga.h"
+#include "vga.h"
 #include "../arch/x86_64/port_io.h"
 #include "types.h"
 

@@ -1,8 +1,8 @@
-#include "../../include/keybrd/keybrd.h"
+#include "keyboard.h"
 #include "../../arch/x86_64/cpu/idt.h"
 #include "../../arch/x86_64/cpu/isr.h"
 #include "types.h"
-#include "../../include/vga.h"
+#include "vga.h"
 #include "../../arch/x86_64/port_io.h"
 
 #define KEYBOARD_DATA_PORT 0x60

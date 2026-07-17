@@ -1,4 +1,4 @@
-#include "../vga.h"
+#include "vga.h"
 #include "types.h"
 #include "khazar.h"
 

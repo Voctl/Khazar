@@ -1,5 +1,5 @@
 #include "types.h"
-#include "../include/vga.h"
+#include "vga.h"
 // prot byte input output
 
 U8 byte_i(U16 port) {

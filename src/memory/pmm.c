@@ -3,7 +3,7 @@
 #include "../include/memory/pml.h"
 #include "string.h"
 #include "types.h"
-#include "../include/vga.h"
+#include "vga.h"
 #include "../kernel/panic.h"
 
 

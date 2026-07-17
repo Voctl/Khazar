@@ -1,7 +1,7 @@
-#include "../include/sound.h"
+#include "sound.h"
 #include "../arch/x86_64/port_io.h"
 #include "types.h"
-#include "../include/pit/pit.h"
+#include "pit.h"
 
 void nsound() {
     U8 tmp = byte_i(0x61) & 0xFC;
