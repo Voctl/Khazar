@@ -237,9 +237,9 @@ void pmm_stats(void) {
         free_mb = (total_memory - allocated_memory) / 1024 / 1024;
     }
 
-    putstr("\nPhysical Memory:\n");
-    putstr("  Total:      "); putdec(total_mb);     putstr(" MB\n");
-    putstr("  Reserved:   "); putdec(reserved_mb);  putstr(" MB\n");
-    putstr("  Allocated:  "); putdec(allocated_mb); putstr(" MB\n");
-    putstr("  Free:       "); putdec(free_mb);      putstr(" MB\n");
+    putstr((STR8_C)"\nPhysical Memory:\n");
+    putstr((STR8_C)"  Total:      "); putdec(total_mb);     putstr((STR8_C)" MB\n");
+    putstr((STR8_C)"  Reserved:   "); putdec(reserved_mb);  putstr((STR8_C)" MB\n");
+    putstr((STR8_C)"  Allocated:  "); putdec(allocated_mb); putstr((STR8_C)" MB\n");
+    putstr((STR8_C)"  Free:       "); putdec(free_mb);      putstr((STR8_C)" MB\n");
 }
