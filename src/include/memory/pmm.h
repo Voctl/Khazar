@@ -16,4 +16,8 @@ void pmm_init(multiboot_info_t *mb);
 uintptr_t pmm_alloc(void);
 void mmu_free(union PML *from);
 
+extern size_t total_memory;
+extern size_t reserved_memory;
+extern size_t allocated_memory;
+
 void pmm_stats(void);

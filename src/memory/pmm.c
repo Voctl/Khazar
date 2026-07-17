@@ -18,9 +18,9 @@
 static U32 frame_bitmap[1024 * 1024 / 8];
 static U32 *frames;
 static size_t nframes;
-static size_t total_memory = 0;      // Usable RAM
-static size_t reserved_memory = 0;   // BIOS/MMIO/ACPI
-static size_t allocated_memory = 0;  // Allocated pages
+size_t total_memory = 0;      // Usable RAM
+size_t reserved_memory = 0;   // BIOS/MMIO/ACPI
+size_t allocated_memory = 0;  // Allocated pages
 
 static uintptr_t lowest_available = 0;
 
