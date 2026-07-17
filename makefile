@@ -48,7 +48,6 @@ iso: $(KERNEL_BIN)
 run: iso
 	qemu-system-x86_64 -cdrom khazar.iso -m 2048 -display gtk -audiodev pa,id=speaker -machine pcspk-audiodev=speaker
 
-
 clean:
 	rm -rf $(BUILD)
 	rm -f khazar.iso
