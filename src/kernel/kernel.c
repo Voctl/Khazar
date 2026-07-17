@@ -11,6 +11,7 @@
 #include "../include/memory/pmm.h"
 #include "../include/string.h"
 #include "../include/memory/kheap.h"
+#include "../include/shell.h"
 
 extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end = ."
 
@@ -101,7 +102,5 @@ void kernel_main(U64 multiboot_addr) {
   pmm_stats();
   beep();
   sleep(1000);
-  clear();
-  while (1)
-    ;
+  shell();
 }

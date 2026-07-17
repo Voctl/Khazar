@@ -5,6 +5,7 @@
 #include "../include/pit/pit.h"
 #include "../include/string.h"
 #include "../include/keybrd/keybrd.h"
+#include "../include/specialch/khazar.h"
 
 #define SHELL_INM 50
 #define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
@@ -13,7 +14,7 @@
 static U0 helpc(char *args){
     (U0)args;
     putstr((STR8_C)"\nhelp\n");
-    putstr((STR8_C)"version\n");
+    putstr_color((STR8_C)"version\n", COLOR_LIGHT_BLUE);
     putstr((STR8_C)"halt\n");
     putstr((STR8_C)"clear\n");
     putstr((STR8_C)"beep\n");
@@ -27,7 +28,8 @@ static U0 clearc(char *args){
 
 static U0 versionc(char *args){
     (U0)args;
-    putstr((STR8_C)"KhazarOS - alpha");
+    khazar();
+    putstr((STR8_C)" - alpha");
 }
 
 static U0 haltc(char *args){
@@ -97,8 +99,10 @@ U0 shell(U0){
 
     keyboard_init();
     clear();
-    putstr((STR8_C)"Welcome to KhazarOS\n");
-    putstr((STR8_C)"Do u want to see commands, type 'help'\n");
+    putstr((STR8_C)"Welcome to ");
+    putstr_color((STR8_C)"KhazarOS\n", COLOR_GREEN);
+    putstr((STR8_C)"Do u want to see commands, type ");
+    putstr_color((STR8_C)"'help'\n", COLOR_RED);
     putstr_color((STR8_C)"~# ", COLOR_GREEN);
 
     while (1) {
