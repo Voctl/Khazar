@@ -29,7 +29,7 @@ static U0 clearc(char *args){
 static U0 versionc(char *args){
     (U0)args;
     khazar();
-    putstr((STR8_C)" - alpha");
+    putstr((STR8_C)" - alpha\n");
 }
 
 static U0 haltc(char *args){
@@ -86,8 +86,8 @@ static void execute_command(char *input)
         }
     }
 
+    putstr_color((STR8_C)" [ ERROR ] ", COLOR_RED);
     putstr((STR8_C)"Unknown cmd");
-
 }
 
 
