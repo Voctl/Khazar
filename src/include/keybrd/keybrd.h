@@ -2,7 +2,7 @@
 #define KEYBRD_H
 
 #include "../arch/x86_64/cpu/isr.h"
-#include "../typint.h"
+#include "types.h"
 
 #define ARROW_KEY_UP    ((char)0x01)
 #define ARROW_KEY_DOWN  ((char)0x02)

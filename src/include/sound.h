@@ -1,6 +1,6 @@
 #pragma once
 
-#include "typint.h"
+#include "types.h"
 
 void beep();
 void plays(U32 nfrequence);

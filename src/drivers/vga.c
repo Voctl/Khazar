@@ -1,7 +1,7 @@
 
 #include "../include/vga.h"
 #include "../arch/x86_64/port_io.h"
-#include "../include/typint.h"
+#include "types.h"
 
 #define VGA_CTRL_REGISTER 0x3d4 // vganin control registri
 #define VGA_DATA_REGISTER 0x3d5 // vganin data registri

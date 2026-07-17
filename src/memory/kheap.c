@@ -1,5 +1,5 @@
 #include "../include/memory/kheap.h"
-#include "../include/typint.h"
+#include "types.h"
 #include "memory/pmm.h"
 #include "../kernel/panic.h"
 

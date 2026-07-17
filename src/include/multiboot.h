@@ -1,6 +1,6 @@
 #pragma once
 
-#include "typint.h"
+#include "types.h"
 
 #define MULTIBOOT_FLAG_MEM (1 << 0)
 #define MULTIBOOT_FLAG_MAP (1 << 6)

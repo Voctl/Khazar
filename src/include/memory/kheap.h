@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../typint.h"
+#include "types.h"
 #define KHEAP_START 0xC0000000
 #define KHEAP_INTIAL_SIZE 0x100000
 #define HEAP_INDEX_SIZE 0x1000

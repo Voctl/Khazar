@@ -4,7 +4,7 @@
  */
 
 #include "../port_io.h"
-#include "typint.h"
+#include "types.h"
 #include "vga.h"
 
 typedef struct {

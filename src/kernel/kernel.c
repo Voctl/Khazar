@@ -5,11 +5,11 @@
 #include "../include/keybrd/keybrd.h"
 #include "../include/multiboot.h"
 #include "../include/pit/pit.h"
-#include "../include/typint.h"
+#include "types.h"
 #include "../include/vga.h"
 #include "panic.h"
 #include "../include/memory/pmm.h"
-#include "../include/string.h"
+#include "string.h"
 #include "../include/memory/kheap.h"
 #include "../include/shell.h"
 

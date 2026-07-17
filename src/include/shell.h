@@ -1,6 +1,6 @@
 #pragma once
 
-#include "typint.h"
+#include "types.h"
 
 struct shell_command {
 	const char *name;

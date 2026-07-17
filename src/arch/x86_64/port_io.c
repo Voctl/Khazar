@@ -1,4 +1,4 @@
-#include "../include/typint.h"
+#include "types.h"
 #include "../include/vga.h"
 // prot byte input output
 

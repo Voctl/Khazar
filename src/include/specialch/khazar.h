@@ -1,4 +1,4 @@
 #pragma once
-#include "../typint.h"
+#include "types.h"
 
 U0 khazar(U0);

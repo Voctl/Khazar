@@ -1,6 +1,6 @@
 #include "../../include/pit/pit.h"
 #include "../../arch/x86_64/cpu/isr.h"
-#include "../../include/typint.h"
+#include "types.h"
 #include "../../include/vga.h"
 #include "../../arch/x86_64/port_io.h"
 

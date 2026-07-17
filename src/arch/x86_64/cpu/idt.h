@@ -1,6 +1,6 @@
 #pragma once
 
-#include "typint.h"
+#include "types.h"
 #include "vga.h"
 
 #define KERNEL_CS 0x08 // Kernel seqment terefi

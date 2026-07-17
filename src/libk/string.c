@@ -1,6 +1,6 @@
-#include "../include/string.h"
+#include "string.h"
 #include "../include/memory/pmm.h"
-#include "../include/typint.h"
+#include "types.h"
 #include "../include/vga.h"
 
 void *memset(void *ptr, int value, size_t num) {

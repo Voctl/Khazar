@@ -1,5 +1,5 @@
 #pragma once
-#include "typint.h"
+#include "types.h"
 
 void *memset(void *ptr, int value, size_t num);
 void *memcpy(void *dest, const void *src, size_t num);

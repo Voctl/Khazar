@@ -17,7 +17,7 @@
 #define COLOR_YELLOW    0x0E
 #define COLOR_WHITE     0x0F
 
-#include "typint.h"
+#include "types.h"
 
 //rengli putstr
 void putstr_color(STR8_C string, U8 color);

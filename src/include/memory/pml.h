@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../typint.h"
+#include "types.h"
 
 union PML { // PML schedula (512 entries)
   struct {

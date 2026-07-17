@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/typint.h"
+#include "types.h"
 
 void kernel_panic(const char* msg);
 

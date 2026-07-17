@@ -1,6 +1,6 @@
 #include "../include/sound.h"
 #include "../arch/x86_64/port_io.h"
-#include "../include/typint.h"
+#include "types.h"
 #include "../include/pit/pit.h"
 
 void nsound() {

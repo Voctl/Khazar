@@ -1,5 +1,5 @@
 #pragma once
-#include "typint.h"
+#include "types.h"
 
 struct gdt_entries {
   U16 limit_low;

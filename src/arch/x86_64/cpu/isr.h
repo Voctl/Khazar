@@ -1,7 +1,7 @@
 #ifndef ISR_H
 #define ISR_H
 
-#include "typint.h"
+#include "types.h"
 
 #define IRQ0 32  // Programmable Interval Timer (TAYMER)
 #define IRQ1 33  // Keyboard (KLAVIATURA)

@@ -1,5 +1,5 @@
 #include "../vga.h"
-#include "../typint.h"
+#include "types.h"
 #include "../memory/pmm.h"
 #include "fetch.h"
 
