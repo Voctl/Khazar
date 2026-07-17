@@ -1,6 +1,6 @@
-#include "../include/gdt.h"
-#include "../include/idt.h"
-#include "../include/typint.h"
+#include "gdt.h"
+#include "idt.h"
+#include "typint.h"
 
 extern void gdt_flush(U64); // this will define ins assm **
 

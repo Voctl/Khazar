@@ -1,6 +1,6 @@
 #include "../../include/keybrd/keybrd.h"
-#include "../../include/idt.h"
-#include "../../include/isr.h"
+#include "../../arch/x86_64/cpu/idt.h"
+#include "../../arch/x86_64/cpu/isr.h"
 #include "../../include/typint.h"
 #include "../../include/vga.h"
 #include "../../include/io.h"

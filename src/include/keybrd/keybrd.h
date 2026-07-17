@@ -1,7 +1,7 @@
 #ifndef KEYBRD_H
 #define KEYBRD_H
 
-#include "../isr.h"
+#include "../arch/x86_64/cpu/isr.h"
 #include "../typint.h"
 
 #define ARROW_KEY_UP    ((char)0x01)

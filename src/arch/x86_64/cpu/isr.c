@@ -3,9 +3,9 @@
  təcili baş vermiş bir hadisəyə cavab verməsini təmin edən xüsusi funksiyadır.
  */
 
-#include "../include/io.h"
-#include "../include/typint.h"
-#include "../include/vga.h"
+#include "io.h"
+#include "typint.h"
+#include "vga.h"
 
 typedef struct {
   U64 r15, r14, r13, r12, r11, r10, r9, r8, rbp, rdi, rsi, rdx, rcx, rbx,
