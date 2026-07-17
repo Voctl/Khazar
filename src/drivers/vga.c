@@ -134,7 +134,7 @@ void clear() {
 }
 
 void puthex(U64 n) {
-  STR8_C hex_chars = "0123456789ABCDEF";
+  STR8_C hex_chars = (STR8_C)"0123456789ABCDEF";
   I8 buffer[19];
   buffer[0] = '0';
   buffer[1] = 'x';
@@ -150,7 +150,7 @@ void putdec(U64 n) {
   buffer[20] = 0;
 
   if (n == 0) {
-    putstr("0");
+    putstr((STR8_C)"0");
     return;
   }
   int i = 19;
