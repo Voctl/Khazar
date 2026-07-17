@@ -10,4 +10,12 @@
 -fno-stack-protector
 -mgeneral-regs-only
 -Isrc/include
+-Isrc/libk
+-Isrc/mm
+-Isrc
+-Isrc/drivers
+-Isrc/drivers/pit
+-Isrc/drivers/keyboard
+-Isrc/shell
+-Isrc/shell/commands
 
