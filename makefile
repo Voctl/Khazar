@@ -2,7 +2,7 @@
 CC   = gcc
 NASM = nasm
 
-CFLAGS = -m64 -ffreestanding -mcmodel=kernel -mno-red-zone \
+CFLAGS = -Wall -Wextra -m64 -ffreestanding -mcmodel=kernel -mno-red-zone \
          -fno-pic -fno-PIC -fno-pie -fno-stack-protector \
          -mgeneral-regs-only \
          -Isrc/include -Isrc/libk -Isrc/mm -Isrc -Isrc/drivers -Isrc/drivers/pit -Isrc/drivers/keyboard -Isrc/shell -Isrc/shell/commands
