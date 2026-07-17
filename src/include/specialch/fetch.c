@@ -1,6 +1,6 @@
 #include "vga.h"
 #include "types.h"
-#include "../memory/pmm.h"
+#include "pmm.h"
 #include "fetch.h"
 
 static const U8 *logo_lines[] = {

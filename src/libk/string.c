@@ -1,5 +1,5 @@
 #include "string.h"
-#include "../include/memory/pmm.h"
+#include "pmm.h"
 #include "types.h"
 #include "vga.h"
 

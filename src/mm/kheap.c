@@ -1,6 +1,6 @@
-#include "../include/memory/kheap.h"
+#include "kheap.h"
 #include "types.h"
-#include "memory/pmm.h"
+#include "pmm.h"
 #include "../kernel/panic.h"
 
 heap_t *heap = NULL;

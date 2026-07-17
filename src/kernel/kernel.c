@@ -8,9 +8,9 @@
 #include "types.h"
 #include "vga.h"
 #include "panic.h"
-#include "../include/memory/pmm.h"
+#include "pmm.h"
 #include "string.h"
-#include "../include/memory/kheap.h"
+#include "kheap.h"
 #include "../include/shell.h"
 
 extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end = ."

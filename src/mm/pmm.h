@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "../multiboot.h"
+#include "multiboot.h"
 
 union PML;
 
