@@ -23,15 +23,15 @@ void register_interrupt_handler(U8 n, isr_t handler) {
 }
 
 void isr_handler(registers_t *regs) {
-  putstr("[ ERROR ] ");
+  putstr((STR8_C)"[ ERROR ] ");
   puthex(regs->int_no);
-  putstr("\n");
+  putstr((STR8_C)"\n");
 }
 
 void irq_handler(registers_t *regs) {
-//  putstr("IRQ: ");
+//  putstr((STR8_C)"IRQ: ");
 //  puthex(regs->int_no);
-//  putstr("\n");
+//  putstr((STR8_C)"\n");
 
   if (interrupt_handlers[regs->int_no] != 0) {
     isr_t handler = interrupt_handlers[regs->int_no];
