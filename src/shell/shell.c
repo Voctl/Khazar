@@ -5,68 +5,9 @@
 #include "pit.h"
 #include "string.h"
 #include "keyboard.h"
-#include "../include/specialch/khazar.h"
-#include "../include/specialch/fetch.h"
+#include "commands/commands.h"
 
 #define SHELL_INM 50
-#define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
-
-
-static U0 helpc(char *args){
-    (U0)args;
-    putstr((STR8_C)"\nhelp\n");
-    putstr_color((STR8_C)"version\n", COLOR_LIGHT_BLUE);
-    putstr_color((STR8_C)"fetch\n", COLOR_LIGHT_BLUE);
-    putstr((STR8_C)"halt\n");
-    putstr((STR8_C)"clear\n");
-    putstr((STR8_C)"beep\n");
-}
-
-static U0 clearc(char *args){
-    (U0)args;
-
-    clear();
-}
-
-static U0 versionc(char *args){
-    (U0)args;
-    khazar();
-    putstr((STR8_C)" - alpha\n");
-}
-
-static U0 haltc(char *args){
-    (U0)args;
-
-    putstr_color((STR8_C)"halting . . .", COLOR_RED);
-    while (1){
-        asm volatile("cli; hlt");
-    }
-
-}
-
-static U0 beepc(char *args){
-
-    (U0)args;
-
-    beep();
-}
-
-static U0 fetchc(char *args){
-    (U0)args;
-
-    fetch();
-}
-
-
-static const struct shell_command commands[] = {
-    {"help" , helpc },
-    {"version", versionc},
-    {"clear", clearc},
-    {"halt", haltc},
-    {"beep", beepc},
-    {"fetch", fetchc}
-};
-
 
 static void execute_command(char *input)
 {
@@ -88,7 +29,7 @@ static void execute_command(char *input)
         args++;
     }
 
-    for (i = 0; i < COMMAND_COUNT; i++) {
+    for (i = 0; i < command_count; i++) {
         if (strcmp(input, commands[i].name) == 0) {
             commands[i].handler(args);
             return;

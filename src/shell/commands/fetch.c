@@ -1,7 +1,7 @@
 #include "vga.h"
 #include "types.h"
 #include "pmm.h"
-#include "fetch.h"
+#include "commands.h"
 
 static const U8 *logo_lines[] = {
     (STR8_C)"        ____",
@@ -63,7 +63,7 @@ static void write_num_at(U64 n, U8 color, I32 col, I32 row) {
     }
 }
 
-U0 fetch(U0) {
+static U0 fetch(U0) {
     I32 cur_offset = cursor_get();
     I32 cur_row = get_row(cur_offset);
     I32 base_row = (cur_row > 0) ? cur_row : 0;
@@ -115,4 +115,9 @@ U0 fetch(U0) {
     I32 end_row = start_row + LOGO_LINES + 1;
     fill_at(0xCD, COLOR_DARK_GREY, 0, end_row, 80);
     cursor_set(get_offset(0, end_row + 1));
+}
+
+U0 cmd_fetch(char *args){
+    (U0)args;
+    fetch();
 }

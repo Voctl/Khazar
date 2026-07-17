@@ -5,7 +5,7 @@ NASM = nasm
 CFLAGS = -m64 -ffreestanding -mcmodel=kernel -mno-red-zone \
          -fno-pic -fno-PIC -fno-pie -fno-stack-protector \
          -mgeneral-regs-only \
-         -Isrc/include -Isrc/libk -Isrc/mm -Isrc -Isrc/drivers -Isrc/drivers/pit -Isrc/drivers/keyboard
+         -Isrc/include -Isrc/libk -Isrc/mm -Isrc -Isrc/drivers -Isrc/drivers/pit -Isrc/drivers/keyboard -Isrc/shell -Isrc/shell/commands
 
 BUILD      = src/build
 ISO_DIR    = src/iso
