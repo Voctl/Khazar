@@ -35,6 +35,7 @@ static U0 versionc(char *args){
 static U0 haltc(char *args){
     (U0)args;
 
+    putstr_color((STR8_C)"halting . . .", COLOR_RED);
     while (1){
         asm volatile("cli; hlt");
     }
