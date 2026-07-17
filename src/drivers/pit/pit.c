@@ -7,7 +7,7 @@
 U32 volatile tick = 0;
 U32 timer_frequency = 0;
 
-static void timer_callback(registers_t *regs) { tick++; }
+static void timer_callback(registers_t *regs) { (U0)regs; tick++; }
 
 void init_timer(U32 frequency) {
   timer_frequency = frequency;
