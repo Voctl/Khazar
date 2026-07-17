@@ -89,6 +89,9 @@ void keyboard_handler(registers_t *regs) {
 }
 
 void keyboard_init(void) {
+	kb_head = 0;
+	kb_tail = 0;
+	shift_on = 0;
 	register_interrupt_handler(KEYBOARD_INT, keyboard_handler);
 
 	U8 mask = byte_i(0x21);
