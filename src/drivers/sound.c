@@ -1,5 +1,5 @@
 #include "../include/sound.h"
-#include "../include/io.h"
+#include "../arch/x86_64/port_io.h"
 #include "../include/typint.h"
 #include "../include/pit/pit.h"
 

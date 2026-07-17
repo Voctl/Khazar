@@ -3,7 +3,7 @@
  təcili baş vermiş bir hadisəyə cavab verməsini təmin edən xüsusi funksiyadır.
  */
 
-#include "io.h"
+#include "../port_io.h"
 #include "typint.h"
 #include "vga.h"
 

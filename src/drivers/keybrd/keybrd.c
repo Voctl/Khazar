@@ -3,7 +3,7 @@
 #include "../../arch/x86_64/cpu/isr.h"
 #include "../../include/typint.h"
 #include "../../include/vga.h"
-#include "../../include/io.h"
+#include "../../arch/x86_64/port_io.h"
 
 #define KEYBOARD_DATA_PORT 0x60
 #define KEYBOARD_INT 33

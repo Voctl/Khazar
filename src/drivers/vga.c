@@ -1,6 +1,6 @@
 
 #include "../include/vga.h"
-#include "../include/io.h"
+#include "../arch/x86_64/port_io.h"
 #include "../include/typint.h"
 
 #define VGA_CTRL_REGISTER 0x3d4 // vganin control registri
