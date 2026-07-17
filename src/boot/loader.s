@@ -1,6 +1,8 @@
 global loader
 global p4_table
 extern kernel_main
+extern _bss_start
+extern _bss_end
 
 MAGIC_NUMBER      equ 0x1BADB002
 FLAGS             equ (1 << 1) ; grub gives mmap here i guess
@@ -31,6 +33,12 @@ align 4
     dd CHECKSUM
 
 loader:
+    mov edi, _bss_start
+    mov ecx, _bss_end
+    sub ecx, edi
+    xor al, al
+    rep stosb
+
     mov esp, kernel_stack + KERNEL_STACK_SIZE
 
     ; save multiboot pointer!! cpuid will overwrite ebx later
