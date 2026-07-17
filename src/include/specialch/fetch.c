@@ -64,13 +64,16 @@ static void write_num_at(U64 n, U8 color, I32 col, I32 row) {
 }
 
 U0 fetch(U0) {
-    I32 start_row = 2;
+    I32 cur_offset = cursor_get();
+    I32 cur_row = get_row(cur_offset);
+    I32 base_row = (cur_row > 0) ? cur_row : 0;
+
+    I32 start_row = base_row + 1;
     I32 logo_col = 2;
     I32 info_col = 28;
     I32 i;
 
-    putstr((STR8_C)"\n");
-    write_at((STR8_C)"  KhazarOS", COLOR_LIGHT_GREEN, 0, 0);
+    write_at((STR8_C)"  KhazarOS", COLOR_LIGHT_GREEN, 0, base_row);
 
     for (i = 0; i < LOGO_LINES; i++) {
         write_at(logo_lines[i], COLOR_WHITE, logo_col, start_row + i);
