@@ -6,6 +6,7 @@
 #include "../include/string.h"
 #include "../include/keybrd/keybrd.h"
 #include "../include/specialch/khazar.h"
+#include "../include/specialch/fetch.h"
 
 #define SHELL_INM 50
 #define COMMAND_COUNT (sizeof(commands) / sizeof(commands[0]))
@@ -15,6 +16,7 @@ static U0 helpc(char *args){
     (U0)args;
     putstr((STR8_C)"\nhelp\n");
     putstr_color((STR8_C)"version\n", COLOR_LIGHT_BLUE);
+    putstr_color((STR8_C)"fetch\n", COLOR_LIGHT_BLUE);
     putstr((STR8_C)"halt\n");
     putstr((STR8_C)"clear\n");
     putstr((STR8_C)"beep\n");
@@ -49,13 +51,20 @@ static U0 beepc(char *args){
     beep();
 }
 
+static U0 fetchc(char *args){
+    (U0)args;
+
+    fetch();
+}
+
 
 static const struct shell_command commands[] = {
     {"help" , helpc },
     {"version", versionc},
     {"clear", clearc},
     {"halt", haltc},
-    {"beep", beepc}
+    {"beep", beepc},
+    {"fetch", fetchc}
 };
 
 
