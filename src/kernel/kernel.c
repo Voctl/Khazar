@@ -23,23 +23,23 @@ void kernel_main(U64 multiboot_addr) {
   keyboard_init();
 
   asm volatile("sti"); // interruptin ise dusmesi ucun
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" GDT Initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" GDT Initialized\n");
   sleep(150);
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" IDT Initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" IDT Initialized\n");
   sleep(150);
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" ISRs Initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" ISRs Initialized\n");
   sleep(150);
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" IRQ1 [keyboard] Initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" IRQ1 [keyboard] Initialized\n");
   sleep(150);
   multiboot_info_t *mb =
     (multiboot_info_t*)multiboot_addr;
   pmm_init(mb);
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" PMM initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" PMM initialized\n");
   sleep(150);
 
   // we reserve the end of the kernel as the heap start, rounded down to 4KiB
@@ -53,8 +53,8 @@ void kernel_main(U64 multiboot_addr) {
   }
   // initializing heap
   init_heap(heap_start, heap_start + heap_initial_size, heap_max_size, 1, 0);
-  putstr_color("[ INFO ]", COLOR_LIGHT_GREEN);
-  putstr(" Heap Initialized\n");
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" Heap Initialized\n");
 //beep
   U32 hz = 100;
   beep();
@@ -76,25 +76,25 @@ void kernel_main(U64 multiboot_addr) {
 
   // qardas bu memorydir PMM ucun lazm olcaq
   if (mb->flags & MULTIBOOT_FLAG_MAP) {
-    putstr("\n[ MEMORY ]\n");
+    putstr((STR8_C)"\n[ MEMORY ]\n");
     sleep(300);
     multiboot_entry_t *entry = (multiboot_entry_t *)((U64)mb->mmap_addr);
     U64 end = (U64)mb->mmap_addr + mb->mmap_length;
     // print
     while ((U64)entry < end) {
       if (entry->type == 1) {
-        putstr("[ USABLE ]   addr: ");
+        putstr((STR8_C)"[ USABLE ]   addr: ");
         puthex(entry->addr);
-        putstr("  len: ");
+        putstr((STR8_C)"  len: ");
         puthex(entry->len);
-        putstr("\n");
+        putstr((STR8_C)"\n");
 
       } else {
-        putstr("[ RESERVED ] addr: ");
+        putstr((STR8_C)"[ RESERVED ] addr: ");
         puthex(entry->addr);
-        putstr("  len: ");
+        putstr((STR8_C)"  len: ");
         puthex(entry->len);
-        putstr("\n");
+        putstr((STR8_C)"\n");
       }
       entry = (multiboot_entry_t *)((U64)entry + entry->size + 4);
     }
