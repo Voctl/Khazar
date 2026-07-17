@@ -3,7 +3,7 @@
 #include "../include/gdt.h"
 #include "../include/idt.h"
 #include "../include/keybrd/keybrd.h"
-#include "../include/memory/multiboot.h"
+#include "../include/multiboot.h"
 #include "../include/pit/pit.h"
 #include "../include/typint.h"
 #include "../include/vga.h"

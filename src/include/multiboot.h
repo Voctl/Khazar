@@ -1,7 +1,9 @@
 #pragma once
 
-#include "../include/typint.h"
-#include "../include/vga.h"
+#include "typint.h"
+
+#define MULTIBOOT_FLAG_MEM (1 << 0)
+#define MULTIBOOT_FLAG_MAP (1 << 6)
 
 typedef struct {
   U32 size;
@@ -11,16 +13,14 @@ typedef struct {
 } __attribute__((packed)) multiboot_entry_t;
 
 typedef struct {
-  U32 flags;     // hansı sahelerin dolu olduğunu göstərir
-  U32 mem_lower; // 640KB-dan aşağı RAM (KB ilə)
-  U32 mem_upper; // 1MB-dan yuxarı RAM (KB ilə)
+  U32 flags;
+  U32 mem_lower;
+  U32 mem_upper;
   U32 boot_device;
   U32 cmdline;
   U32 mods_count;
   U32 mods_addr;
   U32 syms[4];
-  U32 mmap_length; // memory map-in ümumi ölçüsü (byte)
+  U32 mmap_length;
   U32 mmap_addr;
-}
-
-__attribute__((packed)) multiboot_info_t;
+} __attribute__((packed)) multiboot_info_t;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../typint.h"
-#include "multiboot.h"
+#include "../multiboot.h"
 
 union PML;
 

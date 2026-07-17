@@ -1,5 +1,5 @@
 #include "../include/memory/pmm.h"
-#include "../include/memory/multiboot.h"
+#include "../include/multiboot.h"
 #include "../include/memory/pml.h"
 #include "../include/string.h"
 #include "../include/typint.h"
