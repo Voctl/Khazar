@@ -83,9 +83,8 @@ static U0 fetch(U0) {
         set_char_w_color(SEP_CHAR, COLOR_DARK_GREY, get_offset(info_col - 2, start_row + i));
     }
 
-    U64 total_mb     = total_memory / 1024 / 1024;
-    U64 allocated_mb = allocated_memory / 1024 / 1024;
-    U64 free_mb = (total_memory > allocated_memory)
+    U64 total_mb = total_memory / 1024 / 1024;
+    U64 free_mb  = (total_memory > allocated_memory)
                    ? (total_memory - allocated_memory) / 1024 / 1024 : 0;
 
     I32 row = start_row + 1;
