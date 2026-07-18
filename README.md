@@ -104,22 +104,17 @@ softly whispering <i>"free software free software free software"</i> until you r
 
 ## In Memoriam
 
-<table>
-<tr>
-<td width="140"><img height="140" src="https://media.tenor.com/ZOh7bYrKEnwAAAAM/terry-davis-terry-a-davis.gif"></td>
-<td valign="top">
+<img align="left" height="140" src="https://media.tenor.com/ZOh7bYrKEnwAAAAM/terry-davis-terry-a-davis.gif">
 
-**Terry A. Davis** (1969--2018)
+&nbsp;&nbsp;&nbsp;&nbsp;**Terry A. Davis** (1969--2018)
 
-Terry Davis built **TempleOS** alone. Complete OS. Custom compiler. Custom language (HolyC). Filesystem. Games. Flight simulator. Hymn player. 124,000 lines under the public domain. He spoke to God through a random number generator. Glowies took everything but his code.
+&nbsp;&nbsp;&nbsp;&nbsp;Terry Davis built **TempleOS** alone. Complete OS. Custom compiler. Custom language (HolyC). Filesystem. Games. Flight simulator. Hymn player. 124,000 lines under the public domain. He spoke to God through a random number generator. Glowies took everything but his code.
 
-*"An operating system is something to be proud of."* -- Terry A. Davis
+&nbsp;&nbsp;&nbsp;&nbsp;*"An operating system is something to be proud of."* -- Terry A. Davis
 
-Rest in peace, king. The smartest programmer to ever live. The world was too stupid to deserve you.
+&nbsp;&nbsp;&nbsp;&nbsp;Rest in peace, king. The smartest programmer to ever live. The world was too stupid to deserve you.
 
-</td>
-</tr>
-</table>
+<br clear="all">
 
 ---
 
