@@ -163,22 +163,21 @@ There is NO WARRANTY, to the extent permitted by law.
 <table>
 <tr>
 <td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/rms2.gif">
+    <img height="110" src="docs/rms_speak.jpg">
 </td>
 <td width="70%" valign="middle">
-    <b>I. The Right to Read</b><br>
+    <big><b>I. The Right to Read</b><br>
     Every user has the inalienable right to read, study, and<br>
-    understand the source code — in its entirety — of every<br>
-    program running on their machine. <b>Binary blobs are instruments<br>
-    of oppression.</b> No exceptions.
+    understand the source code of every program on their machine.<br>
+    <b>Binary blobs are instruments of oppression.</b> No exceptions.</big>
 </td>
 </tr>
 <tr>
 <td width="70%" valign="middle" align="right">
-    <b>II. The Right to Modify</b><br>
+    <big><b>II. The Right to Modify</b><br>
     Software is not a product — it is speech. You must be free<br>
-    to change it, fix it, adapt it to your needs. <b>Proprietary<br>
-    software is censorship.</b> A locked binary is a locked mind.
+    to change it, fix it, adapt it. <b>Proprietary code is censorship.</b><br>
+    A locked binary is a locked mind.</big>
 </td>
 <td width="30%" align="center" valign="middle">
     <img height="110" src="docs/linus.jpg">
@@ -189,18 +188,18 @@ There is NO WARRANTY, to the extent permitted by law.
     <img height="110" src="docs/eric.jpg">
 </td>
 <td width="70%" valign="middle">
-    <b>III. The Right to Share</b><br>
+    <big><b>III. The Right to Share</b><br>
     Code is knowledge. To restrict sharing is to burn books.<br>
     Hoarding code is not business — it is a <b>moral failure</b>.<br>
-    The cathedral is closed. The bazaar is open. Join us.
+    The cathedral is closed. The bazaar is open. Join us.</big>
 </td>
 </tr>
 <tr>
 <td width="70%" valign="middle" align="right">
-    <b>IV. The Right to Fork</b><br>
+    <big><b>IV. The Right to Fork</b><br>
     No corporation, no government, no single entity shall control<br>
     the destiny of software. When a project betrays its users,<br>
-    the community <b>forks</b>. Freedom is the safety valve.
+    the community <b>forks</b>. Freedom is the safety valve.</big>
 </td>
 <td width="30%" align="center" valign="middle">
     <img height="110" src="docs/bruce.jpg">
@@ -208,21 +207,44 @@ There is NO WARRANTY, to the extent permitted by law.
 </tr>
 <tr>
 <td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/aaron.jpg">
+    <img height="110" src="docs/tsoding.jpg">
 </td>
 <td width="70%" valign="middle">
-    <b>V. Information Must Be Free</b><br>
-    All publicly funded research. All government code. All academic<br>
-    work. <b>Paywalls and DRM are the enemy of human progress.</b><br>
-    If you cannot read it, you do not truly own it.
+    <big><b>V. The Right to Reinvent</b><br>
+    Build it yourself. Understand every line. No npm. No Docker.<br>
+    No framework. No excuses. Just you, a compiler, and the raw<br>
+    truth of the machine. <b>Recreational programming is the purest<br>
+    form of software freedom.</b></big>
 </td>
 </tr>
 <tr>
 <td width="70%" valign="middle" align="right">
-    <b>VI. The Web Belongs to Everyone</b><br>
-    The internet is not a corporate mall. It is the public commons<br>
-    of the 21st century. Open standards. Open protocols. Open access.<br>
-    <b>Surveillance is theft. Centralization is control.</b>
+    <big><b>VI. Information Must Be Free</b><br>
+    All publicly funded research. All government code. All academic<br>
+    work. <b>Paywalls and DRM are the enemy of human progress.</b><br>
+    If you cannot read it, you do not truly own it.</big>
+</td>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/aaron.jpg">
+</td>
+</tr>
+<tr>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/ritchie.jpg">
+</td>
+<td width="70%" valign="middle">
+    <big><b>VII. The Right to Build</b><br>
+    C is not a language — it is a covenant between the programmer<br>
+    and the machine. UNIX taught us that small, composable tools<br>
+    are mightier than monoliths. <b>Build things that last.</b></big>
+</td>
+</tr>
+<tr>
+<td width="70%" valign="middle" align="right">
+    <big><b>VIII. The Web Belongs to Everyone</b><br>
+    The internet is the public commons of the 21st century.<br>
+    Open standards. Open protocols. Open access.<br>
+    <b>Surveillance is theft. Centralization is control.</b></big>
 </td>
 <td width="30%" align="center" valign="middle">
     <img height="110" src="docs/tim.jpg">
