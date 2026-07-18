@@ -1,15 +1,15 @@
-<img align="left" height="220" src="docs/logo.png">
-<img align="right" height="220" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif">
-
 <p align="center">
-<br>
-<b>KHAZAR</b><br>
-<i>an operating system forged in the fires of curiosity</i>
+    <img src="docs/logo.png" height="350">
 </p>
 
-<br clear="all">
+<p align="center">
+    <b>KHAZAR</b><br>
+    <i>an operating system forged in the fires of curiosity</i>
+</p>
 
 ---
+
+<img align="right" height="130" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif">
 
 ## What
 
@@ -17,13 +17,19 @@
 
 This project started at age 15 with one question: *"How does this machine even boot?"*
 
-Modern software is a tower of abstractions. Electron apps, Docker running Kubernetes running microservices running Node.js. A calculator that needs 1.8 GB of RAM. We are building palaces on quicksand. Khazar is the opposite -- reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
+Modern software is a tower of abstractions. Electron apps, Docker running Kubernetes running microservices running Node.js. A calculator that needs 1.8 GB of RAM. Khazar is the opposite -- reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
 
 > *"Those who do not understand UNIX are condemned to reinvent it, poorly."* -- Henry Spencer
 
+<br clear="all">
+
 ---
 
-<img align="right" width="400" src="docs/shell.png">
+<p align="center">
+    <img src="docs/shell.png" width="640">
+</p>
+
+---
 
 ## Features
 
@@ -33,10 +39,6 @@ Modern software is a tower of abstractions. Electron apps, Docker running Kubern
 | GDT, IDT, PIC remapping, ISR/IRQ | PS/2 keyboard (US layout, shift, arrow keys) | Line editing (backspace, left/right arrows) |
 | Bitmap PMM, multiboot memory map | PIT timer (100 Hz, `sleep`) | 6 built-in commands |
 | Kernel heap (boundary-tag allocator) | PC speaker (square wave, beep) | `help` `version` `fetch` `clear` `beep` `halt` |
-
-Yes, that's the actual shell running in QEMU -- 80x25 VGA text mode, custom keyboard driver, line editing with arrow keys, neofetch clone included. All in ~2,000 lines of C and assembly.
-
-<br clear="all">
 
 ---
 
@@ -67,12 +69,16 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 </pre>
 </p>
 
+<img align="left" height="120" src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif">
+<img align="right" height="120" src="https://media.tenor.com/zbCrXJr0-y4AAAAM/richard-stallman-foot.gif">
+
 <p align="center">
-    <img src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif" height="160">
-    <img src="https://media.tenor.com/zbCrXJr0-y4AAAAM/richard-stallman-foot.gif" height="160">
+Fork this repo and make it proprietary -- <b>RMS will personally visit your house.</b><br>
+He compiled your address from source. He will stand outside your window at night,<br>
+softly whispering <i>"free software free software free software"</i> until you relicense under GPL-3.0.
 </p>
 
-Fork this repo and make it proprietary -- **RMS will personally visit your house.** He knows where you live. He compiled your address from source. He will stand outside your window at night, softly whispering *"free software free software free software"* until you relicense under GPL-3.0.
+<br clear="all">
 
 > *"The only way to have software freedom is to write software that you have the freedom to copy, distribute, study, and modify."* -- RMS
 
