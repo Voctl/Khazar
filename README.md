@@ -2,16 +2,8 @@
     <img src="docs/logo.png" height="350">
     <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif" height="350">
 </p>
-
 <p align="center">
-    <b>KHAZAR</b><br>
-    <i>an operating system forged in the fires of curiosity</i>
-</p>
-
----
-
-<p align="center">
-    <img src="docs/shell.png" width="720">
+    <b>KHAZAR</b> &nbsp;—&nbsp; <i>an operating system forged in the fires of curiosity</i>
 </p>
 
 ---
@@ -25,6 +17,12 @@ This project started at age 15 with one question: *"How does this machine even b
 Modern software is a tower of abstractions. Electron apps, Docker running Kubernetes running microservices running Node.js. A calculator that needs 1.8 GB of RAM. We are building palaces on quicksand. Khazar is the opposite — reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
 
 > *"Those who do not understand UNIX are condemned to reinvent it, poorly."* — Henry Spencer
+
+---
+
+<p align="center">
+    <img src="docs/shell.png" width="720">
+</p>
 
 ---
 
@@ -116,7 +114,7 @@ No framework. No dependency tree. Just you, the CPU, and the truth.
 
 ## License
 
-[GPL-3.0](LICENSE) — Copyleft ( ɔ ) 2025 **Denis Gulmammadov**
+[GPL-3.0](LICENSE) — Copyright (C) 2025 **Denis Gulmammadov**
 
 ```
 Khazar is free software: you can redistribute it and/or modify
