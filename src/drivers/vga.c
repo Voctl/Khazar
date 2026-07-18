@@ -458,6 +458,8 @@ static const U8 vga_font_8x16[128 * 16] = {
 };
 
 static void vga_load_font(const U8 *font_data, I32 char_height, I32 num_chars) {
+	byte_o(0x3C4, 0x00); byte_o(0x3C5, 0x01);
+
 	byte_o(0x3C4, 0x02); U8 old_seq02 = byte_i(0x3C5);
 	byte_o(0x3C4, 0x04); U8 old_seq04 = byte_i(0x3C5);
 
@@ -465,12 +467,14 @@ static void vga_load_font(const U8 *font_data, I32 char_height, I32 num_chars) {
 	byte_o(0x3CE, 0x05); U8 old_gfx05 = byte_i(0x3CF);
 	byte_o(0x3CE, 0x06); U8 old_gfx06 = byte_i(0x3CF);
 
+	byte_o(0x3C4, 0x00); byte_o(0x3C5, 0x03);
+
 	byte_o(0x3C4, 0x02); byte_o(0x3C5, 0x04);
-	byte_o(0x3C4, 0x04); byte_o(0x3C5, 0x06);
+	byte_o(0x3C4, 0x04); byte_o(0x3C5, 0x04);
 
 	byte_o(0x3CE, 0x04); byte_o(0x3CF, 0x02);
 	byte_o(0x3CE, 0x05); byte_o(0x3CF, 0x00);
-	byte_o(0x3CE, 0x06); byte_o(0x3CF, 0x0C);
+	byte_o(0x3CE, 0x06); byte_o(0x3CF, 0x04);
 
 	U8 *dest = (U8 *)0xA0000;
 	I32 i;
@@ -484,11 +488,15 @@ static void vga_load_font(const U8 *font_data, I32 char_height, I32 num_chars) {
 		}
 	}
 
+	byte_o(0x3C4, 0x00); byte_o(0x3C5, 0x01);
+
 	byte_o(0x3CE, 0x06); byte_o(0x3CF, old_gfx06);
 	byte_o(0x3CE, 0x05); byte_o(0x3CF, old_gfx05);
 	byte_o(0x3CE, 0x04); byte_o(0x3CF, old_gfx04);
 	byte_o(0x3C4, 0x04); byte_o(0x3C5, old_seq04);
 	byte_o(0x3C4, 0x02); byte_o(0x3C5, old_seq02);
+
+	byte_o(0x3C4, 0x00); byte_o(0x3C5, 0x03);
 }
 
 // --- VGA mode switching ---
@@ -510,14 +518,17 @@ void vga_set_80x25() {
 	vga_write_crtc(0x0A, 0x0E); // cursor start
 	vga_write_crtc(0x0B, 0x0F); // cursor end
 	vga_write_crtc(0x12, 0x8F); // vertical display end = 399
+	vga_write_crtc(0x14, 0x1F); // underline location = 31
 	U8 ov = vga_read_crtc(0x07);
-	ov &= ~0x02; // clear 9th bit of v-display-end
+	ov |= 0x02; // set bit 8 of v-display-end (399 = 0x18F)
 	vga_write_crtc(0x07, ov);
 
 	vga_load_font(vga_font_8x16, 16, 128);
 
 	VGA_ROWS = 25;
 	VGA_COLS = 80;
+
+	clear();
 }
 
 void vga_set_80x50() {
@@ -527,12 +538,15 @@ void vga_set_80x50() {
 	vga_write_crtc(0x0A, 0x06); // cursor start
 	vga_write_crtc(0x0B, 0x07); // cursor end
 	vga_write_crtc(0x12, 0x8F); // vertical display end = 399
+	vga_write_crtc(0x14, 0x07); // underline location = 7
 	U8 ov = vga_read_crtc(0x07);
-	ov |= 0x02; // set 9th bit for 50 rows
+	ov |= 0x02; // set bit 8 for 50 rows (399 = 0x18F)
 	vga_write_crtc(0x07, ov);
 
 	vga_load_font(vga_font_8x8, 8, 128);
 
 	VGA_ROWS = 50;
 	VGA_COLS = 80;
+
+	clear();
 }
