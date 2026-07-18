@@ -15,7 +15,7 @@ static const U8 *logo_lines[] = {
 };
 
 #define LOGO_LINES 8
-#define LOGO_WIDTH 20
+#define LOGO_WIDTH 50
 #define SEP_CHAR 0xB3
 
 static void write_at(const U8 *str, U8 color, I32 col, I32 row) {
