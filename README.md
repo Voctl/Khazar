@@ -85,9 +85,7 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 </div>
 
 <p align="center">
-    <img height="140" src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif">
-    &nbsp;
-    <img height="140" src="https://media.tenor.com/zbCrXJr0-y4AAAAM/richard-stallman-foot.gif">
+    <img height="110" src="docs/rms2.gif">
 </p>
 
 <p align="center">
@@ -151,5 +149,95 @@ There is NO WARRANTY, to the extent permitted by law.
 |    FREE SOFTWARE OR DEATH    |
 |    -- the penguin, probably  |
 +------------------------------+
+</pre>
+</div>
+
+---
+
+## Manifesto
+
+> *We hold these truths to be self-evident: that all software users are created equal, endowed with unalienable rights to read, modify, share, and fork the code that runs their machines. Proprietary software is a violation of these rights — an act of violence against human autonomy in the digital age.*
+
+<br>
+
+<table>
+<tr>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/rms2.gif">
+</td>
+<td width="70%" valign="middle">
+    <b>I. The Right to Read</b><br>
+    Every user has the inalienable right to read, study, and<br>
+    understand the source code — in its entirety — of every<br>
+    program running on their machine. <b>Binary blobs are instruments<br>
+    of oppression.</b> No exceptions.
+</td>
+</tr>
+<tr>
+<td width="70%" valign="middle" align="right">
+    <b>II. The Right to Modify</b><br>
+    Software is not a product — it is speech. You must be free<br>
+    to change it, fix it, adapt it to your needs. <b>Proprietary<br>
+    software is censorship.</b> A locked binary is a locked mind.
+</td>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/linus.jpg">
+</td>
+</tr>
+<tr>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/eric.jpg">
+</td>
+<td width="70%" valign="middle">
+    <b>III. The Right to Share</b><br>
+    Code is knowledge. To restrict sharing is to burn books.<br>
+    Hoarding code is not business — it is a <b>moral failure</b>.<br>
+    The cathedral is closed. The bazaar is open. Join us.
+</td>
+</tr>
+<tr>
+<td width="70%" valign="middle" align="right">
+    <b>IV. The Right to Fork</b><br>
+    No corporation, no government, no single entity shall control<br>
+    the destiny of software. When a project betrays its users,<br>
+    the community <b>forks</b>. Freedom is the safety valve.
+</td>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/bruce.jpg">
+</td>
+</tr>
+<tr>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/aaron.jpg">
+</td>
+<td width="70%" valign="middle">
+    <b>V. Information Must Be Free</b><br>
+    All publicly funded research. All government code. All academic<br>
+    work. <b>Paywalls and DRM are the enemy of human progress.</b><br>
+    If you cannot read it, you do not truly own it.
+</td>
+</tr>
+<tr>
+<td width="70%" valign="middle" align="right">
+    <b>VI. The Web Belongs to Everyone</b><br>
+    The internet is not a corporate mall. It is the public commons<br>
+    of the 21st century. Open standards. Open protocols. Open access.<br>
+    <b>Surveillance is theft. Centralization is control.</b>
+</td>
+<td width="30%" align="center" valign="middle">
+    <img height="110" src="docs/tim.jpg">
+</td>
+</tr>
+</table>
+
+<div align="center">
+<pre>
++------------------------------------------------------------------+
+|  WE PLEDGE:                                                      |
+|  NO PROPRIETARY BLOBS. NO CLOSED KERNELS. NO BACKDOORS.          |
+|  NO SECRETS. NO SURVEILLANCE. NO END-USER LICENSES.              |
+|  FREE SOFTWARE. FREE PEOPLE. NO EXCEPTIONS.                      |
+|  -- Signed in source, compiled with conviction                   |
++------------------------------------------------------------------+
 </pre>
 </div>
