@@ -27,8 +27,8 @@ int cursor_get() // cursorun memory adressini tapiriq
 }
 
 #define ADRESS ((uintptr_t)0xb8000)
-#define MAX_ROW 25
-#define MAX_COL 80
+I32 VGA_ROWS = 25;
+I32 VGA_COLS = 80;
 #define WHITE_BLACK 0x0f
 
 void set_char_in_memory(U8 character, I32 offset) {
@@ -41,11 +41,11 @@ void set_char_in_memory(U8 character, I32 offset) {
 // Komekci Funksiyalar
 
 I32 get_row(I32 offset) {
-  return offset / (2 * MAX_COL);
+  return offset / (2 * VGA_COLS);
 } // memory offsetini alir ve corresponding cellin row nomresini verir
 
 I32 get_offset(I32 col, I32 row) {
-  return 2 * (row * MAX_COL + col);
+  return 2 * (row * VGA_COLS + col);
 } // bize verilen cellin memory numberini qaytarir
 
 I32 move_newl(I32 offset) { return get_offset(0, get_row(offset) + 1); }
@@ -64,16 +64,16 @@ memory from *source to *dest.*/
 
 I32 scrolln(I32 offset) {
   memorycpy((U8 *)(ADRESS + get_offset(0, 1)),
-            (U8 *)(get_offset(0, 0) + ADRESS), MAX_COL * (MAX_ROW - 1) * 2);
+            (U8 *)(get_offset(0, 0) + ADRESS), VGA_COLS * (VGA_ROWS - 1) * 2);
 
-  for (I32 col = 0; col < MAX_COL; col++) {
+  for (I32 col = 0; col < VGA_COLS; col++) {
     set_char_in_memory(
         ' ',
         get_offset(col,
-                   MAX_ROW - 1)); // linei temizleyirik və boşluqla doldururuq
+                   VGA_ROWS - 1)); // linei temizleyirik və boşluqla doldururuq
   }
 
-  return offset - 2 * MAX_COL;
+  return offset - 2 * VGA_COLS;
 
   // bu funksiya terminal ve ya konsole ekranini yuxari kocurur
 
@@ -96,7 +96,7 @@ void putstr(STR8_C string) {
     if (string[i] == '\n') {
       offset = move_newl(offset);
     } else {
-      if (offset >= MAX_ROW * MAX_COL * 2) {
+      if (offset >= VGA_ROWS * VGA_COLS * 2) {
         offset = scrolln(offset);
       }
       set_char_in_memory(string[i], offset);
@@ -114,7 +114,7 @@ void putstr_color(STR8_C string, U8 color) {
     if (string[i] == '\n') {
       offset = move_newl(offset);
     } else {
-      if (offset >= MAX_ROW * MAX_COL * 2) {
+      if (offset >= VGA_ROWS * VGA_COLS * 2) {
         offset = scrolln(offset);
       }
       set_char_w_color(string[i], color, offset);
@@ -127,7 +127,7 @@ void putstr_color(STR8_C string, U8 color) {
 
 void clear() {
   I32 i;
-  for (i = 0; i < MAX_COL * MAX_ROW; i++) {
+  for (i = 0; i < VGA_COLS * VGA_ROWS; i++) {
     set_char_in_memory(' ', i * 2);
   }
   cursor_set(get_offset(0, 0));
@@ -187,8 +187,50 @@ U0 kbd_putchar(char c) {
 		offset += 2;
 	}
 
-	if (offset >= MAX_ROW * MAX_COL * 2) {
+	if (offset >= VGA_ROWS * VGA_COLS * 2) {
 		offset = scrolln(offset);
 	}
 	cursor_set(offset);
+}
+
+// --- VGA mode switching ---
+
+static void vga_write_crtc(U8 reg, U8 val) {
+	byte_o(0x3D4, reg);
+	byte_o(0x3D5, val);
+}
+
+static U8 vga_read_crtc(U8 reg) {
+	byte_o(0x3D4, reg);
+	return byte_i(0x3D5);
+}
+
+void vga_set_80x25() {
+	vga_write_crtc(0x11, vga_read_crtc(0x11) & 0x7F);
+
+	vga_write_crtc(0x09, 0x0F); // max scan line = 15 (9x16 font)
+	vga_write_crtc(0x0A, 0x0E); // cursor start
+	vga_write_crtc(0x0B, 0x0F); // cursor end
+	vga_write_crtc(0x12, 0x8F); // vertical display end = 399
+	U8 ov = vga_read_crtc(0x07);
+	ov &= ~0x02; // clear 9th bit of v-display-end
+	vga_write_crtc(0x07, ov);
+
+	VGA_ROWS = 25;
+	VGA_COLS = 80;
+}
+
+void vga_set_80x50() {
+	vga_write_crtc(0x11, vga_read_crtc(0x11) & 0x7F);
+
+	vga_write_crtc(0x09, 0x07); // max scan line = 7 (8x8 font)
+	vga_write_crtc(0x0A, 0x06); // cursor start
+	vga_write_crtc(0x0B, 0x07); // cursor end
+	vga_write_crtc(0x12, 0x8F); // vertical display end = 399
+	U8 ov = vga_read_crtc(0x07);
+	ov |= 0x02; // set 9th bit for 50 rows
+	vga_write_crtc(0x07, ov);
+
+	VGA_ROWS = 50;
+	VGA_COLS = 80;
 }
