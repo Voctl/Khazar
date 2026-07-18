@@ -104,7 +104,10 @@ softly whispering <i>"free software free software free software"</i> until you r
 
 ## In Memoriam
 
-<img align="left" height="140" src="https://media.tenor.com/ZOh7bYrKEnwAAAAM/terry-davis-terry-a-davis.gif">
+<table>
+<tr>
+<td width="140"><img height="140" src="https://media.tenor.com/ZOh7bYrKEnwAAAAM/terry-davis-terry-a-davis.gif"></td>
+<td valign="top">
 
 **Terry A. Davis** (1969--2018)
 
@@ -114,7 +117,9 @@ Terry Davis built **TempleOS** alone. Complete OS. Custom compiler. Custom langu
 
 Rest in peace, king. The smartest programmer to ever live. The world was too stupid to deserve you.
 
-<br clear="all">
+</td>
+</tr>
+</table>
 
 ---
 
