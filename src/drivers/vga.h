@@ -51,3 +51,9 @@ void putdec(U64 n); // ekrana reqem yazmaga komek edir
 void clear();
 
 U0 kbd_putchar(char c);
+
+// VGA text mode switching -- 80x25 (default) ve 80x50 (8x8 font)
+extern I32 VGA_ROWS;
+extern I32 VGA_COLS;
+void vga_set_80x25();
+void vga_set_80x50();
