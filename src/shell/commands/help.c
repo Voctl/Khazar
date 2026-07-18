@@ -10,4 +10,6 @@ U0 cmd_help(char *args) {
   putstr((STR8_C) "halt\n");
   putstr((STR8_C) "clear\n");
   putstr((STR8_C) "beep\n");
+  putstr((STR8_C) "vga50\n");
+  putstr((STR8_C) "vga25\n");
 }
