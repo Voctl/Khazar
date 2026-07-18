@@ -116,7 +116,7 @@ No framework. No dependency tree. Just you, the CPU, and the truth.
 
 ## License
 
-[GPL-3.0](LICENSE) — Copyright (C) 2025 **Denis Gulmammadov**
+[GPL-3.0](LICENSE) — Copyleft ( ɔ ) 2025 **Denis Gulmammadov**
 
 ```
 Khazar is free software: you can redistribute it and/or modify
