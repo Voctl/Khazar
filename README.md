@@ -1,6 +1,6 @@
-<img align="left" height="120" src="docs/logo.png">
+<img align="left" height="120" hspace="15" src="docs/logo.png">
 
-## KHAZAR
+### KHAZAR
 *i am an operating system forged in the fires of curiosity*
 
 <br clear="all">
