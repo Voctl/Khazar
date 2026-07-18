@@ -17,7 +17,7 @@ This project started at age 15 with one question: *"How does this machine even b
 
 Modern software is a tower of abstractions. A calculator that needs 1.8 GB of RAM. Docker running microservices running Node.js. Khazar is the opposite -- reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
 
-> *"Those who do not understand UNIX are condemned to reinvent it, poorly."* -- Henry Spencer
+*"Those who do not understand UNIX are condemned to reinvent it, poorly."* -- Henry Spencer
 
 <br clear="all">
 
@@ -73,7 +73,7 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 
 ## Copyleft Crusade
 
-<p align="center">
+<div align="center">
 <pre>
 +----------------------------------------------------------+
 |  I'd just like to interject for a moment.                |
@@ -82,7 +82,7 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 |  -- Richard M. Stallman                                  |
 +----------------------------------------------------------+
 </pre>
-</p>
+</div>
 
 <p align="center">
     <img height="140" src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif">
@@ -110,7 +110,7 @@ softly whispering <i>"free software free software free software"</i> until you r
 
 Terry Davis built **TempleOS** alone. Complete OS. Custom compiler. Custom language (HolyC). Filesystem. Games. Flight simulator. Hymn player. 124,000 lines under the public domain. He spoke to God through a random number generator. Glowies took everything but his code.
 
-> *"An operating system is something to be proud of."* -- Terry A. Davis
+*"An operating system is something to be proud of."* -- Terry A. Davis
 
 Rest in peace, king. The smartest programmer to ever live. The world was too stupid to deserve you.
 
@@ -145,11 +145,11 @@ it under the terms of the GNU General Public License version 3.
 There is NO WARRANTY, to the extent permitted by law.
 ```
 
-<p align="center">
+<div align="center">
 <pre>
 +------------------------------+
 |    FREE SOFTWARE OR DEATH    |
 |    -- the penguin, probably  |
 +------------------------------+
 </pre>
-</p>
+</div>
