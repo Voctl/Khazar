@@ -7,7 +7,7 @@
 #include "keyboard.h"
 #include "commands/commands.h"
 
-#define SHELL_INM 50
+#define SHELL_INM 256
 
 static void execute_command(char *input)
 {
