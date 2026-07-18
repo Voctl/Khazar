@@ -7,9 +7,9 @@
 
 ---
 
-<img align="right" height="130" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif">
-
 ## What
+
+<img align="right" height="130" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif">
 
 **Khazar** is a hobby OS for **x86_64**, written from scratch in C and assembly by **Denis Gulmammadov**. No Linux. No BSD. Just bare metal, a compiler, and an unhealthy obsession with page tables. Proudly **copyleft** -- GPL-3.0.
 
@@ -75,12 +75,12 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 
 <p align="center">
 <pre>
-+--------------------------------------------------------+
-|  I'd just like to interject for a moment.               |
-|  What you're referring to as Linux is in fact GNU/Linux,|
-|  or as I've recently taken to calling it, GNU+Linux.    |
++----------------------------------------------------------+
+|  I'd just like to interject for a moment.                |
+|  What you're referring to as Linux is in fact GNU/Linux, |
+|  or as I've recently taken to calling it, GNU+Linux.     |
 |  -- Richard M. Stallman                                  |
-+--------------------------------------------------------+
++----------------------------------------------------------+
 </pre>
 </p>
 
@@ -147,9 +147,9 @@ There is NO WARRANTY, to the extent permitted by law.
 
 <p align="center">
 <pre>
-+-----------------------------+
++------------------------------+
 |    FREE SOFTWARE OR DEATH    |
-|    -- the penguin, probably   |
-+-----------------------------+
+|    -- the penguin, probably  |
++------------------------------+
 </pre>
 </p>
