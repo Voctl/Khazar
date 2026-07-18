@@ -7,7 +7,8 @@ const struct shell_command commands[] = {
     {"halt",    cmd_halt},
     {"beep",    cmd_beep},
     {"fetch",   cmd_fetch},
-    {"vga50",   vga50}
+    {"vga50",   vga50},
+    {"vga25",   vga25}
 };
 
 const size_t command_count =
