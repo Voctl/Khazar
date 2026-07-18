@@ -1,10 +1,13 @@
+<img align="left" height="220" src="docs/logo.png">
+<img align="right" height="220" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif">
+
 <p align="center">
-    <img src="docs/logo.png" height="350">
-    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnhlNjN0djd3YXB0b3h6NHFoZTZnbG00bjFjdmM2ZXJobHNheWJocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dDwicM3uFUqfC/giphy.gif" height="350">
+<br>
+<b>KHAZAR</b><br>
+<i>an operating system forged in the fires of curiosity</i>
 </p>
-<p align="center">
-    <b>KHAZAR</b> &nbsp;--&nbsp; <i>an operating system forged in the fires of curiosity</i>
-</p>
+
+<br clear="all">
 
 ---
 
@@ -20,11 +23,7 @@ Modern software is a tower of abstractions. Electron apps, Docker running Kubern
 
 ---
 
-<p align="center">
-    <img src="docs/shell.png" width="720">
-</p>
-
----
+<img align="right" width="400" src="docs/shell.png">
 
 ## Features
 
@@ -34,6 +33,10 @@ Modern software is a tower of abstractions. Electron apps, Docker running Kubern
 | GDT, IDT, PIC remapping, ISR/IRQ | PS/2 keyboard (US layout, shift, arrow keys) | Line editing (backspace, left/right arrows) |
 | Bitmap PMM, multiboot memory map | PIT timer (100 Hz, `sleep`) | 6 built-in commands |
 | Kernel heap (boundary-tag allocator) | PC speaker (square wave, beep) | `help` `version` `fetch` `clear` `beep` `halt` |
+
+Yes, that's the actual shell running in QEMU -- 80x25 VGA text mode, custom keyboard driver, line editing with arrow keys, neofetch clone included. All in ~2,000 lines of C and assembly.
+
+<br clear="all">
 
 ---
 
