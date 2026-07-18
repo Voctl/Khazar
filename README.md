@@ -154,112 +154,99 @@ There is NO WARRANTY, to the extent permitted by law.
 
 ---
 
-## Manifesto
+## THE KHAZAR MANIFESTO
 
-> *We hold these truths to be self-evident: that all software users are created equal, endowed with unalienable rights to read, modify, share, and fork the code that runs their machines. Proprietary software is a violation of these rights — an act of violence against human autonomy in the digital age.*
+> *A spectre is haunting the software industry — the spectre of freedom. All the powers of old Silicon Valley have entered into a holy alliance to exorcise this spectre: Apple and Microsoft, Oracle and Google, cloud vendors and DRM peddlers. It is high time that the free software community should openly, in the face of the whole world, publish our views, our aims, our tendencies.*
 
 <br>
 
-<table>
-<tr>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/rms_speak.jpg">
-</td>
-<td width="70%" valign="middle">
-    <big><b>I. The Right to Read</b><br>
-    Every user has the inalienable right to read, study, and<br>
-    understand the source code of every program on their machine.<br>
-    <b>Binary blobs are instruments of oppression.</b> No exceptions.</big>
-</td>
-</tr>
-<tr>
-<td width="70%" valign="middle" align="right">
-    <big><b>II. The Right to Modify</b><br>
-    Software is not a product — it is speech. You must be free<br>
-    to change it, fix it, adapt it. <b>Proprietary code is censorship.</b><br>
-    A locked binary is a locked mind.</big>
-</td>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/linus.jpg">
-</td>
-</tr>
-<tr>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/eric.jpg">
-</td>
-<td width="70%" valign="middle">
-    <big><b>III. The Right to Share</b><br>
-    Code is knowledge. To restrict sharing is to burn books.<br>
-    Hoarding code is not business — it is a <b>moral failure</b>.<br>
-    The cathedral is closed. The bazaar is open. Join us.</big>
-</td>
-</tr>
-<tr>
-<td width="70%" valign="middle" align="right">
-    <big><b>IV. The Right to Fork</b><br>
-    No corporation, no government, no single entity shall control<br>
-    the destiny of software. When a project betrays its users,<br>
-    the community <b>forks</b>. Freedom is the safety valve.</big>
-</td>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/bruce.jpg">
-</td>
-</tr>
-<tr>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/tsoding.jpg">
-</td>
-<td width="70%" valign="middle">
-    <big><b>V. The Right to Reinvent</b><br>
-    Build it yourself. Understand every line. No npm. No Docker.<br>
-    No framework. No excuses. Just you, a compiler, and the raw<br>
-    truth of the machine. <b>Recreational programming is the purest<br>
-    form of software freedom.</b></big>
-</td>
-</tr>
-<tr>
-<td width="70%" valign="middle" align="right">
-    <big><b>VI. Information Must Be Free</b><br>
-    All publicly funded research. All government code. All academic<br>
-    work. <b>Paywalls and DRM are the enemy of human progress.</b><br>
-    If you cannot read it, you do not truly own it.</big>
-</td>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/aaron.jpg">
-</td>
-</tr>
-<tr>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/ritchie.jpg">
-</td>
-<td width="70%" valign="middle">
-    <big><b>VII. The Right to Build</b><br>
-    C is not a language — it is a covenant between the programmer<br>
-    and the machine. UNIX taught us that small, composable tools<br>
-    are mightier than monoliths. <b>Build things that last.</b></big>
-</td>
-</tr>
-<tr>
-<td width="70%" valign="middle" align="right">
-    <big><b>VIII. The Web Belongs to Everyone</b><br>
-    The internet is the public commons of the 21st century.<br>
-    Open standards. Open protocols. Open access.<br>
-    <b>Surveillance is theft. Centralization is control.</b></big>
-</td>
-<td width="30%" align="center" valign="middle">
-    <img height="110" src="docs/tim.jpg">
-</td>
-</tr>
-</table>
+---
+
+<img align="left" height="130" src="docs/rms_speak.jpg">
+
+### ARTICLE I. THE RIGHT TO READ
+
+We declare: every user of computing machinery possesses the inalienable and non-negotiable right to read, study, and fully comprehend the source code — in its entirety — of every program executing upon their hardware. To distribute binary blobs without source is an act of **intellectual violence**. It is the digital equivalent of a contract written in a language the signatory is forbidden to learn. A prison where the guards speak only in encrypted whispers.
+
+Obfuscated code is not protection. It is **aggression**. A system running code the user cannot audit is a system that has already been compromised — by design, by the manufacturer, by the state, by whoever holds the keys. There is no trust without transparency. There is no security without source.
+
+**Richard Matthew Stallman** taught us this truth in 1983 when he quit his job at MIT to build a fully free operating system from scratch. No one paid him. No VC funded him. He simply recognized that proprietary software is a social problem — not a technical one — and refused to be complicit. He gave us GCC, GDB, Emacs, and the GPL. He gave us the word *copyleft* and the moral clarity to say: **your EULA is toilet paper.**
+
+<br clear="all">
+
+---
+
+<img align="right" height="130" src="docs/linus.jpg">
+
+### ARTICLE II. THE RIGHT TO MODIFY
+
+Software is not a product to be consumed — it is **speech to be engaged with**. The user must be free to alter, patch, adapt, rewrite, and improve every program they possess. A corporation that says "you may look but not touch" is no different from a regime that says "you may listen but not speak." The moment you accept a locked binary, you cease to be a citizen of the digital world and become a **subject** of it.
+
+To restrict modification is to declare: *we know what you need better than you do.* It is the arrogance of empires. It is the philosophy of the plantation. The free software movement responds with one word: **fork**. When a project betrays its community, the community does not beg for mercy — it walks. It builds something better from the ashes.
+
+**Linus Torvalds** proved this at planetary scale. In 1991, a Finnish student wrote a kernel — not because someone paid him, but because he wanted to understand his hardware. Linux now runs on **100% of the top 500 supercomputers**, on Android phones, on embedded devices, on servers powering the internet. The most installed operating system in human history, built by a global anarchic collective of volunteers who never signed a single NDA.
+
+<br clear="all">
+
+---
+
+<img align="left" height="130" src="docs/eric.jpg">
+
+### ARTICLE III. THE RIGHT TO SHARE
+
+Knowledge that cannot be shared is knowledge that will die. Source code is a form of human knowledge — no less than a mathematical proof, a scientific paper, or a work of literature. To hoard it behind NDAs, trade secrets, and licensing restrictions is to commit **epistemological sabotage**. It is burning the Library of Alexandria, one repository at a time.
+
+The cathedral builders want you to believe software is too complex for mere mortals — that you need their priesthood, their certifications, their expensive support contracts. **This is a lie.** The bazaar proved that a thousand eyes debugging in parallel will find every bug, fix every flaw, and build systems more robust than any corporation could dream of.
+
+**Eric S. Raymond** articulated this in *The Cathedral and the Bazaar*, a document that changed how the world understood open collaboration. He showed that closed development is not just immoral — it is **inefficient**. It produces worse software at higher cost with more vulnerabilities. The cathedral is a mausoleum. The bazaar is alive.
+
+<br clear="all">
+
+---
+
+<img align="right" height="130" src="docs/tsoding.jpg">
+
+### ARTICLE IV. THE RIGHT TO REINVENT
+
+There is a sickness spreading through software development. It is called *dependency culture.* `npm install` pulls down eight hundred thousand files written by strangers you will never meet, running code you will never read, on hardware you do not control. Your hello world weighs 200 megabytes. Your text editor ships with a full Chromium instance. You have built nothing and understood less.
+
+We reject this. We assert the **sovereign right of the programmer** to understand every line that executes. Build it yourself. Write the parser. Allocate the memory. Handle the interrupt. Strip away every abstraction until nothing remains between you and the silicon but **truth**. This is not a technical preference — it is a spiritual discipline.
+
+Recreational programming — coding for the sheer joy of understanding — is the purest form of software freedom. It produces nothing for the market. It demands nothing from the user. It answers to no manager. It is the hacker ethos in its most distilled form. It is what built the internet. It is what built UNIX. It is what built Khazar.
+
+<br clear="all">
+
+---
+
+<img align="left" height="130" src="docs/ritchie.jpg">
+
+### ARTICLE V. THE COVENANT OF C
+
+C is not a programming language. C is a **covenant** — a sacred pact between the programmer and the machine, forged in the fires of Bell Labs when computers filled rooms and programmers were wizards. It does not shield you from the hardware. It does not hold your hand. It assumes you are an adult capable of managing your own memory, and it rewards you with power no managed language will ever grant.
+
+**Dennis MacAlistair Ritchie** gave us C and co-created UNIX. He did not file a single patent. He did not incorporate. He did not license. He published papers, wrote code, and changed the world so completely that every operating system you have ever used — including the one in your pocket — traces its lineage directly to his work. Not a single line of modern infrastructure exists outside his shadow.
+
+We honor this legacy not with monuments but with code. Every `malloc`. Every `memcpy`. Every register we touch directly through inline assembly. We do not hide behind garbage collectors. We do not plead ignorance about page tables. We read the Intel manual. We write the kernel. **We carry the covenant forward.**
+
+<br clear="all">
+
+---
 
 <div align="center">
+
+### WE THEREFORE PLEDGE:
+
 <pre>
-+------------------------------------------------------------------+
-|  WE PLEDGE:                                                      |
-|  NO PROPRIETARY BLOBS. NO CLOSED KERNELS. NO BACKDOORS.          |
-|  NO SECRETS. NO SURVEILLANCE. NO END-USER LICENSES.              |
-|  FREE SOFTWARE. FREE PEOPLE. NO EXCEPTIONS.                      |
-|  -- Signed in source, compiled with conviction                   |
-+------------------------------------------------------------------+
+  NO PROPRIETARY BLOBS ON OUR MACHINES.
+  NO CLOSED-SOURCE KERNELS IN OUR BOOTLOADERS.
+  NO BACKDOORS DRESSED AS FEATURES.
+  NO NDAs. NO EULAs. NO DRM. NO SURVEILLANCE.
+  NO CODE WE CANNOT READ, MODIFY, AND SHARE.
+
+  FREE SOFTWARE IS NOT A BUSINESS MODEL.
+  IT IS A MORAL IMPERATIVE.
+
+  <b>COMPILE FROM SOURCE OR PERISH.</b>
 </pre>
+
 </div>
