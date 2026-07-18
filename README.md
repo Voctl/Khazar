@@ -85,7 +85,7 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 </div>
 
 <p align="center">
-    <img height="110" src="docs/rms2.gif">
+    <img height="110" src="docs/rms_speak.jpg">
 </p>
 
 <p align="center">
