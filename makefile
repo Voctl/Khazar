@@ -46,7 +46,7 @@ iso: $(KERNEL_BIN)
 	grub-mkrescue -o khazar.iso $(ISO_DIR)
 
 run: iso
-	qemu-system-x86_64 -cdrom khazar.iso -m 2048 -display gtk -audiodev pa,id=speaker -machine pcspk-audiodev=speaker
+	qemu-system-x86_64 -cdrom khazar.iso -m 2048 -display gtk -full-screen -audiodev pa,id=speaker -machine pcspk-audiodev=speaker
 
 clean:
 	rm -rf $(BUILD)
