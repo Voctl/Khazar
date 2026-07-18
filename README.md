@@ -1,11 +1,9 @@
-<p align="center">
-    <img src="docs/logo.png" height="350">
-</p>
+<img align="left" height="120" src="docs/logo.png">
 
-<p align="center">
-    <b>KHAZAR</b><br>
-    <i>an operating system forged in the fires of curiosity</i>
-</p>
+## KHAZAR
+*i am an operating system forged in the fires of curiosity*
+
+<br clear="all">
 
 ---
 
@@ -17,7 +15,7 @@
 
 This project started at age 15 with one question: *"How does this machine even boot?"*
 
-Modern software is a tower of abstractions. Electron apps, Docker running Kubernetes running microservices running Node.js. A calculator that needs 1.8 GB of RAM. Khazar is the opposite -- reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
+Modern software is a tower of abstractions. A calculator that needs 1.8 GB of RAM. Docker running microservices running Node.js. Khazar is the opposite -- reading Intel manuals at 3 AM because `printf` isn't a thing here yet.
 
 > *"Those who do not understand UNIX are condemned to reinvent it, poorly."* -- Henry Spencer
 
@@ -25,9 +23,26 @@ Modern software is a tower of abstractions. Electron apps, Docker running Kubern
 
 ---
 
-<p align="center">
-    <img src="docs/shell.png" width="640">
-</p>
+<table>
+<tr>
+<td width="55%"><img src="docs/shell.png" width="100%"></td>
+<td width="45%" valign="top">
+
+**Shell in action**
+
+This is Khazar running inside QEMU. Custom VGA text mode driver at 80x25, 16 colors. Interactive `~#` prompt with working backspace and arrow-key line editing. The `fetch` command prints a neofetch-style system summary with the Khazar ASCII logo. Everything you see -- from the keyboard IRQ handler to the pixel on your screen -- is written from scratch.
+
+<br>
+
+Commands available:
+```
+help      version   fetch
+clear     beep      halt
+```
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -69,16 +84,17 @@ Needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 </pre>
 </p>
 
-<img align="left" height="120" src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif">
-<img align="right" height="120" src="https://media.tenor.com/zbCrXJr0-y4AAAAM/richard-stallman-foot.gif">
+<p align="center">
+    <img height="140" src="https://media.giphy.com/media/HOMHu2QchzAIEuLMGS/giphy.gif">
+    &nbsp;
+    <img height="140" src="https://media.tenor.com/zbCrXJr0-y4AAAAM/richard-stallman-foot.gif">
+</p>
 
 <p align="center">
 Fork this repo and make it proprietary -- <b>RMS will personally visit your house.</b><br>
 He compiled your address from source. He will stand outside your window at night,<br>
 softly whispering <i>"free software free software free software"</i> until you relicense under GPL-3.0.
 </p>
-
-<br clear="all">
 
 > *"The only way to have software freedom is to write software that you have the freedom to copy, distribute, study, and modify."* -- RMS
 
