@@ -132,6 +132,9 @@ error:
     mov byte  [0xb8008], al
     hlt
 
+
+; long mode - 32bits to 64 bit
+
 bits 64
 long_mode_start:
     ; clear segments
