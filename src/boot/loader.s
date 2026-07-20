@@ -133,7 +133,7 @@ error:
     hlt
 
 
-; long mode - 32bits to 64 bit
+; long mode - 32bit to 64 bit
 
 bits 64
 long_mode_start:
