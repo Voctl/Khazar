@@ -68,6 +68,7 @@ void kernel_main(U64 multiboot_addr) {
   init_heap(heap_start, heap_start + heap_initial_size, heap_max_size, 1, 0);
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" Heap Initialized\n");
+  sleep(500);
 //beep
   U32 hz = 100;
   beep();
