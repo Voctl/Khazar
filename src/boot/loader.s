@@ -5,7 +5,7 @@ extern _bss_start
 extern _bss_end
 
 MAGIC_NUMBER      equ 0x1BADB002
-FLAGS             equ (1 << 1) ; grub gives mmap here i guess
+FLAGS             equ (1 << 1) | (1 << 2)  ; grub gives us memory map and framebuffer shit
 CHECKSUM          equ -(MAGIC_NUMBER + FLAGS)
 KERNEL_STACK_SIZE equ 4096
 
@@ -31,6 +31,12 @@ align 4
     dd MAGIC_NUMBER
     dd FLAGS
     dd CHECKSUM
+
+    ; video mode request
+    dd 0  ; mode type (linear graphics) 
+    dd 640
+    dd 480
+    dd 16
 
 loader:
     mov edi, _bss_start
