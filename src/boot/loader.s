@@ -4,16 +4,24 @@ extern kernel_main
 extern _bss_start
 extern _bss_end
 
-MAGIC_NUMBER      equ 0x1BADB002
-FLAGS             equ (1 << 1) | (1 << 2)  ; grub gives us memory map and framebuffer shit
-CHECKSUM          equ -(MAGIC_NUMBER + FLAGS)
 KERNEL_STACK_SIZE equ 4096
+
+section .multiboot_header
+align 8
+    dd 0xE85250D6
+    dd 0
+    dd 24
+    dd -(0xE85250D6 + 0 + 24)
+    ; end tag
+    dw 0
+    dw 0
+    dd 8
 
 section .bss
 align 4096
 p4_table:   resb 4096
 p3_table:   resb 4096
-p2_table:   resb 4096
+p2_table:   resb 4096 * 4
 kernel_stack: resb KERNEL_STACK_SIZE
 
 section .rodata
@@ -27,18 +35,11 @@ gdt64:
 
 section .text
 bits 32
-align 4
-    dd MAGIC_NUMBER
-    dd FLAGS
-    dd CHECKSUM
-
-    ; video mode request
-    dd 0  ; mode type (linear graphics) 
-    dd 640
-    dd 480
-    dd 16
 
 loader:
+    ; save multiboot pointer immediately
+    mov ebp, ebx
+
     mov edi, _bss_start
     mov ecx, _bss_end
     sub ecx, edi
@@ -46,9 +47,6 @@ loader:
     rep stosb
 
     mov esp, kernel_stack + KERNEL_STACK_SIZE
-
-    ; save multiboot pointer!! cpuid will overwrite ebx later
-    mov ebp, ebx
 
     call check_cpuid
     call check_long_mode
@@ -98,6 +96,18 @@ setup_page_tables:
     mov eax, p2_table
     or eax, 0b11 ; present/writable
     mov [p3_table], eax
+
+    mov eax, p2_table + 4096
+    or eax, 0b11
+    mov [p3_table + 8], eax
+
+    mov eax, p2_table + 8192
+    or eax, 0b11
+    mov [p3_table + 16], eax
+
+    mov eax, p2_table + 12288
+    or eax, 0b11
+    mov [p3_table + 24], eax
 
     mov ecx, 0
 .loop:

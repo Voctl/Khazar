@@ -11,7 +11,7 @@ void pmm_clear(uintptr_t addr);
 int pmm_test_addr(uintptr_t addr);
 uintptr_t pmm_first_free(void);
 
-void pmm_init(multiboot_info_t *mb);
+void pmm_init(multiboot2_tag_mmap_t *mmap);
 
 uintptr_t pmm_alloc(void);
 void mmu_free(union PML *from);

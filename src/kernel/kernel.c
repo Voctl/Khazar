@@ -12,6 +12,7 @@
 #include "string.h"
 #include "kheap.h"
 #include "../include/shell.h"
+#include "../graphics/frambuffer.h"
 
 extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end = ."
 
@@ -22,7 +23,7 @@ void kernel_main(U64 multiboot_addr) {
   init_timer(100);
   keyboard_init();
 
-  asm volatile("sti"); // interruptin ise dusmesi ucun
+  asm volatile("sti"); // for start the interrupt
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" GDT Initialized\n");
   sleep(150);
@@ -35,9 +36,21 @@ void kernel_main(U64 multiboot_addr) {
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" IRQ1 [keyboard] Initialized\n");
   sleep(150);
-  multiboot_info_t *mb =
-    (multiboot_info_t*)multiboot_addr;
-  pmm_init(mb);
+  multiboot2_info_t *mbi = (multiboot2_info_t*)multiboot_addr;
+  multiboot2_tag_mmap_t *mmap_tag = 0;
+
+  U64 ptr = (U64)mbi + sizeof(multiboot2_info_t);
+  U64 end = (U64)mbi + mbi->total_size;
+  while (ptr < end) {
+    multiboot2_tag_t *tag = (multiboot2_tag_t*)ptr;
+    if (tag->type == 0) break;
+    if (tag->type == MULTIBOOT2_TAG_MMAP) {
+      mmap_tag = (multiboot2_tag_mmap_t*)tag;
+      pmm_init(mmap_tag);
+    }
+    if (tag->type == MULTIBOOT2_TAG_FRAMEBUFFER) testFrameb((multiboot2_tag_framebuffer_t*)tag);
+    ptr = (ptr + tag->size + 7) & ~7ULL;
+  }
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" PMM initialized\n");
   sleep(150);
@@ -75,13 +88,12 @@ void kernel_main(U64 multiboot_addr) {
   set_char_w_color((U8)0x01, COLOR_LIGHT_GREEN, offsheet);
 
   // qardas bu memorydir PMM ucun lazm olcaq
-  if (mb->flags & MULTIBOOT_FLAG_MAP) {
+  if (mmap_tag) {
     putstr((STR8_C)"\n[ MEMORY ]\n");
     sleep(300);
-    multiboot_entry_t *entry = (multiboot_entry_t *)((U64)mb->mmap_addr);
-    U64 end = (U64)mb->mmap_addr + mb->mmap_length;
-    // print
-    while ((U64)entry < end) {
+    multiboot2_mmap_entry_t *entry = (multiboot2_mmap_entry_t*)((U64)mmap_tag + sizeof(multiboot2_tag_mmap_t));
+    U64 mmap_end = (U64)mmap_tag + mmap_tag->size;
+    while ((U64)entry < mmap_end) {
       if (entry->type == 1) {
         putstr((STR8_C)"[ USABLE ]   addr: ");
         puthex(entry->addr);
@@ -96,7 +108,7 @@ void kernel_main(U64 multiboot_addr) {
         puthex(entry->len);
         putstr((STR8_C)"\n");
       }
-      entry = (multiboot_entry_t *)((U64)entry + entry->size + 4);
+      entry = (multiboot2_mmap_entry_t*)((U64)entry + mmap_tag->entry_size);
     }
   }
   pmm_stats();

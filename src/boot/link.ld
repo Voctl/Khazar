@@ -5,6 +5,7 @@ SECTIONS {
     _kernel_start = .;
 
     .text ALIGN(4096) : {
+        *(.multiboot_header)
         *(.text)
     }
 

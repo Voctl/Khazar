@@ -153,68 +153,52 @@ void mmu_free(union PML *from) {
   pmm_clear((uintptr_t)from);
 }
 
-void pmm_init(multiboot_info_t *mb) {
+void pmm_init(multiboot2_tag_mmap_t *mmap) {
     frames = frame_bitmap;
-    nframes = sizeof(frame_bitmap) * 8; // Set max size initially
+    nframes = sizeof(frame_bitmap) * 8;
     size_t highest_addr = 0;
 
-    // Mark all memory as used initially
     memset(frames, 0xFF, sizeof(frame_bitmap));
 
-    U64 ptr = mb->mmap_addr;
-    U64 end_mmap = mb->mmap_addr + mb->mmap_length;
+    multiboot2_mmap_entry_t *e = (multiboot2_mmap_entry_t*)((U64)mmap + sizeof(multiboot2_tag_mmap_t));
+    U64 end = (U64)mmap + mmap->size;
 
     total_memory = 0;
 
-    // Pass 1: Find highest memory address (Just for usable memory)
-    while (ptr < end_mmap) {
-            multiboot_entry_t *e = (multiboot_entry_t *)ptr;
-            U64 region_end = e->addr + e->len;
-
-            // Just e->type == 1 (USABLE)
-            if (e->type == 1) {
-                if (region_end > highest_addr) {
-                    highest_addr = region_end;
-                }
-                total_memory += e->len;
-            }
-            ptr += e->size + 4;
+    while ((U64)e < end) {
+        U64 region_end = e->addr + e->len;
+        if (e->type == 1) {
+            if (region_end > highest_addr)
+                highest_addr = region_end;
+            total_memory += e->len;
         }
-
-    // Calculate real max frames
-    nframes = highest_addr >> PSHIFT;
-    if (nframes > (sizeof(frame_bitmap) * 8)) {
-        nframes = sizeof(frame_bitmap) * 8;
+        e = (multiboot2_mmap_entry_t*)((U64)e + mmap->entry_size);
     }
 
-    // Pass 2: Mark usable memory as free
-    ptr = mb->mmap_addr;
-    while (ptr < end_mmap) {
-        multiboot_entry_t *e = (multiboot_entry_t *)ptr;
-        U64 region_end = e->addr + e->len;
+    nframes = highest_addr >> PSHIFT;
+    if (nframes > (sizeof(frame_bitmap) * 8))
+        nframes = sizeof(frame_bitmap) * 8;
 
+    e = (multiboot2_mmap_entry_t*)((U64)mmap + sizeof(multiboot2_tag_mmap_t));
+    while ((U64)e < end) {
+        U64 region_end = e->addr + e->len;
         if (e->type == 1) {
-            for (U64 addr = e->addr; addr < region_end; addr += PSIZE) {
+            for (U64 addr = e->addr; addr < region_end; addr += PSIZE)
                 pmm_clear(addr);
-            }
         }
-        ptr += e->size + 4;
+        e = (multiboot2_mmap_entry_t*)((U64)e + mmap->entry_size);
     }
 
     reserved_memory = highest_addr - total_memory;
 
-    // Protect low 1MB
-    for (U64 addr = 0; addr < 0x100000; addr += PSIZE) {
+    for (U64 addr = 0; addr < 0x100000; addr += PSIZE)
         pmm_set_addr(addr);
-    }
 
-    // Protect kernel code/data
     U64 k_start = (U64)&_kernel_start & PSIZE_MASK;
     U64 k_end   = ((U64)&_kernel_end + 0xFFF) & PSIZE_MASK;
 
-    for (U64 addr = k_start; addr < k_end; addr += PSIZE) {
+    for (U64 addr = k_start; addr < k_end; addr += PSIZE)
         pmm_set_addr(addr);
-    }
 }
 
 void pmm_stats(void) {
