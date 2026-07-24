@@ -23,4 +23,11 @@ typedef struct {
   U32 syms[4];
   U32 mmap_length;
   U32 mmap_addr;
+  U32 framebuffer_addr;
+  U32 framebuffer_pitch;
+  U32 framebuffer_width;
+  U32 framebuffer_height;
+  U8  framebuffer_bpp;
+  U8  framebuffer_type;
+  U16 reserved;
 } __attribute__((packed)) multiboot_info_t;
