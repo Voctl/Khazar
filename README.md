@@ -37,8 +37,8 @@ This is Khazar running inside QEMU. Custom VGA text mode driver at 80x25, 16 col
 
 Commands available:
 ```
-help      version   fetch
-clear     beep      halt
+help      version   fetch   vga50
+clear     beep      halt    vga20
 ```
 
 </td>

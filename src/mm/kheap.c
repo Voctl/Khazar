@@ -15,6 +15,7 @@ static U0 remove_from_index(U32 index_to_remove) {
 }
 /* helper funcs */
 
+
 // we initialize the kernel heap (boundarie tag method)
 void init_heap(U64 start, U64 end, U64 max, U8 supervisor, U8 readonly) {
     the_kernel_heap.start = start;
