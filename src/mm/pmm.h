@@ -14,7 +14,6 @@ uintptr_t pmm_first_free(void);
 void pmm_init(multiboot2_tag_mmap_t *mmap);
 
 uintptr_t pmm_alloc(void);
-void mmu_free(union PML *from);
 
 extern size_t total_memory;
 extern size_t reserved_memory;
