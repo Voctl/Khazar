@@ -1,5 +1,7 @@
-<div align="center">
+<p align="center">
 
+<table><tr>
+<td valign="middle">
 <pre>
        ____
      /      \
@@ -10,12 +12,18 @@
   \              \
    \______________\
 </pre>
-
-# KHAZAR
-
-a hobby **x86_64** OS wrote from scratch in C + asm. no linux, no bsd, no forks.
-just grub, my kernel, and way too many late nights with intel manuals.
+</td>
+<td valign="middle">
+<h1>KHAZAR</h1>
+a hobby <b>x86_64</b> OS wrote from scratch in C + asm.<br>
+no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals.<br>
 started this when i was 15, genuinely just to see if i could. best decision of my life fr.
+</td>
+</tr></table>
+
+</p>
+
+<div align="center">
 
 <img src="docs/shell.png" height="140"> &nbsp; <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FlUU2wbgHrioAAAAC%2Fkonata-luckystar.gif&f=1&nofb=1" height="140">
 </div>
