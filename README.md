@@ -11,35 +11,20 @@
 
 # KHAZAR
 
-a hobby **x86_64** OS i wrote from scratch in C + asm. no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals. started at 15 because i asked myself *how does this thing even boot*.
+a hobby **x86_64** OS i wrote from scratch in C + asm. no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals.
 
 <img align="right" height="70" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FlUU2wbgHrioAAAAC%2Fkonata-luckystar.gif&f=1&nofb=1&ipt=6464414178cfb92e602deb23e989b44edd4d68d6af43dbb1243b19d1f1992bc6">
 
-<br clear="all">
-
----
-
-## the shi in action
-
 <img align="right" height="120" src="docs/shell.png">
-
-custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written. commands: `help version fetch clear beep halt vga50 vga20`
-
 <br clear="all">
 
----
+custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written.
 
-## features
-
-- x86_64 long mode (grub/multiboot), gdt, idt, pic, isr/irq
-- bitmap pmm + kernel heap (boundary-tag allocator)
-- vga text mode, ps/2 keyboard, pit timer, pc speaker
-- interactive shell
+**features**: x86_64 long mode (grub/multiboot), gdt/idt/pic/isr-irq, bitmap pmm + kernel heap, vga text mode, interactive shell.
 
 about 2,000 lines. linux has 30 million. i understand all 2,000 of mine.
 
 <img align="right" height="70" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1&ipt=96eff9a7b7ba08ae13d0fb11e2a8f77f06ab0e6e25b476cf6179e547784ce4d6">
-
 <br clear="all">
 
 ---
@@ -62,13 +47,11 @@ needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 
 <img align="left" height="110" src="docs/rms_speak.jpg">
 
-GPL-3.0, proudly. closed source is malware — thats not a hot take, thats just true. you should be able to read every line running on your machine, fork it, fix it, break it. thats the whole point of this shi. no blobs, no backdoors dressed as features. free software or perish fr.
+GPL-3.0, proudly. closed source is malware — you should be able to read every line running on your machine, fork it, fix it, break it. no blobs, no backdoors dressed as features. free software or perish fr.
 
 <br clear="all">
 
 ---
-
-## license
 
 [GPL-3.0](LICENSE) -- copyright (C) 2025 **Denis Gulmammadov**
 
