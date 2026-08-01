@@ -1,7 +1,7 @@
 <p align="center">
 
-<table><tr>
-<td valign="middle">
+<table style="border: none;"><tr>
+<td valign="middle" style="border: none;">
 <pre>
        ____
      /      \
@@ -13,7 +13,7 @@
    \______________\
 </pre>
 </td>
-<td valign="middle">
+<td valign="middle" style="border: none;">
 <h1>KHAZAR</h1>
 a hobby <b>x86_64</b> OS wrote from scratch in C + asm.<br>
 no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals.<br>
