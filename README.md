@@ -47,7 +47,7 @@ needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
 
 <img align="left" height="110" src="docs/rms_speak.jpg">
 
-GPL-3.0, proudly. closed source is malware — you should be able to read every line running on your machine, fork it, fix it, break it. no blobs, no backdoors dressed as features. free software or perish fr.
+GPL-3.0, proudly. **fuck closed source** — proprietary software is malware, straight up. your EULA is toilet paper. if you cant read the code running on your machine, you dont own your machine. fork it, fix it, break it, make it yours. no blobs, no backdoors dressed as features. free software or perish fr.
 
 <br clear="all">
 
