@@ -5,8 +5,8 @@
      /      \
     /   ____/
    /   /                                                           
-  |   |                                                               KHAZAR OPERATION SYSTEM
-  |   |__________                                                           by Voctl
+  |   |                                                 KHAZAR OPERATION SYSTEM
+  |   |__________                                             by Voctl
   \              \
    \______________\
 </pre>
