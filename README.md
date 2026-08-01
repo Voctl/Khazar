@@ -1,15 +1,13 @@
 <div align="center">
 
-```
-       ____
-     /      \
-    /   ____/
-   /   /
-  |   |
-  |   |__________
-  \              \
-   \______________\
-```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____<br>
+&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;____/<br>
+&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;|<br>
+&nbsp;|&nbsp;&nbsp;&nbsp;|__________<br>
+&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;\______________\
 
 # KHAZAR
 
@@ -17,11 +15,8 @@ a hobby **x86_64** OS wrote from scratch in C + asm. no linux, no bsd, no forks.
 just grub, my kernel, and way too many late nights with intel manuals.
 started this when i was 15, genuinely just to see if i could. best decision of my life fr.
 
-<img src="docs/shell.png" height="150"> &nbsp; <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FlUU2wbgHrioAAAAC%2Fkonata-luckystar.gif&f=1&nofb=1" height="150">
-
+<img src="docs/shell.png" height="140"> &nbsp; <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FlUU2wbgHrioAAAAC%2Fkonata-luckystar.gif&f=1&nofb=1" height="140">
 </div>
-
----
 
 custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written, no copypasta ngl.
 
@@ -30,10 +25,8 @@ custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt �
 about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and thats the point, yo king.
 
 <div align="center">
-<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="100">
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="90">
 </div>
-
----
 
 ## build
 
@@ -47,22 +40,13 @@ make clean      # nuke build artifacts
 
 needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64` — missing any? `apt install` that shi fr.
 
----
-
 ## why its free
 
-<table>
-<tr>
-<td width="110"><img src="docs/rms_speak.jpg" width="100"></td>
-<td>
+<img src="docs/rms_speak.jpg" width="90" align="left">
 
 GPL-3.0, proudly. **fuck closed source** — proprietary software is malware, straight up. your EULA is toilet paper. if you cant read the code running on your machine, you dont own your machine. fork it, fix it, break it, make it yours. no blobs, no backdoors dressed as features. free software or perish fr.
 
-</td>
-</tr>
-</table>
-
----
+<br clear="all">
 
 [GPL-3.0](LICENSE) — copyright (C) 2025 **Denis Gulmammadov**
 
