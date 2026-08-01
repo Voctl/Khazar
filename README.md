@@ -11,18 +11,18 @@
 
 # KHAZAR
 
-a hobby **x86_64** OS i wrote from scratch in C + asm. no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals.
+a hobby **x86_64** OS i wrote from scratch in C + asm. no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals. started this when i was 15, genuinely just to see if i could. best decision of my life fr.
 
 <img align="right" height="70" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FlUU2wbgHrioAAAAC%2Fkonata-luckystar.gif&f=1&nofb=1&ipt=6464414178cfb92e602deb23e989b44edd4d68d6af43dbb1243b19d1f1992bc6">
 
 <img align="right" height="120" src="docs/shell.png">
 <br clear="all">
 
-custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written.
+custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written, no copypasta ngl.
 
 **features**: x86_64 long mode (grub/multiboot), gdt/idt/pic/isr-irq, bitmap pmm + kernel heap, vga text mode, interactive shell.
 
-about 2,000 lines. linux has 30 million. i understand all 2,000 of mine.
+about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and thats the point, yo king.
 
 <img align="right" height="70" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1&ipt=96eff9a7b7ba08ae13d0fb11e2a8f77f06ab0e6e25b476cf6179e547784ce4d6">
 <br clear="all">
@@ -39,7 +39,7 @@ make run        # build and run in QEMU
 make clean      # nuke build artifacts
 ```
 
-needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64`
+needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64` — missing any? `apt install` that shi fr.
 
 ---
 
