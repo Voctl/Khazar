@@ -1,13 +1,15 @@
 <div align="center">
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;____<br>
-&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;____/<br>
-&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;/<br>
-&nbsp;|&nbsp;&nbsp;&nbsp;|<br>
-&nbsp;|&nbsp;&nbsp;&nbsp;|__________<br>
-&nbsp;\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
-&nbsp;&nbsp;\______________\
+<pre>
+       ____
+     /      \
+    /   ____/
+   /   /
+  |   |
+  |   |__________
+  \              \
+   \______________\
+</pre>
 
 # KHAZAR
 
