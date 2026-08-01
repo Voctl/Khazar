@@ -1,3 +1,6 @@
+<img align="right" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="120">
+<br clear="all">
+
 <p align="center">
 
 <pre>
@@ -28,10 +31,6 @@ custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt �
 **features:** x86_64 long mode (grub/multiboot) · gdt/idt/pic/isr-irq · bitmap pmm + kernel heap · vga text mode · interactive shell
 
 about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and thats the point, yo king.
-
-<div align="center">
-<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="90">
-</div>
 
 ## build
 
