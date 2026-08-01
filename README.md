@@ -1,6 +1,3 @@
-<img align="right" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="120">
-<br clear="all">
-
 <p align="center">
 
 <pre>
@@ -32,7 +29,8 @@ custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt â
 
 about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and thats the point, yo king.
 
-## build
+## build <img align="right" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="60">
+<br clear="all">
 
 ```bash
 git clone https://github.com/Voctl/Khazar.git
