@@ -1,7 +1,5 @@
 <p align="center">
 
-<table style="border: none;"><tr>
-<td valign="middle" style="border: none;">
 <pre>
        ____
      /      \
@@ -12,14 +10,11 @@
   \              \
    \______________\
 </pre>
-</td>
-<td valign="middle" style="border: none;">
+
 <h1>KHAZAR</h1>
 a hobby <b>x86_64</b> OS wrote from scratch in C + asm.<br>
 no linux, no bsd, no forks. just grub, my kernel, and way too many late nights with intel manuals.<br>
 started this when i was 15, genuinely just to see if i could. best decision of my life fr.
-</td>
-</tr></table>
 
 </p>
 
