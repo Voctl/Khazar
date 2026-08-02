@@ -10,3 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added changelog.md
 - nothng else
 
+# [1.0.0] - 1016/08/02
+
+- README fixed
+- Fixed the bug of issue #6 (thanks for that report to gitduck6)
