@@ -41,7 +41,7 @@ make run        # build and run in QEMU
 make clean      # nuke build artifacts
 ```
 
-needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64` — missing any? `apt install` that shi fr.
+needs: `gcc` `nasm` `ld` `grub-mkrescue` `qemu-system-x86_64` `mtools & dosfstools` — missing any? `apt install` that shi fr.
 
 ## why its free
 
