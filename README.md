@@ -34,6 +34,7 @@ about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and tha
 <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fm%2FAq8PrtQFqrsAAAAd%2Fkonata-konata-happy.gif&f=1&nofb=1" height="60">
 
 ```bash
+just use release iso because of the versions of tools there is some problem like GP
 git clone https://github.com/Voctl/Khazar.git
 cd khazar
 make iso        # compile + link -> khazar.iso
