@@ -81,7 +81,7 @@ I32 scrolln(I32 offset) {
   Scrolldan əvvəl:        Scrolldan sonra:
 ┌──────────────┐        ┌──────────────┐
 │  setir 1     │        │  setir 2     │  ← yuxarı çıxdı
-│  setir 2     │  ───►  │  setir 3     │
+│  setir 2     │  ───► │  setir 3     │
 │  setir 3     │        │              │  ← cleaned
 └──────────────┘        └──────────────┘
   */
