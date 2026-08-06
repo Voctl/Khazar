@@ -161,8 +161,7 @@ U0 kfree(U0* ptr) {
 }
     // we add the block to the index
     if (!leftmerge) {
-    the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)header;
-}
+    the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)header;}
 }
 
 /* NOTE NOTE NOTE
@@ -173,9 +172,8 @@ U0 kfree(U0* ptr) {
  * However, for small allocations, this does not matter.
  * Buna coalescing deyirler ve bu halhazirda free()-da yoxdur elave etmeyece
  * calisacam indi
- */
-
-/*
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
  * But its not a problem for now. In future BIG BRAIN
  * AND DIVINE INTELLECT denis will develop
  * that kheap functions
