@@ -13,6 +13,16 @@ static U0 remove_from_index(U32 index_to_remove) {
     }
     the_kernel_heap.index_size--;
 }
+
+static U32 find_in_index(U64 address) {
+    for (U32 i = 0; i < the_kernel_heap.index_size; i++) {
+        if (the_kernel_heap.index[i] == address) {
+            return i;
+        }
+    }
+    return (U32)-1;
+}
+
 /* helper funcs */
 
 
@@ -94,10 +104,18 @@ U0* kalloc(U64 size) {
 /* yanani gorur Allah */
 /* bro btw i be a contributer of nimble (package manager of nim) yeyy */
 U0 kfree(U0* ptr) {
-    if (ptr == NULL) kernel_panic("yo king it cant ur ptr is null");
+
+    // our lil flags :d
+    U8 leftmerge = 0;
+    U8 rightmerge = 0;
+
+    if (ptr == NULL) kernel_panic(" [ DEVELOPMENT ] The problem : pointer is NULL");
     header_t *header = (header_t*)((U64)ptr - sizeof(header_t));
-    if (header->magic != HEAP_MAGIC) kernel_panic("yo king it cant ur magic is wrong");
-    if (header->is_hole) kernel_panic("yo king it cant ur block is already a hole");
+    if (header->magic != HEAP_MAGIC) {
+        kernel_panic("[ DEVELOPMENT ] The problem : heap magic !");
+    }
+    if (header->is_hole){
+        kernel_panic(" [ DEVELOPMENT ] The problem : the block is already free lil bro");}
 
     header->is_hole = 1; // know the block is free now
 
@@ -105,8 +123,46 @@ U0 kfree(U0* ptr) {
     footer->magic = HEAP_MAGIC;
     footer->header = header;
 
+    // merge right and left memory block
+
+    header_t *rightblck = (header_t *)((U64)header + header->size);
+
+    if ((U64)rightblck < heap->end) {
+        if (rightblck->magic == HEAP_MAGIC && rightblck->is_hole) {
+            // main merge
+            header->size += rightblck->size;
+            footer_t *new_footer = (footer_t *)((U64)header +header->size - sizeof(footer_t));
+            new_footer->magic = HEAP_MAGIC;
+            new_footer->header = header;
+
+            U32 index = find_in_index((U64)rightblck);
+            if (index != (U32)-1){
+                remove_from_index(index);
+            }
+
+            rightmerge = 1;
+        }
+    }
+
+    if ((U64)header > heap->start) {
+        footer_t *left_footer = (footer_t *)((U64)header - sizeof(footer_t));
+
+        header_t *leftblck = left_footer->header;
+
+        if (leftblck->magic == HEAP_MAGIC && leftblck->is_hole) {
+            // main merge
+            leftblck->size += header->size;
+            footer_t *new_footer =(footer_t *)((U64)leftblck +leftblck->size - sizeof(footer_t));
+            new_footer->magic = HEAP_MAGIC;
+            new_footer->header = leftblck;
+
+            leftmerge = 1;
+    }
+}
     // we add the block to the index
+    if (!leftmerge) {
     the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)header;
+}
 }
 
 /* NOTE NOTE NOTE
@@ -115,9 +171,12 @@ U0 kfree(U0* ptr) {
  * Therefore, if you request a larger block next time,
  * kalloc will not be able to allocate it, as the holes are not contiguous.
  * However, for small allocations, this does not matter.
+ * Buna coalescing deyirler ve bu halhazirda free()-da yoxdur elave etmeyece
+ * calisacam indi
  */
 
 /*
- * But its not a problem for now. In future BIG BRAIN AND DIVINE INTELLECT denis will develop
+ * But its not a problem for now. In future BIG BRAIN
+ * AND DIVINE INTELLECT denis will develop
  * that kheap functions
  */
