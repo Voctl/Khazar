@@ -20,7 +20,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - First stable release
 - Added reason of use release to README
 
-# [0.0.2] - 2026/08/06
+# [0.0.2] - 2026/08/06-07
 
 - Kernel Allocator bug is fixed
 - Left and Rigth memory block merge feature in kernel allocator
+- [CRITIC] "end" var bug fixed in kernel
