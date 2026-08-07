@@ -56,7 +56,7 @@ void kernel_main(U64 multiboot_addr) {
   sleep(150);
 
   // we reserve the end of the kernel as the heap start, rounded down to 4KiB
-  U64 heap_start = ((U64)&ends + 0xFFF) & ~0xFFFUL;
+  U64 heap_start = ((U64)&end + 0xFFF) & ~0xFFFUL;
   U64 heap_initial_size = 0x400000;      // 4 MiB - basliyic olcu
   U64 heap_max_size     = 0x2000000;     // 32 MiB - boyuye bilecek maksimum
 
