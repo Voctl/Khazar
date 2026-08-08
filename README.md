@@ -25,6 +25,12 @@ started this when i was 15, genuinely just to see if i could. best decision of m
 
 custom vga text mode driver, ps/2 keyboard, pit timer, interactive `~#` prompt — all hand written, no copypasta ngl.
 
+<p align="center">
+<img src="docs/os-layer-stack.png" width="450">
+<br>
+<sub>the layer stack — from hardware to userspace, all in ~2k lines</sub>
+</p>
+
 **features:** x86_64 long mode (grub/multiboot) · gdt/idt/pic/isr-irq · bitmap pmm + kernel heap · vga text mode · interactive shell
 
 about 2,000 lines. linux has 30 million. i understand all 2,000 of mine. and thats the point, yo king.
