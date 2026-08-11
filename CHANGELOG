@@ -26,3 +26,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Left and Rigth memory block merge feature in kernel allocator
 - [CRITIC] "end" var bug fixed in kernel
 - [ADD] "added proc/tasks"
+
+# [Unreleased] - 2026/08/12
+
+*  Added
+- Process Management: Implemented `proc_init`, `createp`, and `yield` for basic Round-Robin process scheduling (`src/proc/process.c`, `src/proc/process.h`)
+- Context Switching
+- Kernel Multitasking Test: Integrated `task_a` and `task_b` in `kernel.c` to test context switch shi
+
+* Removed
+- Removed legacy process files (`src/proc/task.c`, `src/proc/task.h`).
