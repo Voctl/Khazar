@@ -13,8 +13,31 @@
 #include "kheap.h"
 #include "../include/shell.h"
 #include "../graphics/frambuffer.h"
+#include "proc/process.h"
 
-extern U8 end; // the symbol defined in link.ld as the end of the kernel as "end = ."
+
+extern U8 end; /* the symbol defined in link.ld
+                * as the end of the kernel as "end = ."*/
+
+/* [ TEST ] TASKS TEST IMPLEMENTATION */
+void task_a(void) {
+    while (1) {
+        putstr_color((STR8_C)"[TASK A] running\n", COLOR_LIGHT_CYAN);
+        sleep(50);
+        yield(); // next task
+    }
+}
+
+void task_b(void) {
+    while (1) {
+        putstr_color((STR8_C)"[TASK B] running...\n", COLOR_LIGHT_MAGENTA);
+        sleep(50);
+        yield(); // növbəni A-ya ötürür
+    }
+}
+/* [ TEST ] TASKS TEST IMPLEMENTATION */
+
+
 
 void kernel_main(U64 multiboot_addr) {
   clear();
@@ -48,7 +71,9 @@ void kernel_main(U64 multiboot_addr) {
       mmap_tag = (multiboot2_tag_mmap_t*)tag;
       pmm_init(mmap_tag);
     }
-    if (tag->type == MULTIBOOT2_TAG_FRAMEBUFFER) testFrameb((multiboot2_tag_framebuffer_t*)tag);
+    if (tag->type == MULTIBOOT2_TAG_FRAMEBUFFER){
+        testFrameb((multiboot2_tag_framebuffer_t*)tag);
+    }
     ptr = (ptr + tag->size + 7) & ~7ULL;
   }
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
@@ -114,6 +139,17 @@ void kernel_main(U64 multiboot_addr) {
   }
   pmm_stats();
   beep();
+
+
+  /* [ TEST ]  TASK IMPLEMENTATION */
+  proc_init(); // init procs array
+    createp((U64)task_a);
+    createp((U64)task_b);
+    putstr_color((STR8_C)"[ INFO ] Starting Multitasking Scheduler\n", COLOR_LIGHT_GREEN);
+    sleep(300);
+    yield(); // jump to first process (task_a)
+    // yield() called, control is in task_a/task_b loop now.
+    // code wont reach shell() unless tasks exit shi.
   sleep(1000);
   shell();
 }
