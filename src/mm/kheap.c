@@ -100,7 +100,7 @@ U0* kalloc(U64 size) {
     return NULL;
 }
 
-/* kernel free memory */
+/* kfree */
 /* yanani gorur Allah */
 /* bro btw i be a contributer of nimble (package manager of nim) yeyy */
 U0 kfree(U0* ptr) {

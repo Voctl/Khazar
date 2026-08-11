@@ -25,3 +25,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Kernel Allocator bug is fixed
 - Left and Rigth memory block merge feature in kernel allocator
 - [CRITIC] "end" var bug fixed in kernel
+- [ADD] "added proc/tasks"

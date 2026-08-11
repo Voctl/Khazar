@@ -4,7 +4,7 @@
 #define KHEAP_START 0xC0000000
 #define KHEAP_INTIAL_SIZE 0x100000
 #define HEAP_INDEX_SIZE 0x1000
-#define HEAP_MAGIC 0x12312345
+#define HEAP_MAGIC 0x12312345 //shi
 #define HEAP_MIN_SIZE 0x70000
 
 typedef struct {
@@ -16,7 +16,7 @@ typedef struct {
 typedef struct {
   U64 magic;
   header_t *header;
-} footer_t;
+} footer_t; // contains header_t shi
 
 typedef struct {
   U64 index[HEAP_INDEX_SIZE];
