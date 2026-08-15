@@ -24,15 +24,15 @@ void task_a(void) {
     while (1) {
         putstr_color((STR8_C)"[TASK A] running\n", COLOR_LIGHT_CYAN);
         sleep(50);
-        yield(); // next task
+        yield(); // task b
     }
 }
 
 void task_b(void) {
     while (1) {
-        putstr_color((STR8_C)"[TASK B] running...\n", COLOR_LIGHT_MAGENTA);
+        putstr_color((STR8_C)"[TASK B] running\n", COLOR_LIGHT_MAGENTA);
         sleep(50);
-        yield(); // növbəni A-ya ötürür
+        yield(); // task a
     }
 }
 /* [ TEST ] TASKS TEST IMPLEMENTATION */
