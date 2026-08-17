@@ -99,7 +99,7 @@ static U0 fetch(U0) {
   write_at((STR8_C) "KhazarOS", COLOR_WHITE, info_col + 9, row);
 
   write_at((STR8_C) "Kernel", COLOR_DARK_GREY, info_col, row + 1);
-  write_at((STR8_C) "alpha", COLOR_WHITE, info_col + 9, row + 1);
+  write_at((STR8_C) "v0.0.2", COLOR_WHITE, info_col + 9, row + 1);
 
   write_at((STR8_C) "Shell", COLOR_DARK_GREY, info_col, row + 2);
   write_at((STR8_C) "khazar", COLOR_WHITE, info_col + 9, row + 2);

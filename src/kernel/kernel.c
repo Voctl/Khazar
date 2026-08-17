@@ -143,13 +143,7 @@ void kernel_main(U64 multiboot_addr) {
 
   /* [ TEST ]  TASK IMPLEMENTATION */
   proc_init(); // init procs array
-    createp((U64)task_a);
-    createp((U64)task_b);
-    putstr_color((STR8_C)"[ INFO ] Starting Multitasking Scheduler\n", COLOR_LIGHT_GREEN);
-    sleep(300);
-    yield(); // jump to first process (task_a)
-    // yield() called, control is in task_a/task_b loop now.
-    // code wont reach shell() unless tasks exit shi.
+  sleep(300);
   sleep(1000);
   shell();
 }
