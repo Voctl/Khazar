@@ -20,7 +20,6 @@ static void execute_command(char *input)
     }
 
     args = input;
-
     while (*args != ' ' && *args != '\0') {
         args++;
     }
@@ -53,7 +52,7 @@ U0 shell(U0){
     clear();
     putstr((STR8_C)"Welcome to ");
     putstr_color((STR8_C)"KhazarOS\n", COLOR_GREEN);
-    putstr((STR8_C)"Do u want to see commands, type ");
+    putstr((STR8_C)"If you want to see commands, type ");
     putstr_color((STR8_C)"'help'\n", COLOR_RED);
     putstr_color((STR8_C)"~# ", COLOR_GREEN);
 
