@@ -33,7 +33,7 @@ char *strcpy(char *dest, const char *src) {
 }
 
 /* Compares two strings byte-by-byte */
-I64 strcmp(const char *s1, const char *s2) {
+I32 strcmp(const char *s1, const char *s2) {
     while (*s1 && (*s1 == *s2)) {
         s1++;
         s2++;
@@ -67,7 +67,7 @@ size_t strlen(const char *s) {
 /*so, its doing wha : its just compare the part of string (
  * as a number) which is given as `size_t n`
  * expect that its just literally doing same shit as strcmp */
-I64 strncmp(const char *s1, const char *s2, size_t n) {
+I32 strncmp(const char *s1, const char *s2, size_t n) {
     while (n > 0 && *s1 && (*s1 == *s2)) {
         s1++;
         s2++;
