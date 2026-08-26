@@ -48,3 +48,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Changed
 - Fixed state transitions in `yield()` (`PROC_RUNNING` <-> `PROC_RUNNABLE`)
+
+# [Unreleased] - 2026/08/26
+
+* Added
+- Added Memmove - for copy memory area, the difference between strcmp is if the s > d just doing reverse write
+- Added Strlen - just for know the size of the string
+- Added Strncmp - for compare the part of string (as a number) which is given as `size_t n`, expect that, its just literally doing same shi as strcmp
+
+* Changed
+- Fixed the "version" command of shell (now its showing as the real version, not "alpha")
+ 
