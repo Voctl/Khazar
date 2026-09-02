@@ -1,5 +1,5 @@
-
 CC   = gcc
+CXX  = g++
 NASM = nasm
 
 CFLAGS = -Wall -Wextra -m64 -ffreestanding -mcmodel=kernel -mno-red-zone \
@@ -7,17 +7,21 @@ CFLAGS = -Wall -Wextra -m64 -ffreestanding -mcmodel=kernel -mno-red-zone \
          -mgeneral-regs-only \
          -Isrc/include -Isrc/libk -Isrc/mm -Isrc -Isrc/drivers -Isrc/drivers/pit -Isrc/drivers/keyboard -Isrc/shell -Isrc/shell/commands
 
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti -fno-unwind-tables -fno-asynchronous-unwind-tables
+
 BUILD      = src/build
 ISO_DIR    = src/iso
 KERNEL_BIN = $(BUILD)/kernel.bin
 ISO_KERNEL = $(ISO_DIR)/boot/kernel.elf
 
-# Auto-detect all C and Assembly sources
-C_SRCS = $(shell find src -name '*.c')
-S_SRCS = $(shell find src -name '*.s')
+# Auto-detect all C, C++ and Assembly sources
+C_SRCS   = $(shell find src -name '*.c')
+CPP_SRCS = $(shell find src -name '*.cpp')
+S_SRCS   = $(shell find src -name '*.s')
 
 # Generate corresponding object file names
 OBJS = $(patsubst src/%.c, $(BUILD)/%.o, $(C_SRCS)) \
+       $(patsubst src/%.cpp, $(BUILD)/%.o, $(CPP_SRCS)) \
        $(patsubst src/%.s, $(BUILD)/%.o, $(S_SRCS))
 
 # Ensure loader is linked first
@@ -30,6 +34,11 @@ all: iso
 $(BUILD)/%.o: src/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# Rule to compile C++ files
+$(BUILD)/%.o: src/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Rule to compile Assembly files
 $(BUILD)/%.o: src/%.s
