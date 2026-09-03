@@ -164,6 +164,9 @@ U0 kfree(U0* ptr) {
     the_kernel_heap.index[the_kernel_heap.index_size++] = (U64)header;}
 }
 
+// NOTE NOTE NOTE : other note shit fixed but let him
+// to stay here for look at him and laugh
+
 /* NOTE NOTE NOTE
  * If you allocate memory twice and then free both,
  * they will remain adjacent as two separate holes in the heap.
