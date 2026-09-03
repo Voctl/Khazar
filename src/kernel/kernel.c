@@ -93,14 +93,14 @@ void kernel_main(U64 multiboot_addr) {
   init_heap(heap_start, heap_start + heap_initial_size, heap_max_size, 1, 0);
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" Heap Initialized\n");
-  sleep(500);
+  sleep(100);
 //beep
   U32 hz = 100;
   beep();
   plays(hz);
-  sleep(150);
+  sleep(100);
   nsound();
-  sleep(700);
+  sleep(100);
   clear();
   const char *logo = "KhazarOS";
   I32 offset = get_offset(35, 11);
@@ -143,7 +143,6 @@ void kernel_main(U64 multiboot_addr) {
 
   /* [ TEST ]  TASK IMPLEMENTATION */
   proc_init(); // init procs array
-  sleep(300);
-  sleep(1000);
+  sleep(100);
   shell();
 }
