@@ -528,7 +528,6 @@ void vga_set_80x25() {
 	VGA_ROWS = 25;
 	VGA_COLS = 80;
 
-	clear();
 }
 
 void vga_set_80x50() {
@@ -547,6 +546,4 @@ void vga_set_80x50() {
 
 	VGA_ROWS = 50;
 	VGA_COLS = 80;
-
-	clear();
 }

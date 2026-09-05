@@ -19,36 +19,36 @@
 
 #include "types.h"
 
-//rengli putstr
+// puststr but colorized version
 void putstr_color(STR8_C string, U8 color);
 
-// ekrana rengli yazi yazdirmaq da
+// setting colorized char into somewhere in display
 void set_char_w_color(U8 character, U8 color, I32 offset);
 
-// kursorun hereketi
+// cursor shits
 void cursor_set(int offset);
 int cursor_get();
 
-// memorye bit yazdirmaq
+// set_char_w_color but no color
 void set_char_in_memory(U8 character, I32 offset);
 
-// printf funksiyasi
+// prints
 void putstr(STR8_C string);
 void puthex(U64 n);
 
-// komekci functionlar
+// helper
 I32 get_row(I32 offset);
 I32 get_offset(I32 col, I32 row);
 I32 move_newl(I32 offset);
 
 void memorycpy(U8 *source, U8 *dest,
-               I32 nbyte); // newline ucun memorye copy edir bu function
+               I32 nbyte); // memory copy func for newline
 
-I32 scrolln(I32 offset); // bu ise ekrani scroll edib yuxari kocurur
+I32 scrolln(I32 offset); // scrooll
 
-void putdec(U64 n); // ekrana reqem yazmaga komek edir
-// ekrani clear edir
-void clear();
+void putdec(U64 n); // printing decimal number
+
+void clear(); // clean display
 
 U0 kbd_putchar(char c);
 

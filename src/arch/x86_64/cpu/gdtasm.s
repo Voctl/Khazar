@@ -1,4 +1,3 @@
-; src/lib/gdt.s
 [GLOBAL gdt_flush]
 gdt_flush:
    lgdt [rdi]
@@ -13,8 +12,8 @@ gdt_flush:
    push rax
    retfq
 .flush:
-   ret
-; --- Kəsilmələr üçün Makrolar ---
+    ret
+; macros for interrupts 
 %macro ISR_NOERRCODE 1
 global isr%1
 isr%1:
@@ -33,7 +32,7 @@ isr%1:
 extern isr_handler
 extern irq_handler
 
-; İlk 32 CPU istisnası (Exceptions)
+; first 32 CPU (Exceptions)
 ISR_NOERRCODE 0
 ISR_NOERRCODE 1
 ISR_NOERRCODE 2
@@ -165,7 +164,7 @@ irq_common_stub:
     add rsp, 16
     iretq
 
-; C kodunun bütün ISR və IRQ-ləri bir döngüdə tanıması üçün cədvəl
+; for C code
 global isr_stub_table
 isr_stub_table:
 %assign i 0

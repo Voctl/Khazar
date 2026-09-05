@@ -11,6 +11,7 @@ U0 cmd_fetch(char *args);
 U0 vga50(char *args);
 U0 vga25(char *args);
 U0 speek(char *tokens[4], int count);
+STR8_C echo();
 
 
 extern const struct shell_command commands[];
