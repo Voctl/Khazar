@@ -547,3 +547,13 @@ void vga_set_80x50() {
 	VGA_ROWS = 50;
 	VGA_COLS = 80;
 }
+
+
+U32 strtohex(char *str){
+    U32 val = 0;
+    U8 byte;
+
+    if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) {
+        str += 2;
+    }
+}

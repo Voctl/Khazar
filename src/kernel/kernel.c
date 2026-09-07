@@ -14,12 +14,12 @@
 #include "../include/shell.h"
 #include "../graphics/frambuffer.h"
 #include "proc/process.h"
-
+#include "../fs/atadrv/ata.h"
 
 extern U8 end; /* the symbol defined in link.ld
                 * as the end of the kernel as "end = ."*/
 
-/* [ TEST ] TASKS TEST IMPLEMENTATION */
+/* [ TEST ] TASKS TEST IMPLEMENTATION
 void task_a(void) {
     while (1) {
         putstr_color((STR8_C)"[TASK A] running\n", COLOR_LIGHT_CYAN);
@@ -35,7 +35,7 @@ void task_b(void) {
         yield(); // task a
     }
 }
-/* [ TEST ] TASKS TEST IMPLEMENTATION */
+ [ TEST ] TASKS TEST IMPLEMENTATION */
 
 
 
@@ -45,6 +45,8 @@ void kernel_main(U64 multiboot_addr) {
   idt_init();
   init_timer(100);
   keyboard_init();
+  ata_init();
+
 
   asm volatile("sti"); // for start the interrupt
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
@@ -59,10 +61,13 @@ void kernel_main(U64 multiboot_addr) {
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" IRQ1 [keyboard] Initialized\n");
   sleep(150);
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr((STR8_C)" ATA driver Initialized\n");
+  sleep(150);
   multiboot2_info_t *mbi = (multiboot2_info_t*)multiboot_addr;
   multiboot2_tag_mmap_t *mmap_tag = 0;
 
-    putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
+  putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" PMM initialized\n");
   sleep(150);
 

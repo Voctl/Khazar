@@ -52,6 +52,9 @@ void clear(); // clean display
 
 U0 kbd_putchar(char c);
 
+// transformers
+U32 strtohex(char *str);
+
 // VGA text mode switching -- 80x25 (default) ve 80x50 (8x8 font)
 extern I32 VGA_ROWS;
 extern I32 VGA_COLS;
