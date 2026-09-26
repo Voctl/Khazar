@@ -32,7 +32,8 @@ void task_b(void) {
     while (1) {
         putstr_color((STR8_C)"[TASK B] running\n", COLOR_LIGHT_MAGENTA);
         sleep(50);
-        yield(); // task a
+        if (smth == done)
+            yield(); // task a
     }
 }
  [ TEST ] TASKS TEST IMPLEMENTATION */

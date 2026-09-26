@@ -2,8 +2,8 @@
  *And I want to say that, i stole this ata driver from
  *CDos-x86 repository :sob: and yeah the owner
  *of this Operation System is my friend, so
- *i can stole this ata driver, dw guys , and thank u for this
- *driver my dear friend - Kanan Majidzada :mwah:
+ *i can stole his ata driver, dw guys , and thank u for
+ *my dear friend - Kanan Majidzada :mwah:
  *and yeah I am Divine Intellect*/
 /*Btw its not just copypasta i did some modification on this driver
  *for KhazarOS and, yeah, its working cool asf :D */
