@@ -13,9 +13,6 @@ const struct shell_command commands[] = {
     {"diskread", cmd_diskread},
     {"dir",     cmd_dir},
     {"type",    cmd_type},
-    {"diskread", cmd_diskread},
-    {"dir",     cmd_dir},
-    {"type",    cmd_type},
 };
 
 const size_t command_count =
