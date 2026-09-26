@@ -551,9 +551,26 @@ void vga_set_80x50() {
 
 U32 strtohex(char *str){
     U32 val = 0;
-    U8 byte;
+    U8 digit;
 
     if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X')) {
         str += 2;
     }
+
+    while (*str) {
+        char c = *str;
+        if (c >= '0' && c <= '9') {
+            digit = (U8)(c - '0');
+        } else if (c >= 'a' && c <= 'f') {
+            digit = (U8)(c - 'a' + 10);
+        } else if (c >= 'A' && c <= 'F') {
+            digit = (U8)(c - 'A' + 10);
+        } else {
+            break; /* stop at first nonhex char hm */
+        }
+        val = (val << 4) | digit;
+        str++;
+    }
+
+    return val;
 }

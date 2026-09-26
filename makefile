@@ -57,7 +57,7 @@ iso: $(KERNEL_BIN)
 run: iso
 	qemu-system-x86_64 -enable-kvm -cpu host -smp 2 -m 2048 -cdrom khazar.iso \
   -vga virtio -display gtk,gl=on \
-  -audiodev sdl,id=speaker -machine pc,pcspk-audiodev=speaker
+  -audiodev sdl,id=speaker -machine pc,pcspk-audiodev=speaker -hda disk.img
 
 clean:
 	rm -rf $(BUILD)

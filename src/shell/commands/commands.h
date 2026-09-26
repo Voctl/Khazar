@@ -10,6 +10,7 @@ U0 cmd_beep(char *args);
 U0 cmd_fetch(char *args);
 U0 vga50(char *args);
 U0 vga25(char *args);
+U0 cmd_diskread(char *args);
 U0 speek(char *args);
 STR8_C echo();
 

@@ -13,4 +13,6 @@ U0 cmd_help(char *args) {
   putstr_color((STR8_C) "vga50   - CHANGING FONT TO 80X50\n", COLOR_WHITE);
   putstr_color((STR8_C) "vga25   - CHANGING FONT TO 80X25\n", COLOR_WHITE);
   putstr_color((STR8_C) "peek   - READ A BYTE FROM MEMORY\n", COLOR_WHITE);
+  putstr_color((STR8_C) "diskread   - Reads one 512-byte sector from the ATA master drive and hex-dumps it.\n", COLOR_WHITE);
+
 }
