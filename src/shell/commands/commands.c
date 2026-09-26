@@ -12,7 +12,7 @@ const struct shell_command commands[] = {
     {"peek",    speek},
     {"diskread", cmd_diskread},
     {"dir",     cmd_dir},
-    {"type",    cmd_type},
+    {"cat",    cmd_type},
 };
 
 const size_t command_count =
