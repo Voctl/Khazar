@@ -15,5 +15,5 @@ U0 cmd_help(char *args) {
   putstr_color((STR8_C) "peek   - READ A BYTE FROM MEMORY\n", COLOR_WHITE);
   putstr_color((STR8_C) "diskread   - Reads one 512-byte sector from the ATA master drive and hex-dumps\n", COLOR_WHITE);
   putstr_color((STR8_C) "dir - DIRECTORY\n", COLOR_WHITE);
-  putstr_color((STR8_C) "type - INFORMATION OF FILE\n", COLOR_WHITE);
+  putstr_color((STR8_C) "cat - ABUSE CAT\n", COLOR_WHITE);
 }
