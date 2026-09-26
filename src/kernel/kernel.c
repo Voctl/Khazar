@@ -15,6 +15,7 @@
 #include "../graphics/frambuffer.h"
 #include "proc/process.h"
 #include "../fs/atadrv/ata.h"
+#include "../fs/fat16/fat16.h"
 
 extern U8 end; /* the symbol defined in link.ld
                 * as the end of the kernel as "end = ."*/
@@ -32,8 +33,7 @@ void task_b(void) {
     while (1) {
         putstr_color((STR8_C)"[TASK B] running\n", COLOR_LIGHT_MAGENTA);
         sleep(50);
-        if (smth == done)
-            yield(); // task a
+        yield(); // task a
     }
 }
  [ TEST ] TASKS TEST IMPLEMENTATION */
@@ -47,6 +47,7 @@ void kernel_main(U64 multiboot_addr) {
   init_timer(100);
   keyboard_init();
   ata_init();
+  fat16_init();
 
 
   asm volatile("sti"); // for start the interrupt

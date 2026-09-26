@@ -9,8 +9,13 @@ const struct shell_command commands[] = {
     {"fetch",   cmd_fetch},
     {"vga50",   vga50},
     {"vga25",   vga25},
-    {"diskread", cmd_diskread},
     {"peek",    speek},
+    {"diskread", cmd_diskread},
+    {"dir",     cmd_dir},
+    {"type",    cmd_type},
+    {"diskread", cmd_diskread},
+    {"dir",     cmd_dir},
+    {"type",    cmd_type},
 };
 
 const size_t command_count =

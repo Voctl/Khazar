@@ -566,7 +566,7 @@ U32 strtohex(char *str){
         } else if (c >= 'A' && c <= 'F') {
             digit = (U8)(c - 'A' + 10);
         } else {
-            break; /* stop at first nonhex char hm */
+            break;
         }
         val = (val << 4) | digit;
         str++;

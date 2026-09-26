@@ -55,10 +55,7 @@ iso: $(KERNEL_BIN)
 	grub-mkrescue -o khazar.iso $(ISO_DIR)
 
 run: iso
-	qemu-system-x86_64 -enable-kvm -cpu host -smp 2 -m 2048 -cdrom khazar.iso \
-  -vga virtio -display gtk,gl=on \
-  -audiodev sdl,id=speaker -machine pc,pcspk-audiodev=speaker -hda disk.img
-
+	qemu-system-x86_64 -enable-kvm -cpu host -smp 2 -m 2048 -boot d -cdrom khazar.iso -hda disk.img -vga virtio -display gtk,gl=on  -audiodev alsa,id=speaker -machine pc,pcspk-audiodev=speaker
 clean:
 	rm -rf $(BUILD)
 	rm -f khazar.iso
