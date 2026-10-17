@@ -49,13 +49,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Changed
 - Fixed state transitions in `yield()` (`PROC_RUNNING` <-> `PROC_RUNNABLE`)
 
-# [Unreleased] - 2026/08/26
+# [1.0.0] - 2026/10/17
+
+the "experimental kernel is done" release. since 0.0.2 this got a real
+disk + filesystem stack, a proper C library and a PMM that tells the
+truth about memory.
 
 * Added
 - Added Memmove - for copy memory area, the difference between strcmp is if the s > d just doing reverse write
 - Added Strlen - just for know the size of the string
 - Added Strncmp - for compare the part of string (as a number) which is given as `size_t n`, expect that, its just literally doing same shi as strcmp
+- Added ATA PIO driver (`src/fs/atadrv/ata.c`) with sector read/write
+- Added FAT16 reader (`src/fs/fat16/fat16.c`): BPB parsing, root dir listing, FAT chain walking and file reads
+- Added shell commands: `diskread`, `dir`, `cat`, `peek`
 
 * Changed
 - Fixed the "version" command of shell (now its showing as the real version, not "alpha")
+- Bumped the version to v1.0.0
+
+* Fixed
+- PMM is now initialized (multiboot2 mmap parsed) BEFORE the heap is reserved and before memory stats are printed. previously `nframes` was still 0 at that point, so the `[ MEMORY ]` map never printed, "Physical Memory" always reported 0 MB, and the heap range was never marked as used in the PMM
+- `kfree` no longer keeps a dead `rightmerge` flag (warning free build)
  

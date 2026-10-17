@@ -9,5 +9,5 @@ static U0 khazar(U0){
 U0 cmd_version(char *args){
     (U0)args;
     khazar();
-    putstr((STR8_C)" - Khazar v0.0.2\n");
+    putstr((STR8_C)" - Khazar v1.0.0\n");
 }
