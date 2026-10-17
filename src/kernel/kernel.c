@@ -69,6 +69,24 @@ void kernel_main(U64 multiboot_addr) {
   multiboot2_info_t *mbi = (multiboot2_info_t*)multiboot_addr;
   multiboot2_tag_mmap_t *mmap_tag = 0;
 
+  /* we walk the multiboot2 tags FIRST so the PMM is initialized before
+   * we reserve heap frames or print any memory stats. otherwise nframes
+   * is still 0 and everything below lies to us. */
+  U64 ptr = (U64)mbi + sizeof(multiboot2_info_t);
+  U64 ends = (U64)mbi + mbi->total_size;
+  while (ptr < ends) {
+    multiboot2_tag_t *tag = (multiboot2_tag_t*)ptr;
+    if (tag->type == 0) break;
+    if (tag->type == MULTIBOOT2_TAG_MMAP) {
+      mmap_tag = (multiboot2_tag_mmap_t*)tag;
+      pmm_init(mmap_tag);
+    }
+    if (tag->type == MULTIBOOT2_TAG_FRAMEBUFFER){
+        testFrameb((multiboot2_tag_framebuffer_t*)tag);
+    }
+    ptr = (ptr + tag->size + 7) & ~7ULL;
+  }
+
   putstr_color((STR8_C)"[ INFO ]", COLOR_LIGHT_GREEN);
   putstr((STR8_C)" PMM initialized\n");
   sleep(150);
@@ -133,21 +151,6 @@ void kernel_main(U64 multiboot_addr) {
   pmm_stats();
   beep();
   proc_init(); // init procs array
-
-  U64 ptr = (U64)mbi + sizeof(multiboot2_info_t);
-  U64 ends = (U64)mbi + mbi->total_size;
-  while (ptr < ends) {
-    multiboot2_tag_t *tag = (multiboot2_tag_t*)ptr;
-    if (tag->type == 0) break;
-    if (tag->type == MULTIBOOT2_TAG_MMAP) {
-      mmap_tag = (multiboot2_tag_mmap_t*)tag;
-      pmm_init(mmap_tag);
-    }
-    if (tag->type == MULTIBOOT2_TAG_FRAMEBUFFER){
-        testFrameb((multiboot2_tag_framebuffer_t*)tag);
-    }
-    ptr = (ptr + tag->size + 7) & ~7ULL;
-  }
 
   sleep(100);
   shell();

@@ -107,7 +107,6 @@ U0 kfree(U0* ptr) {
 
     // our lil flags :d
     U8 leftmerge = 0;
-    U8 rightmerge = 0;
 
     if (ptr == NULL) kernel_panic(" [ DEVELOPMENT ] The problem : pointer is NULL");
     header_t *header = (header_t*)((U64)ptr - sizeof(header_t));
@@ -139,8 +138,6 @@ U0 kfree(U0* ptr) {
             if (index != (U32)-1){
                 remove_from_index(index);
             }
-
-            rightmerge = 1;
         }
     }
 
